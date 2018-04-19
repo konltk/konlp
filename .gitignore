@@ -1,1 +1,50 @@
 # Later on we write this 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.class
+*.jar
+
+*.egg
+build/
+dist/
+konlp.egg-info/
+web/_build
+
+# Test artifacts and coverage reports
+*.tox
+*.errs
+.noseids
+.coverage
+konlp/test/*.html
+konlp/test/tweets*
+model.crf.tagger
+brown.embedding
+pylintoutput
+nosetests.xml
+nosetests_scrubbed.xml
+coverage.xml
+
+# editor temporary files
+*.*.sw[op]
+.idea
+*~
+
+# git mergetools backups
+*.orig
+
+# emacs backups
+*#
+
+# spell-check backups
+*.bak
+
+# automatically built files for website
+web/api/*.rst
+
+# iPython notebooks
+
+.ipynb_checkpoints
+
+# pyenv files
+.python-version
