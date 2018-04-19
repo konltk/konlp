@@ -1,0 +1,2 @@
+# Later on we would write this
+Copyright (C) 2001-2017 KoNLTK Project
