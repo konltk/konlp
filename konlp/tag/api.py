@@ -21,13 +21,16 @@ class TaggerI(object):
 
     @abstractmethod
     def tag(self, tokens):
-        """
-        Determine the most appropriate tag sequence for the given
-        token sequence, and return a corresponding list of tagged
-        tokens.  A tagged token is encoded as a tuple ``(token, tag)``.
+        """Attach the appropriate tag in the given token sequence.
 
-        :param tokens: [description]
-        :type tokens: [type]
-        :raises: NotImplementedError
+        Args:
+            tokens (list(str)): Token sequence
+
+        Returns:
+            list(tuple(str, str)): The first string is token, the second string is tag
+
+        Raises:
+            NotImplementedError: If not implement this method on a class that extends this class
         """
+
         raise NotImplementedError()

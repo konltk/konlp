@@ -10,7 +10,7 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-"""Korean Natural Language Toolkit morpheme analysis interface"""
+"""Korean Natural Language Toolkit morpheme analyzer interface"""
 
 from abc import ABCMeta, abstractmethod
 from six import add_metaclass
@@ -18,39 +18,53 @@ from six import add_metaclass
 
 @add_metaclass(ABCMeta)
 class KmaI:
-    """Korean language morpheme analysis interface"""
+    """Korean language morpheme analyzer interface"""
 
     @abstractmethod
     def analyze(self, string):
-        """
-        문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
+        """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
 
-        [description]
-        :param string: 형태소 분석을 할 문장
-        :type string: str
-        :raises: NotImplementedError
+        Args:
+            string (str): 형태소 분석을 할 문장
+
+        Returns:
+            list(list(str)): 형태소 후보군들 리스트
+
+        Raises:
+            NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
+
         """
         raise NotImplementedError()
 
     @abstractmethod
     def morphs(self, string):
-        """
-        문장을 입력받아 형태소만 출력합니다.
+        """문장을 입력받아 형태소만 출력합니다.
 
-        :param string: 형태소 분석을 할 문장
-        :type string: str
-        :raises: NotImplementedError
+        Args:
+            string (str): 형태소 분석을 할 문장
+
+        Returns:
+            list(str): 형태소 리스트
+
+        Raises:
+            NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
+
         """
         raise NotImplementedError()
 
     @abstractmethod
     def nouns(self, string):
-        """
-        문장을 입력받아 색인어들을 출력합니다.
+        """문장을 입력받아 색인어들을 출력합니다.
 
-        :param string: 색인어를 추출할 문장
-        :type string: str
-        :raises: NotImplementedError
+        Args:
+            string (str): 색인어를 추출할 문장
+
+        Returns:
+            list(str): 색인어 리스트
+
+        Raises:
+            NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
+
         """
         raise NotImplementedError()
 

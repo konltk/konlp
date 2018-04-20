@@ -21,20 +21,36 @@ class StemmerI(object):
 
     @abstractmethod
     def stem(self, token):
-        """
-        Strip affixes from the token and return the stem.
+        """Strip affixes from the token and return the stem.
 
-        :param token: The token that should be stemmed.
-        :type token: str
+        Args:
+            token (str): The token that should be stemmed.
+
+        Returns:
+            str: Stemming token
+
+        Raises:
+            NotImplementedError: If not implement this method on a class that extends this class
         """
+
         raise NotImplementedError()
 
 
 class SimpleStemmer(StemmerI):
-    """for an example about how to use the interface above"""
+    """For an example about how to use the interface above"""
 
     def stem(self, token):
+        """주격, 목적격 조사를 제거하는 stemmer
+
+        Args:
+            token (str): 조사를 제거할 토큰
+
+        Returns:
+            str: 조사가 제거된 토큰
+
+        """
         if token[-1] in "은는이가을를":
             return token[:-1]
+
         else:
             return token
