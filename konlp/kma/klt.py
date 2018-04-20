@@ -1,7 +1,7 @@
 # -*- coding:utf8 -*-
 # Korean Natural Language Toolkit : Klt 한국어 형태소 분석기
 #
-# Copyright (C) 2017 - 0000 KoNLTK project 
+# Copyright (C) 2017 - 0000 KoNLTK project
 # Author: Younghun Cho <cyh905@gmail.com>
 #         HyunYoung Lee <hyun02.engineer@gmail.com>
 #         GyuHyeon Nam <ngh3053@gmail.com>
@@ -26,37 +26,37 @@ Example:
     >>> k = Klt()
     >>> simple_txt = "안녕하세요. 좋은 아침입니다."
     >>> k.analyze(simple_txt)
-    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), 
-    ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
+    ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',
+    [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
     >>> k.morphs(simple_txt)
     ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
 """
-from konlp.kma.api import KmaI
-
+# for load libindex.so.3
 from ctypes import cdll
-import konlp, os
 
-lib1 = cdll.LoadLibrary(konlp.__path__[0] + "/kma/_klt/data/libindex.so.3")
-
+from konlp.kma.api import KmaI
 from konlp.kma.klt_data.lib import kma
 from konlp.kma.klt_data.lib import index
 
-
+# load libindex.so.3
+import konlp
+cdll.LoadLibrary(konlp.__path__[0] + "/kma/_klt/data/libindex.so.3")
 
 class Klt(KmaI):
     """
     국민대학교 강승식 교수님의 KLT2000입니다
     """
 
-    def __init__(self, dic_path=""):
+    def __init__(self):
         """
         Args:
             dic_path(str): 사전 위치
         """
 
-        self.dic_init(dic_path = konlp.__path__[0] + "/kma/_klt/data/dictionary")
+        self.dic_init(dic_path=konlp.__path__[0] + "/kma/_klt/data/dictionary")
 
     @staticmethod
     def dic_init(dic_path="/konltk/kma/klt"):
@@ -64,8 +64,8 @@ class Klt(KmaI):
         Args:
             dic_path(str): 사전 위치
         """
-        kma.init(dic_path) 
-        index.init(dic_path) 
+        kma.init(dic_path) # pylint: disable=I1101
+        index.init(dic_path) # pylint: disable=I1101
         return
 
     def analyze(self, _input):
@@ -77,7 +77,7 @@ class Klt(KmaI):
         Returns:
             (원본, [(형태소, 품사)]) list
         """
-        return kma.morpha(_input)[1] 
+        return kma.morpha(_input)[1] # pylint: disable=I1101
 
     def morphs(self, _input):
         """문장을 입력받아 형태소만 출력합니다.
@@ -88,7 +88,7 @@ class Klt(KmaI):
         Returns:
             형태소 분석된 list
         """
-        morpha = kma.morpha(_input)[1] 
+        morpha = kma.morpha(_input)[1] # pylint: disable=I1101
 
         list_morphs = []
 
@@ -107,7 +107,7 @@ class Klt(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        _index = index.index(_input) 
+        _index = index.index(_input) # pylint: disable=I1101
 
         list_nouns = []
 
