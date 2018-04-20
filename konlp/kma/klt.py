@@ -43,7 +43,7 @@ from konlp.kma.klt_data.lib import index
 
 # load libindex.so.3
 import konlp
-cdll.LoadLibrary(konlp.__path__[0] + "/kma/_klt/data/libindex.so.3")
+cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt_data/data/libindex.so.3")
 
 class Klt(KmaI):
     """
