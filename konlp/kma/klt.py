@@ -37,13 +37,14 @@ Example:
 # for load libindex.so.3
 from ctypes import cdll
 
-from konlp.kma.api import KmaI
-from konlp.kma.klt_data.lib import kma
-from konlp.kma.klt_data.lib import index
-
 # load libindex.so.3
 import konlp
 cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt_data/data/libindex.so.3")
+
+# libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
+from konlp.kma.api import KmaI # pylint: disable=C0413
+from konlp.kma.klt_data.lib import kma # pylint: disable=C0413
+from konlp.kma.klt_data.lib import index # pylint: disable=C0413
 
 class Klt(KmaI):
     """
