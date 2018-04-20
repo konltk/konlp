@@ -21,13 +21,18 @@ class TokenizerI(object):
 
     @abstractmethod
     def tokenize(self, string):
-        """
-        Return a tokenized copy of string.
+        """Return a tokenized copy of string.
 
-        :param string: string to tokenize
-        :type string: str
-        :raises: NotImplementedError
+        Args:
+            string (str): String to tokenize
+
+        Returns:
+            list(str): Tokenized tokens
+
+        Raises:
+            NotImplementedError: If not implement this method on a class that extends this class
         """
+
         raise NotImplementedError()
 
 
@@ -35,4 +40,13 @@ class SimpleTokenizer(TokenizerI):
     """For an example about how to inherit the class above"""
 
     def tokenize(self, string):
+        """Simple string tokenizer by white-space character
+
+        Args:
+            string (str):  String to tokenize
+
+        Returns:
+            str: Tokenized tokens
+
+        """
         return string.split()

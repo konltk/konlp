@@ -9,7 +9,7 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ============================================================
-"""Korean Natural Language Tooklit chunker interface"""
+"""Korean Natural Language Toolkit chunker interface"""
 
 from abc import ABCMeta, abstractmethod
 from six import add_metaclass
@@ -23,12 +23,16 @@ class ChunkParserI(ParserI):
 
     @abstractmethod
     def parse(self, tokens):
-        """
-        Return the best chunk structure for the given tokens
+        """Return the best chunk structure for the given tokens
         and return a tree.
 
-        :param tokens: The list of (word, tag) tokens to be chunked.
-        :type tokens: list(tuple)
-        :rtype: Tree
+        Args:
+            tokens (list(tuple(str, str))): The list of (word, tag) tokens to be chunked.
+
+        Returns:
+            Tree: Chunk structure
+
+        Raises:
+            NotImplementedError: If not implement this method on a class that extends this class
         """
         raise NotImplementedError()
