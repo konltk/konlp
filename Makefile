@@ -10,6 +10,15 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 
+# Deployment instructions
+# 0. Fill in `pypirc.sample`, and `cp pypirc.sample ~/.pypirc`
+#
+#
+# 1. $ make testpypi
+# 2. $ make pypi # notice that you don't change the version number. 
+# 3. Push tag 
+# 4. updat the document 
+ 
 PYTHON = python
 PIP = pip
 PACKAGE = konlp
@@ -37,19 +46,19 @@ PACKAGE = konlp
 ##################################################################
 
 testpypi:
-        $(PYTHON) setup.py register -r testpypi
-        #$(PYTHON) setup.py sdist --format=gztar upload -r testpypi
-        $(PYTHON) setup.py bdist_wheel upload -r testpypi
-        # Execute manually below 
-        # If you don't have the virtualenv, pip install virtualenv
-        # cd /tmp
-        # virtualenv venv
-        # source venv/bin/activate
-        # pip install --index-url https://test.pypi.org/simple/ konlp
-        # deactivate 
-        # virtualenv-3.5 venv3
-        # source venv3/bin/activate
-        # pip3 install --index-url https://test.pypi.org/simple/ konlp
+	$(PYTHON) setup.py register -r testpypi
+	#$(PYTHON) setup.py sdist --format=gztar upload -r testpypi
+	$(PYTHON) setup.py bdist_wheel upload -r testpypi
+	# Execute manually below 
+	# If you don't have the virtualenv, pip install virtualenv
+	# cd /tmp
+	# virtualenv venv
+	# source venv/bin/activate
+	# pip install --index-url https://test.pypi.org/simple/ konlp
+	# deactivate 
+	# virtualenv-3.5 venv3
+	# source venv3/bin/activate
+	# pip3 install --index-url https://test.pypi.org/simple/ konlp
 
 
 ##################################################################
@@ -60,15 +69,15 @@ testpypi:
 
 
 pypi:
-        $(PYTHON) setup.py register -r pypi
-        #$(PYTHON) setup.py sdist --format=gztar upload -r pypi
-        $(PYTHON) setup.py bdist_wheel upload -r pypi
+	$(PYTHON) setup.py register -r pypi
+	#$(PYTHON) setup.py sdist --format=gztar upload -r pypi
+	$(PYTHON) setup.py bdist_wheel upload -r pypi
 
 clean:
-        rm -rf build
-        rm -rf dist
-        rm -rf konlp.egg-info/
+	rm -rf build
+	rm -rf dist
+	rm -rf konlp.egg-info/
 
-clean_code:
-        rm -f `find konlp -name '*.pyc'`
-        rm -f `find konlp -name '*.pyo'`
+#clean_code:
+#	rm -f `find konlp -name '*.pyc'`
+#	rm -f `find konlp -name '*.pyo'`
