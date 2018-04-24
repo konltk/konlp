@@ -13,15 +13,58 @@
 # Deployment instructions
 # 0. Fill in `pypirc.sample`, and `cp pypirc.sample ~/.pypirc`
 #
-#
-# 1. $ make testpypi
-# 2. $ make pypi # notice that you don't change the version number. 
-# 3. Push tag 
-# 4. updat the document 
+# 1. Check version as konlp/VERSION
+# 2. $ make testpypi
+# 3. $ make pypi # notice that you don't change the version number. 
+# 4. Push tag 
+# 5. updat the document
+
+# TODO: how to use pylint 
  
 PYTHON = python
 PIP = pip
 PACKAGE = konlp
+
+# Before making release 
+# without pyroma,
+#
+# pip install pyroma 
+#
+# if you make the distribution of source
+# change the command below to "$ pyroma dist/konlp-*.tar.gz"
+# If you know about pyroma, visit https://pypi.org/project/pyroma/
+# If you distribute source file,  use check-manifest
+# without check-manifest
+# 
+# pip install check-manifest
+# 
+# If you know about how to use check-manifest,
+# visit https://pypi.org/project/check-manifest/
+#
+# In order to inspect the quality of the code to PEP8
+# Use pylint with configuration file 
+# How to use pylint, visit here https://github.com/PyCQA/pylint
+# http://pylint.pycqa.org/en/latest/user_guide/run.html?highlight=rcfile
+# https://github.com/PyCQA/pylint/blob/master/pylintrc 
+##################################################################
+#                                                                #
+#                             Check                              #
+#                                                                #
+##################################################################
+sdist:
+	$(PYTHON) setup.py sdist --format=gztar,zip
+
+check:	sdist
+	check-manifest -u -v
+	pyroma dist/konlp-*.tar.gz
+	pyroma dist/konlp-*.zip
+#	rm -rf dist
+#	rm -rf konlp.egg-info
+
+# Later on, we have to change the command below to use  the configuration file 
+code_check:
+	pylint konlp/*
+
 
 # Before use testpypi and pypi, update pypirc.sample to $HOME/USERNAME/.pypir
 # Then check the version 
@@ -76,7 +119,7 @@ pypi:
 clean:
 	rm -rf build
 	rm -rf dist
-	rm -rf konlp.egg-info/
+	rm -rf konlp.egg-info
 
 #clean_code:
 #	rm -f `find konlp -name '*.pyc'`
