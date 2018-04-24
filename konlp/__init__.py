@@ -31,7 +31,7 @@ try:
     # If a VERSION files exists, use it!
     VERSION_FILE = os.path.join(os.path.dirname(__file__), "VERSION")
     with opne(VERSION_FILE, "r") as vfh:
-        __version__ = infile.read().strip()
+        __version__ = vfh.read().strip()
 except NameError:
     __version__ = "unknown"
 except IOError as ex:
