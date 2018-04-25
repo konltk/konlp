@@ -88,6 +88,12 @@ code_check:
 #                                                                #
 ##################################################################
 
+# If you want to use another way, use the command below
+# Reference : https://packaging.python.org/guides/using-testpypi/#using-test-pypi
+#           : https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi
+# python setup.py bdist_wheel
+# twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
 testpypi:
 	$(PYTHON) setup.py register -r testpypi
 	#$(PYTHON) setup.py sdist --format=gztar upload -r testpypi
@@ -110,6 +116,11 @@ testpypi:
 #                                                                #
 ##################################################################
 
+# If you want to use another way, use the command below
+# Reference : https://packaging.python.org/guides/using-testpypi/#using-test-pypi
+#           : https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi
+# python setup.py bdist_wheel
+# twine upload dist/*
 
 pypi:
 	$(PYTHON) setup.py register -r pypi
