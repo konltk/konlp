@@ -22,8 +22,8 @@ dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 만약 다른 위치에 있으면 dic_init함수를 써서 초기화하면 됩니다.
 
 Example:
-    >>> from konltk.kma.klt import Klt
-    >>> k = Klt()
+    >>> from konlp.kma.klt import klt
+    >>> k = klt.Klt()
     >>> simple_txt = "안녕하세요. 좋은 아침입니다."
     >>> k.analyze(simple_txt)
     [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
@@ -43,8 +43,8 @@ cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
-from konlp.kma.klt.lib import kma # pylint: disable=C0413
-from konlp.kma.klt.lib import index # pylint: disable=C0413
+from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
+from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
 
 class Klt(KmaI):
     """
@@ -65,8 +65,8 @@ class Klt(KmaI):
         Args:
             dic_path(str): 사전 위치
         """
-        kma.init(dic_path) # pylint: disable=I1101
-        index.init(dic_path) # pylint: disable=I1101
+        _kma.init(dic_path) # pylint: disable=I1101
+        _index.init(dic_path) # pylint: disable=I1101
         return
 
     def analyze(self, _input):
@@ -78,7 +78,7 @@ class Klt(KmaI):
         Returns:
             (원본, [(형태소, 품사)]) list
         """
-        return kma.morpha(_input)[1] # pylint: disable=I1101
+        return _kma.morpha(_input)[1] # pylint: disable=I1101
 
     def morphs(self, _input):
         """문장을 입력받아 형태소만 출력합니다.
@@ -89,7 +89,7 @@ class Klt(KmaI):
         Returns:
             형태소 분석된 list
         """
-        morpha = kma.morpha(_input)[1] # pylint: disable=I1101
+        morpha = _kma.morpha(_input)[1] # pylint: disable=I1101
 
         list_morphs = []
 
@@ -108,12 +108,23 @@ class Klt(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        _index = index.index(_input) # pylint: disable=I1101
+        result_of_index = _index.index(_input) # pylint: disable=I1101
 
         list_nouns = []
 
-        for i in _index:
+        for i in result_of_index:
             if i[1]:
                 list_nouns.append(i[1][0])
 
         return list_nouns
+
+    def noun_comp(self, _input): # pylint: disable=R0201
+        """복합명사를 입력받아 복합명사 분해를 합니다.
+
+        Args:
+            _input(str): 부해한 복합명사
+
+        Returns:
+            복합명상 분해된 list
+        """
+        return _index.noun_comp(_input, " ") # pylint: disable=I1101
