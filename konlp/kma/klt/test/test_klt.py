@@ -14,6 +14,10 @@ def test_nouns(input_list):
     k = klt.Klt()
     assert k.nouns(input_list)
 
+def test_analyze(input_list):
+    k = klt.Klt()
+    assert k.analyze(input_list)
+
 def test_noun_comp(input_list):
     k = klt.Klt()
     assert k.noun_comp(input_list)
