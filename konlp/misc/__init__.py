@@ -9,6 +9,5 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ============================================================
-"""we are preparing this module"""
 
 from .kconv import *

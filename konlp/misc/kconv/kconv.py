@@ -3,7 +3,7 @@
 # Korean Converter for Korean Natural Language Toolkit
 #
 # Author: GyuHyeon Nam <ngh3053@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer.com>
+#         Hyunyoung Lee <hyun02.engineer@gmail.com>
 #         Seungshik Kang <sskang@kookmin.ac.kr>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
