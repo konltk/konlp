@@ -1,6 +1,6 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Converter for Korean Natural Language Toolkit
+# Korean Natural Language Toolkit: korean converter
 #
 # Author: GyuHyeon Nam <ngh3053@gmail.com>
 #         Hyunyoung Lee <hyun02.engineer@gmail.com>
