@@ -22,7 +22,7 @@ dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 만약 다른 위치에 있으면 dic_init함수를 써서 초기화하면 됩니다.
 
 Example:
-    >>> from konlp.kma.klt import kltKma
+    >>> from konlp.kma.klt import klt
     >>> k = klt.KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> k.analyze(simple_txt)
