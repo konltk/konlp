@@ -1,0 +1,918 @@
+;
+;====================[ 불용어 및 특수색인어 사전 ]======================
+;
+; 불용어(stopword)는 자동색인시에 색인어로 추출되지 않도록 하고 싶은
+; 명사들입니다. 즉, 이 파일에 등록된 stopword들은 색인어로
+; 출력되지 않습니다.
+;
+; 특수색인어는 자동색인시에 1 음절 명사 혹은 숫자로 시작되는
+; 용어가 누락되는 것을 방지하기 위한 것으로 특수색인어로 등록되면
+; 항상 색인어로 추출해 줍니다.
+;
+;
+; *. 이 파일은 반드시 KS 완성형(KS C 5601-1987) 한글코드로 작성되어야 합니다.
+;
+; 2. line의 첫문자가 ';'이면 comment로 간주하여 무시됩니다.
+;
+; 3. line의 첫문자가 '_'이면 불용어로서 색인어로 출력되지 않습니다.
+;
+; 4. line의 첫문자가 '*'이면 특수색인어로서 항상 색인어로 출력됩니다.
+;    1 음절 명사(예: 꽃, 핵)나 숫자로 시작되는 용어(예: 3.1절) 등
+;    default로 불용어로 간주되는 용어가 누락되지 않게 할 때 사용합니다.
+;
+; 5. 색인어로 추출되지 않는 한글 명사를 특수색인어로 등록해도
+;    여전히 누락되는 경우가 있습니다. 이러한 용어는 특수색인어로
+;    등록하지 말고 사용자 정의사전(hangul.usr)에 등록하면 됩니다.
+;
+; 6. 한 line에 하나의 단어(명사)만 허용되며, line 중간에 blank 문자를
+;    허용하지 않습니다.
+;
+; 7. Text editor로 삽입/삭제할 때 반드시 sorting 순서를 지켜야 합니다.
+;    sorting 순서가 틀리면 실행할 때 error message를 출력합니다.
+;
+; 8. 이 사전에 수록될 수 있는 최대 단어수는 10,000단어까지이며,
+;    또한 총 60,000bytes를 넘지 않아야 합니다. comment는 제외함.
+; 
+; 
+;                 국민대학교 컴퓨터학부 강승식
+;---------------------------------------------------------------------
+;--.|_ /  /| Seung-Shik Kang                  Tel: (+82-2) 910-4800
+; / | /\ /\| Kookmin University               Fax: (+82-2) 910-4868
+;    ---- -+ School of Computer Science       sskang@cs.kookmin.ac.kr
+;  () ()   | Songbuk-gu, Seoul 136-702, KOREA http://nlp.kookmin.ac.kr
+;---------------------------------------------------------------------
+;
+*112
+*114
+*119
+*12-12
+*12-12사태
+*12.12
+*12.12사태
+*128메가
+*16메가
+*1기가
+*2000
+*2002
+*256메가
+*3-1절
+*3.1절
+*386
+*386PC
+*4-19
+*4-19혁명
+*4.19
+*4.19혁명
+*486
+*486PC
+*4메가
+*5-16
+*5-16혁명
+*5.16
+*5.16혁명
+*5.17
+*5.18
+*586
+*586PC
+*6.25
+*6.25사변
+*64메가
+*911
+*D램
+;1IBM연구소
+*S램
+_a
+_about
+_above
+_across
+_after
+_against
+_all
+_almost
+_alone
+_along
+_already
+_also
+_although
+_always
+_among
+_an
+_and
+_another
+_any
+_anybody
+_anyone
+_anything
+_anywhere
+_are
+_area
+_areas
+_around
+_as
+_ask
+_asked
+_asking
+_asks
+_at
+_away
+_b
+_back
+_backed
+_backing
+_backs
+_be
+_became
+_because
+_become
+_becomes
+_been
+_before
+_began
+_behind
+_being
+_beings
+_best
+_better
+_between
+_big
+_both
+_but
+_by
+_c
+_came
+_can
+_cannot
+_case
+_cases
+_certain
+_certainly
+_clear
+_clearly
+_come
+_could
+_d
+_did
+_differ
+_different
+_differently
+_do
+_does
+_done
+_down
+_downed
+_downing
+_downs
+_during
+_e
+_each
+_early
+_either
+_end
+_ended
+_ending
+_ends
+_enough
+_even
+_evenly
+_ever
+_every
+_everybody
+_everyone
+_everything
+_everywhere
+_f
+_face
+_faces
+_fact
+_facts
+_far
+_felt
+_few
+_find
+_finds
+_first
+_for
+_four
+_from
+_full
+_fully
+_furhered
+_further
+_furthering
+_furthers
+_g
+_gave
+_general
+_generally
+_get
+_gets
+_give
+_given
+_gives
+_go
+_going
+_good
+_goods
+_got
+_great
+_greater
+_greatest
+_group
+_grouped
+_grouping
+_groups
+_h
+_had
+_has
+_have
+_having
+_he
+_her
+_here
+_herself
+_high
+_higher
+_highest
+_him
+_himself
+_his
+_how
+_however
+_i
+_if
+_important
+_in
+_interest
+_interested
+_interesting
+_interests
+_into
+_is
+_it
+_its
+_itself
+_j
+_just
+_k
+_keep
+_keeps
+_kind
+_knew
+_know
+_known
+_knows
+_l
+_large
+_largely
+_last
+_lastest
+_later
+_leastless
+_let
+_lets
+_like
+_likely
+_long
+_longer
+_longest
+_m
+_made
+_make
+_making
+_man
+_many
+_may
+_me
+_member
+_members
+_men
+_might
+_more
+_most
+_mostly
+_mr
+_mrs
+_much
+_must
+_my
+_myself
+_n
+_necessary
+_need
+_needed
+_needing
+_needs
+_never
+_new
+_newer
+_newest
+_next
+_no
+_nobody
+_non
+_noone
+_not
+_nothing
+_now
+_nowhere
+_number
+_numbered
+_numbering
+_numbers
+_o
+_of
+_off
+_often
+_old
+_older
+_oldest
+_on
+_once
+_one
+_only
+_open
+_opened
+_opening
+_opens
+_or
+_order
+_orderd
+_ordering
+_orders
+_other
+_others
+_our
+_out
+_over
+_p
+_part
+_parted
+_parting
+_parts
+_per
+_perhaps
+_place
+_places
+_point
+_pointed
+_pointing
+_points
+_possible
+_present
+_presented
+_presenting
+_presents
+_problem
+_problems
+_put
+_puts
+_q
+_quite
+_r
+_rather
+_really
+_right
+_room
+_rooms
+_s
+_said
+_same
+_saw
+_say
+_says
+_second
+_seconds
+_see
+_seem
+_seemed
+_seeming
+_seems
+_sees
+_several
+_shall
+_she
+_should
+_show
+_showed
+_showing
+_shows
+_side
+_sides
+_since
+_small
+_smaller
+_smallest
+_so
+_some
+_somebody
+_someone
+_something
+_somewhere
+_state
+_states
+_still
+_such
+_sure
+_t
+_take
+_taken
+_than
+_that
+_the
+_their
+_them
+_then
+_there
+_therefore
+_these
+_they
+_thing
+_things
+_think
+_thinks
+_this
+_those
+_though
+_thought
+_thoughts
+_three
+_through
+_thus
+_to
+_today
+_together
+_too
+_took
+_toward
+_turn
+_turned
+_turning
+_turns
+_two
+_u
+_under
+_until
+_up
+_upon
+_us
+_use
+_used
+_uses
+_v
+_very
+_w
+_want
+_wanted
+_wanting
+_wants
+_was
+_way
+_ways
+_we
+_well
+_wells
+_went
+_were
+_what
+_when
+_where
+_whether
+_which
+_while
+_whole
+_whose
+_whoss
+_why
+_will
+_with
+_within
+_without
+_work
+_worked
+_working
+_works
+_would
+_x
+_y
+_year
+_years
+_yet
+_you
+_young
+_younger
+_youngest
+_your
+_yours
+_z
+_가
+_가운데
+_갈
+; _갑
+_걔
+_거
+_건
+; _걸
+_것
+겉
+_게
+_겨
+_겸
+_겹
+_경
+_곁
+_계
+_고
+_곱
+_곳
+_곳곳
+_과
+_곽
+_굄
+_구
+_권
+_그
+_그간
+_그것
+_그곳
+_그녀
+_그달
+_그당시
+_그대
+_그대신
+_그동안
+_그들
+_그들대로
+_그때
+_그런고
+_그런날
+_그런데서
+_그런줄
+_그럴수록
+_그로
+_그무렵
+_그외
+_그이
+_그전
+_그전날
+_그쪽
+_근
+*글
+_급
+_깁
+_깡
+*꽃
+; _꽝
+꾐
+_끗
+_낌
+_나
+_낙
+_낟
+_낱
+_내게
+_내년초
+_내달
+_내부
+_냥
+_너
+_너나마
+_너로
+_너와
+_너희
+_너희대로
+_너희들
+_네
+_네번
+_네째
+_네탓
+_넷
+_넷째
+_년
+_년간
+_년도
+_녘
+_노
+놈
+_놉
+_누가
+_누구
+_누구누구
+_누군가
+_뉘
+_닢
+_다섯째
+_다음달
+_다음주
+_닥
+; _답
+_당분간
+_대다수
+; _댁
+; _덤
+_덧
+_데
+; _돗
+_되
+_두
+_둔
+_둘
+_둘째
+_둥
+_뒤
+_뒷받침
+_듯
+_등
+_따름
+_따위
+_딴
+_때
+_때문
+; _땡
+_떼
+_뜀
+; _런
+; _룰
+; _룸
+_리
+_릴
+_마
+_마련
+_마리
+; _마지막
+_마찬가지
+_막
+_만
+; _만원
+; _만원씩
+_만큼
+_맏
+; _맘
+; _맴
+_메
+_멸
+_몇
+_무엇
+_묶음
+_물론
+_뭇
+_뭣
+_밑
+; _바
+_밖
+; _백
+; _백만
+; _백만원
+_밸
+_번
+_번째
+별안간
+; _볏
+; _본
+; _봉
+; _분
+; *비타민A
+; *비타민B
+; *비타민C
+; *비타민D
+; *비타민E
+_빈
+; _빔
+; _빽
+; _뻥
+; _뼘
+_뿐
+_사
+; _삭
+; _삵
+_샅
+_서
+_서로
+_석
+_섟
+; _섶
+_세
+_세째
+; _셈
+_셋
+_셋째
+속
+; _송
+_수
+_수십
+_수십개
+; _숱
+_쉬
+쉰
+_스스로
+_승
+식
+십
+; _쌈
+; _쌍
+_씀
+; _씹
+아홉째
+_안
+_앎
+_압
+_앵
+_야
+_얘
+_어느편
+_어디
+_어디론지
+_어떤때
+; _억원
+엠
+_여
+_여러가지
+_여럿
+_여섯째
+역
+_열째
+옆
+; _예
+_예년때
+_오
+_온
+_올
+_올해
+; _옴
+; _옹
+_왜
+_요즘
+_우
+; _우리
+_우리들
+_우선
+_운운
+_움
+_움직임
+월
+*웹
+_위해서
+; *윈도95
+; *윈도95시스템
+; *윈도NT
+_유
+_육
+_율
+_으뜸
+; _을
+_음
+_이것
+_이곳
+_이기
+_이날
+_이달
+_이달초
+_이듬
+_이듬달
+_이때
+_이런저런
+_이런줄
+_이번
+_이번분
+_일곱째
+; _임
+_잇
+; _작
+; _잔
+_잘
+; _잭
+; _잽
+; _쟁
+_쟤
+_저것
+_저곳
+_저기
+_저기대
+_저긴
+_저도
+_저런날
+_저런줄
+_저렴
+_저마
+_저쪽
+_저하
+_저희
+_적극적
+_전날
+_전년
+_전부
+_전부문
+_전일
+_전체적
+_절절
+; _접
+_제
+_제나름
+; _존
+; _좆
+; _좌
+; _죄
+_줄곳
+; _줌
+_중점적
+; _쥔
+_증
+_지
+_지난해
+_직
+_짓
+_쪽
+; _찬
+; _채
+; _챙
+; _척
+; _천만
+; _천명
+; _천원
+_첫날
+_첫째
+; _촉
+_최
+_최근
+; _충
+_취
+_층
+_치
+; _칭
+; _칸
+; _캡
+_컷
+; _켜
+; _콕
+_쾌
+; _쿡
+;_크기
+; _큰폭
+; _킥
+_타
+_탓
+_태
+; _토
+_톡
+; _톤
+_톨
+; _톳
+; _퇴
+_투
+_퉁
+; _판
+; _패
+; _팽
+*페르시아만
+_편
+_평
+;_평상시
+포
+폭
+; _폼
+_푸르름
+; _푼
+픽
+; _필
+_하
+_하나
+_하나둘
+_한
+_한가운데
+_한가지
+_한곳
+; *한국HP
+; *한국IBM
+; *한국IBM연구소
+_한마디
+_한번
+_한쪽
+_한편
+_할
+; _합
+; _항
+*핵
+; _행
+;_향후
+_허
+_혁
+; _현
+; _호
+; _홉
+; _홍
+; _홑
+; _화
+_확
+_환
+; _황
+; _홰
+; _획
+; _횡
+_후
+; _훅
+_휘
+; _흑
+_힐
+*힘
+;
+;=======================[ 불용어, 특수색인어 사전 끝 ]====================
+;
