@@ -1,6 +1,6 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Klt tokenizer for Korean Natural Language Toolkit
+# Korean Natural Language Toolkit: Autospacing of klt
 #
 # Author: Younghun Cho <cyh905@gmail.com>
 #         Hyunyoung Lee <hyun02.engineer.com>
@@ -8,9 +8,8 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-"""
-Klt Tokenizer
-"""
+"""Klt Tokenizer"""
+
 # for the load dic files
 import konlp
 from konlp.tokenize.klt.lib import klt_asp as _klt_asp
