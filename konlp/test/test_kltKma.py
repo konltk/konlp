@@ -9,24 +9,24 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 import pytest
-from konlp.kma.klt import klt
+from konlp.kma.klt import kltKma
 
 @pytest.fixture
 def input_list():
     return "안녕하세요. 국민대학교 자연어처리 연구실입니다."
 
 def test_morphs(input_list):
-    k = klt.Klt()
+    k = klt.KltKma()
     assert k.morphs(input_list)
 
 def test_nouns(input_list):
-    k = klt.Klt()
+    k = klt.KltKma()
     assert k.nouns(input_list)
 
 def test_analyze(input_list):
-    k = klt.Klt()
+    k = klt.KltKma()
     assert k.analyze(input_list)
 
 def test_noun_comp(input_list):
-    k = klt.Klt()
+    k = klt.KltKma()
     assert k.noun_comp(input_list)
