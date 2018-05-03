@@ -10,7 +10,7 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 import pytest
-from konlp.kma.klt import kltKma
+from konlp.kma.klt import klt
 
 @pytest.fixture
 def input_list():
