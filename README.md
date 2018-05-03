@@ -1,5 +1,5 @@
 # KoNLP(Korean Natural Language Toolkit)
-[![PyPI](https://img.shields.io/pypi/v/konlp.svg)](https://pypi.python.org/pypi/konlp)  [![Documentation Status](https://readthedocs.org/projects/konlp/badge/?version=latest)](http://konlp.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.org/konltk/konlp.svg?branch=master)](https://travis-ci.org/konltk/konlp)
+[![PyPI](https://img.shields.io/pypi/v/konlp.svg)](https://pypi.python.org/pypi/konlp)  [![Documentation Status](https://readthedocs.org/projects/konlp/badge/?version=latest)](http://konlp.readthedocs.io/en/latest/?badge=latest) [![Build Status](https://travis-ci.org/konltk/konlp.svg?branch=master)](https://travis-ci.org/konltk/konlp) [![Coverage Status](https://coveralls.io/repos/github/konltk/konlp/badge.svg?branch=master)](https://coveralls.io/github/konltk/konlp?branch=master)
 
 KoNLP -- the Korean Natural Language Tookit -- is a suite of open source python 
 modules, data sets, and tutorials supporting research and development in Natural
