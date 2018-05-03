@@ -38,19 +38,19 @@ def utf16be():
 
 @pytest.fixture
 def euckr_dir():
-    return './files/euckr.txt'
+    return os.path.abspath('./files/euckr.txt')
 
 @pytest.fixture
 def utf8_dir():
-    return './files/utf8.txt'
+    return os.path.abspath('./files/utf8.txt')
 
 @pytest.fixture
 def utf16le_dir():
-    return './files/utf16le.txt'
+    return os.path.abspath('./files/utf16le.txt')
 
 @pytest.fixture
 def utf16be_dir():
-    return './files/utf16be.txt'
+    return os.path.abspath('./files/utf16be.txt')
 
 
 def test_str_euckr(string, euckr):
