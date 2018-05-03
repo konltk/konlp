@@ -3,8 +3,17 @@ language: python
 python:
   - "3.5"
 
+install:
+  - sudo apt-get install python3-pip
+  - pip3 install pytest-cov==2.4.0
+  - pip3 install coveralls==1.1
+
 script:
   - python3 setup.py install
+  - coverage run --source=ngh_func -m py.test
+
+after_success:
+  - coveralls
 
 notifications:
   email:
