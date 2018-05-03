@@ -48,3 +48,6 @@ web/api/*.rst
 
 # pyenv files
 .python-version
+
+# pytest
+.pytest_cache

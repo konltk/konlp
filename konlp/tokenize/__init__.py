@@ -10,3 +10,4 @@
 # For license information, see LICENSE.TXT
 # ============================================================
 """we are preparing this module"""
+from konlp.tokenize.klt.klt import klt_asp
