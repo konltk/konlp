@@ -10,7 +10,7 @@ install:
 
 script:
   - python3 setup.py install
-  - coverage run --source=ngh_func -m py.test
+  - coverage run --source=konlp -m py.test
 
 after_success:
   - coveralls
