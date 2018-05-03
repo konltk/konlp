@@ -1,13 +1,13 @@
 # -*- coding:utf8 -*-
-# Korean Natural Language Toolkit : Klt 한국어 형태소 분석기
+# Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Copyright (C) 2017 - 0000 konlp project
+# Klt 형태소 분석기 for Korean Natural Language Toolkit
+#
 # Author: Younghun Cho <cyh905@gmail.com>
-#         HyunYoung Lee <hyun02.engineer@gmail.com>
-#         GyuHyeon Nam <ngh3053@gmail.com>
 #         Seungshik Kang <sskang@kookmin.ac.kr>
-# URL: <http://www.konlp.org>
+# URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
+# ========================================================
 
 """
 Klt 한국어 형태소 분석기
@@ -24,7 +24,7 @@ dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 Example:
     >>> from konlp.kma.klt import klt
     >>> k = klt.Klt()
-    >>> simple_txt = "안녕하세요. 좋은 아침입니다."
+    >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> k.analyze(simple_txt)
     [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
     ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',

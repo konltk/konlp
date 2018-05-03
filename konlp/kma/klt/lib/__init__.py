@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-# Korean Natural Language Toolkit: 
+# -*- coding:utf8 -*-
+# Copyright (C) 2017 - 0000 KoNLTK project
 #
-# 
-# Author:  <@gmail.com>
+# Klt 형태소 분석기 for Korean Natural Language Toolkit
 #
-# Contributors: 
-# URL: <http://nltk.org/>
+# Author: Younghun Cho <cyh905@gmail.com>
+#         Seungshik Kang <sskang@kookmin.ac.kr>
+# URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
+# ========================================================
