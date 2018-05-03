@@ -1,6 +1,6 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit:
+# Korean Natural Language Toolkit: korean converter
 #
 #
 # Author: HyunYoung Lee <hyun02.engineer@gmail.com>
@@ -10,4 +10,4 @@
 # For license information, see LICENSE.TXT
 # ============================================================
 
-from .kconv import *
+from .kconv import scan, convert, convert_file
