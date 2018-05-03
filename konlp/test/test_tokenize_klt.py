@@ -12,6 +12,6 @@ import pytest
 from konlp.tokenize import klt_asp
 
 def test_asp():
-    assert klt_asp(text="국민대학교자연어처리연구실")
-    assert klt_asp(text="국민대학교자연어처리연구실", split=False)
-    assert klt_asp(text="국민대학교자연어처리연구실", split=True)
+    assert klt_asp(text="국민대학교자연어처리연구실") == ['국민대학교', '자연어처리', '연구실']
+    assert klt_asp(text="국민대학교자연어처리연구실", split=False) == '국민대학교 자연어처리 연구실'
+    assert klt_asp(text="국민대학교자연어처리연구실", split=True) == ['국민대학교', '자연어처리', '연구실']
