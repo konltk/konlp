@@ -102,36 +102,36 @@ def test_utf16be_utf16le(utf16be, utf16le):
     assert kconv.convert(utf16be, "utf16be", "utf16le") == utf16le
 
 
-def test_file_euckr_utf8(euckr_dir, utf8_dir):
-    kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf8bom")
-    assert os.system('diff {} {}'.format(TEMP_DIR, utf8_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
-def test_file_euckr_utf16le(euckr_dir, utf16le_dir):
-    kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf16le")
-    assert os.system('diff {} {}'.format(TEMP_DIR, utf16le_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
-def test_file_euckr_utf16be(euckr_dir, utf16be_dir):
-    kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf16be")
-    assert os.system('diff {} {}'.format(TEMP_DIR, utf16be_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
-def test_file_utf8_euckr(utf8_dir, euckr_dir):
-    kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "euckr")
-    assert os.system('diff {} {}'.format(TEMP_DIR, euckr_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
-def test_file_utf8_utf16le(utf8_dir, utf16le_dir):
-    kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "utf16le")
-    assert os.system('diff {} {}'.format(TEMP_DIR, utf16le_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
-def test_file_utf8_utf16be(utf8_dir, utf16be_dir):
-    kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "utf16be")
-    assert os.system('diff {} {}'.format(TEMP_DIR, utf16be_dir)) == 0
-    os.system('rm {}'.format(TEMP_DIR))
-
+# def test_file_euckr_utf8(euckr_dir, utf8_dir):
+#     kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf8bom")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, utf8_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
+# def test_file_euckr_utf16le(euckr_dir, utf16le_dir):
+#     kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf16le")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, utf16le_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
+# def test_file_euckr_utf16be(euckr_dir, utf16be_dir):
+#     kconv.convert_file(euckr_dir, TEMP_DIR, "euckr", "utf16be")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, utf16be_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
+# def test_file_utf8_euckr(utf8_dir, euckr_dir):
+#     kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "euckr")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, euckr_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
+# def test_file_utf8_utf16le(utf8_dir, utf16le_dir):
+#     kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "utf16le")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, utf16le_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
+# def test_file_utf8_utf16be(utf8_dir, utf16be_dir):
+#     kconv.convert_file(utf8_dir, TEMP_DIR, "utf8", "utf16be")
+#     assert os.system('diff {} {}'.format(TEMP_DIR, utf16be_dir)) == 0
+#     os.system('rm {}'.format(TEMP_DIR))
+#
 # def test_file_utf16be_euckr(utf16be_dir, euckr_dir):
 #     kconv.convert_file(utf16be_dir, TEMP_DIR, "utf16be", "euckr")
 #     assert os.system('diff {} {}'.format(TEMP_DIR, euckr_dir)) == 0
