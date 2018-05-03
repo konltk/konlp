@@ -58,7 +58,7 @@ class Klt(KmaI):
         Args:
             dic_path(str): 사전 위치
         """
-        self.dic_path = konlp.__path__[0] + "/kma/klt/data/dictionary"
+        self.dic_path = konlp.__path__[0] + "/kma/klt/data/"
         self.dic_init(self.dic_path)
 
     def dic_init(self, dic_path=""):
