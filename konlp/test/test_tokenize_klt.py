@@ -1,6 +1,6 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit: Korean Language Autospacing of klt 
+# Korean Natural Language Toolkit: Autospacing of klt 
 #
 # Author: Younghun Cho <cyh905@gmail.com>
 #         HyunYoung Lee <hyun02.engineer@gmail.com>
