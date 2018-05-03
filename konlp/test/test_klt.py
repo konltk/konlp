@@ -1,10 +1,19 @@
-# -*- encode: utf8 -*-
+# -*- coding:utf8 -*-
+# Copyright (C) 2017 - 0000 KoNLTK project
+#
+# Klt 형태소 분석기 for Korean Natural Language Toolkit
+#
+# Author: Younghun Cho <cyh905@gmail.com>
+#         Seungshik Kang <sskang@kookmin.ac.kr>
+# URL: <https://www.konltk.org>
+# For license information, see LICENSE.TXT
+# ========================================================
 import pytest
 from konlp.kma.klt import klt
 
 @pytest.fixture
 def input_list():
-    return "안녕하세요"
+    return "안녕하세요. 국민대학교 자연어처리 연구실입니다."
 
 def test_morphs(input_list):
     k = klt.Klt()
