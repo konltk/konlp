@@ -30,7 +30,7 @@ import os
 try:
     # If a VERSION files exists, use it!
     VERSION_FILE = os.path.join(os.path.dirname(__file__), "VERSION")
-    with opne(VERSION_FILE, "r") as vfh:
+    with open(VERSION_FILE, "r") as vfh:
         __version__ = vfh.read().strip()
 except NameError:
     __version__ = "unknown"
