@@ -1,4 +1,3 @@
-# -*- coding:utf8 -*-
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
 # Klt 형태소 분석기 for Korean Natural Language Toolkit
