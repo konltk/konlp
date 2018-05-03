@@ -3,11 +3,11 @@
 # Klt 형태소 분석기 for Korean Natural Language Toolkit
 #
 # Author: Younghun Cho <cyh905@gmail.com>
+#         Hyunyoung Lee <hyun02.engineer.com>
 #         Seungshik Kang <sskang@kookmin.ac.kr>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-
 """
 Klt 한국어 형태소 분석기
 
@@ -37,12 +37,14 @@ Example:
 from ctypes import cdll
 
 # load libindex.so.3
+# Later on we will change the method to load the libindex.so.3 
 import konlp
 cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
 from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
+# we change the way to import index with cython 
 from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
 
 class Klt(KmaI):
@@ -67,7 +69,6 @@ class Klt(KmaI):
             dic_path = self.dic_path
         _kma.init(dic_path) # pylint: disable=I1101
         _index.init(dic_path) # pylint: disable=I1101
-        return
 
     def analyze(self, _input):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
