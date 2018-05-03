@@ -63,7 +63,7 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
         'Topic :: Text Processing :: Indexing',
         'Topic :: Text Processing :: Linguistic',
     ],
-    package_data={'konlp':['lib/*', 'VERSION']}, # Later on we have to change it
+    package_data={'konlp':['*/*/lib/*', 'VERSION']}, # Later on we have to change it
     install_requires=[], # Later on, we have to select
     packages=find_packages(), # later on, with exclude setting
     extras_require={}, # Later on, refer to k-NLTK resource
