@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
 # Setup script for Korean Natural Language Toolkit
