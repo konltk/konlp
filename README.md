@@ -29,7 +29,7 @@ If you publish work that uses KoNLP, Pleas cite the KoNLP 000, as follows:
 
 ## Copyright
 
-Copyright (c) 2017-2000 KoNLTK Project 
+Copyright (c) 2017-0000 KoNLTK Project 
 
 For license information, see [LICENSE.txt](LICENSE.txt)
 
