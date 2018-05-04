@@ -63,7 +63,7 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
         'Topic :: Text Processing :: Indexing',
         'Topic :: Text Processing :: Linguistic',
     ],
-    package_data={'konlp':['*/*/lib/*', 'VERSION',
+    package_data={'konlp':['*/*/lib/*', 'VERSION', 'test/files/*',
     # kma/klt 모듈의 사전 파일 위치
     'kma/klt/data/hdic/*',
     # tokenize/klt 모듈의 사전 파일 위치
