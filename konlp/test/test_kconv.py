@@ -14,6 +14,7 @@ import pytest
 from konlp.misc import kconv
 
 
+TEMP_DIR = os.path.join(os.path.dirname(__file__), 'files/temp.txt')
 
 def file_diff(dir1, dir2):
     with open(dir1, 'rb') as f1, open(dir2, 'rb') as f2:
