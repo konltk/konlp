@@ -10,3 +10,9 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 # from konlp.kma import klt
+
+# Later on we have to remove this. 
+# For klt.py
+from konlp.kma.klt.lib import kma 
+# we change the way to import index with cython 
+from konlp.kma.klt.lib import index
