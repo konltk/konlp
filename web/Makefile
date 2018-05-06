@@ -18,3 +18,9 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+
+# In order to use sphinx-apidoc and make html
+apidoc:
+	sphinx-apidoc -f -o _source ../konlp
+	make html

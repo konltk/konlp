@@ -10,6 +10,11 @@ Finally, run the following to get html files :
 
 > make html
 
+**But If you want to do two stages at runnig a command**
+
+type in like this :
+
+> make apidoc
 
 
 # Reference 
