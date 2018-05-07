@@ -16,6 +16,21 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import os
+
+# For versioning of Konlp
+# Version is read fron VERSION under konlp directory.
+try:
+    # If a VERSION files exists, use it!
+    VERSION_FILE = os.path.join(os.path.dirname(__file__), "../konlp/VERSION")
+    with open(VERSION_FILE, "r") as vfh:
+        __version__ = vfh.read().strip()
+except NameError:
+    __version__ = "unknown"
+except IOError as ex:
+    __version__ = "unknow (%s)" % ex
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'KoNLTK KoNLP'
@@ -25,7 +40,7 @@ author = 'Hyunyoung2'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '0.0.8a1'
+release = __version__ 
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,15 +55,14 @@ release = '0.0.8a1'
 extensions = [
      'sphinx.ext.autodoc',
 #     'sphinx.ext.doctest',
-#     'sphinx.ext.intersphinx',
+     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
 #     'sphinx.ext.coverage',
 #     'sphinx.ext.mathjax',
 #     'sphinx.ext.ifconfig',
      'sphinx.ext.viewcode',
-#     'sphinx.ext.githubpages'
-#     for Google docstring style
-     'sphinx.ext.napoleon'
+     'sphinx.ext.githubpages', # For .nojekyll
+     'sphinx.ext.napoleon',  # For Google docstring style
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -201,7 +215,7 @@ texinfo_documents = [
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {'https://docs.python.org/': None}
 
 # -- Options for todo extension ----------------------------------------------
 
