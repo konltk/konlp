@@ -4,7 +4,7 @@ First, Normally use like the command, "sphinx-build -b html sourcedir builddir"
 
 But in our case, we have to run like this :
 
-> sphinx-apidoc -f -o \_source ../konlp
+> sphinx-apidoc -f -o apidoc ../konlp
 
 Finally, run the following to get html files :
 
