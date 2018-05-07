@@ -26,11 +26,14 @@ Example:
     >>> k = klt.KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> k.analyze(simple_txt)
-    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
-    ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',
-    [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]),
+    ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]),
+    ('자연어처리', [('자연어처리', 'N')]),
+    ('연구실입니다',[('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]),
+    ('.', [('.', 'q')])]
     >>> k.morphs(simple_txt)
-    ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+    ['안녕', '하', '세요', '.', '국민대학교', '자연어처리',
+    '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
     >>> k.noun_comp("국민대학교자연어처리연구실")
@@ -40,14 +43,14 @@ Example:
 from ctypes import cdll
 
 # load libindex.so.3
-# Later on we will change the method to load the libindex.so.3 
+# Later on we will change the method to load the libindex.so.3
 import konlp
 cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
 from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
-# we change the way to import index with cython 
+# we change the way to import index with cython
 from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
 
 
@@ -113,7 +116,7 @@ class KltKma(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        result_of_index = _index.nouns(_input) # pylint: disable=I110
+        result_of_index = _index.nouns(_input) # pylint: disable=I1101
 
         return result_of_index
 
