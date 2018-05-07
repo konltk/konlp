@@ -20,6 +20,7 @@ import os
 import sys
 
 # build docs using nltk from the upper dir, not the installed version
+# for index and module on readthedocs
 sys.path.insert(0, os.path.abspath('..'))
 
 # For versioning of Konlp

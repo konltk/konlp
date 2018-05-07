@@ -41,7 +41,9 @@ coverage.xml
 *.bak
 
 # automatically built files for website
-web/api/*.rst
+# If we have to change this to the  uncommented status
+# For the test
+#web/api/*.rst
 
 # iPython notebooks
 
