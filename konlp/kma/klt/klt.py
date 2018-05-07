@@ -3,8 +3,8 @@
 # Korean Natural Language Toolkit: Korean morpheme analyzer - klt
 #
 #
-# Author: HyunYoung Lee <hyun02.engineer@gmail.com>
-#         Younghun Cho <cyh905@gmail.com>
+# Author: Younghun Cho <cyh905@gmail.com>
+#         HyunYoung Lee <hyun02.engineer@gmail.com>
 #         Seungshik Kang <sskang@kookmin.ac.kr>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
@@ -23,7 +23,7 @@ dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 
 Example:
     >>> from konlp.kma.klt import klt
-    >>> k = klt.Klt()
+    >>> k = klt.KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> k.analyze(simple_txt)
     [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
@@ -48,7 +48,7 @@ from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
 # we change the way to import index with cython 
 from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
 
-class Klt(KmaI):
+class KltKma(KmaI):
     """
     국민대학교 강승식 교수님의 KLT2000입니다
     """
@@ -58,7 +58,7 @@ class Klt(KmaI):
         Args:
             dic_path(str): 사전 위치
         """
-        self.dic_path = konlp.__path__[0] + "/kma/klt/data/dictionary"
+        self.dic_path = konlp.__path__[0] + "/kma/klt/data/"
         self.dic_init(self.dic_path)
 
     def dic_init(self, dic_path=""):

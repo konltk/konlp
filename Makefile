@@ -46,6 +46,9 @@ PACKAGE = konlp
 # How to use pylint, visit here https://github.com/PyCQA/pylint
 # http://pylint.pycqa.org/en/latest/user_guide/run.html?highlight=rcfile
 # https://github.com/PyCQA/pylint/blob/master/pylintrc 
+#
+# sdist, check PEP0440 - how to number release version
+# https://www.python.org/dev/peps/pep-0440/#pre-releases
 ##################################################################
 #                                                                #
 #                             Check                              #

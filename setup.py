@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
 # Setup script for Korean Natural Language Toolkit
@@ -63,9 +64,9 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
         'Topic :: Text Processing :: Indexing',
         'Topic :: Text Processing :: Linguistic',
     ],
-    package_data={'konlp':['*/*/lib/*', 'VERSION',
+    package_data={'konlp':['*/*/lib/*', 'VERSION', 'test/files/*',
     # kma/klt 모듈의 사전 파일 위치
-    'kma/klt/data/dictionary/hdic/*',
+    'kma/klt/data/hdic/*',
     # tokenize/klt 모듈의 사전 파일 위치
     'tokenize/klt/data/dic/*',
     ]}, # Later on we have to change it

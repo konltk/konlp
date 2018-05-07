@@ -8,3 +8,4 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
+from konlp.tokenize.klt.autospace import KltAsp
