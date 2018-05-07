@@ -46,7 +46,7 @@ cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 from konlp.kma.api import KmaI # pylint: disable=C0413
 from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
 # we change the way to import index with cython 
-from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
+from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
 
 class Klt(KmaI):
     """
@@ -110,15 +110,9 @@ class Klt(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        result_of_index = _index.index(_input) # pylint: disable=I1101
+        result_of_index = _index.nouns(_input) # pylint: disable=I110
 
-        list_nouns = []
-
-        for i in result_of_index:
-            if i[1]:
-                list_nouns.append(i[1][0])
-
-        return list_nouns
+        return result_of_index
 
     def noun_comp(self, _input): # pylint: disable=R0201
         """복합명사를 입력받아 복합명사 분해를 합니다.
@@ -129,4 +123,4 @@ class Klt(KmaI):
         Returns:
             복합명상 분해된 list
         """
-        return _index.noun_comp(_input, " ") # pylint: disable=I1101
+        return _index.noun_comp(_input) # pylint: disable=I1101
