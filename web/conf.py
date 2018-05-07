@@ -17,6 +17,10 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import os
+import sys
+
+# build docs using nltk from the upper dir, not the installed version
+sys.path.insert(0, os.path.abspath('..'))
 
 # For versioning of Konlp
 # Version is read fron VERSION under konlp directory.
