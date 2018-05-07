@@ -33,6 +33,8 @@ Example:
     ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
+    >>> k.noun_comp("국민대학교자연어처리연구실")
+    ['국민', '대학교', '자연어', '처리', '연구실']
 """
 # for load libindex.so.3
 from ctypes import cdll
@@ -44,9 +46,10 @@ cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
-from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
-# we change the way to import index with cython 
 from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
+# we change the way to import index with cython 
+from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
+
 
 class KltKma(KmaI):
     """
