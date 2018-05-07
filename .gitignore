@@ -10,7 +10,7 @@ build/
 dist/
 konlp.egg-info/
 web/_build
-web/_source
+
 
 # Test artifacts and coverage reports
 *.tox

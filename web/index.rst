@@ -14,7 +14,7 @@ KoNLTK는 전산 언어학의 주제와 함께 프로그래밍 기초를 소개�
 
 
 Some simple things you can do with konlp
----------------------------------------
+----------------------------------------
 
 Morphological analysis:
 

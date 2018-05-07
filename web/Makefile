@@ -22,5 +22,5 @@ help:
 
 # In order to use sphinx-apidoc and make html
 apidoc:
-	sphinx-apidoc -f -o _source ../konlp
+	sphinx-apidoc -f -o apidoc ../konlp
 	make html
