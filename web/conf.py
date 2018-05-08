@@ -63,10 +63,11 @@ extensions = [
 #     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
      'sphinx.ext.coverage',
-     'sphinx.ext.mathjax',  # for Latex pdf build error
+     'sphinx.ext.imgmath',   # for Latex pdf build error 
+#     'sphinx.ext.mathjax', 
 #     'sphinx.ext.ifconfig',
      'sphinx.ext.viewcode',
-     'sphinx.ext.githubpages', # For .nojekyll
+#     'sphinx.ext.githubpages', # For .nojekyll
      'sphinx.ext.napoleon',  # For Google docstring style
 ]
 
