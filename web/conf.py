@@ -19,7 +19,7 @@
 import os
 import sys
 
-# build docs using nltk from the upper dir, not the installed version
+# build docs using konltk's konlp from the upper dir, not the installed version
 # for index and module on readthedocs
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -39,8 +39,8 @@ except IOError as ex:
 # -- Project information -----------------------------------------------------
 
 project = 'KoNLTK KoNLP'
-copyright = '2018, Hyunyoung2'
-author = 'Hyunyoung2'
+copyright = '2017, KoNLTK Project'
+author = 'Hyunyoung Lee'
 
 # The short X.Y version
 version = ''
@@ -63,7 +63,7 @@ extensions = [
 #     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
      'sphinx.ext.coverage',
-#     'sphinx.ext.mathjax',
+     'sphinx.ext.mathjax',  # for Latex pdf build error
 #     'sphinx.ext.ifconfig',
      'sphinx.ext.viewcode',
      'sphinx.ext.githubpages', # For .nojekyll
