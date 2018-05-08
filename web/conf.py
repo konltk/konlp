@@ -149,6 +149,9 @@ latex_elements = {
     #
     # 'papersize': 'letterpaper',
 
+    # For konlp
+    'papersize': 'a4paper',
+
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
@@ -156,6 +159,9 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
+
+    # For konlp
+    'preamble': '\\usepackage{kotex}',
 
     # Latex figure (float) alignment
     #
