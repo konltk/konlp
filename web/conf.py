@@ -59,7 +59,7 @@ release = __version__
 # ones.
 extensions = [
      'sphinx.ext.autodoc',
-     'sphinx.ext.doctest',
+#     'sphinx.ext.doctest', # later on, we have to change this to automatically check
 #     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
      'sphinx.ext.coverage',
