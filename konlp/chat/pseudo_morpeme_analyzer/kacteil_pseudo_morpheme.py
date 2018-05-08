@@ -105,7 +105,7 @@ class PseudoMorphemeAnalyzer(object):
 
         return batch_train_x, batch_sequence_length
 
-    def analysis(self, line):
+    def analyze(self, line):
         """입력에 대한 형태소 분석 함수
         Args:
             line(str): 입력 문장

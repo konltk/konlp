@@ -177,10 +177,10 @@ class MorphemeHelper(object):
             syllables(str): 음절 단위의 입력 문장
         """
         syllables = ""
-        for i, _ in enumerate(line):
-            if line[i] == " ":
+        for s in line:
+            if s == " ":
                 syllables += "<SP> "
             else:
-                syllables += line[i] + " "
+                syllables += s + " "
         syllables = "<Start> " + syllables + "<End>"
         return syllables
