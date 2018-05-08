@@ -38,7 +38,7 @@ except IOError as ex:
 
 # -- Project information -----------------------------------------------------
 
-project = 'KoNLTK KoNLP'
+project = 'KoNLP'
 copyright = '2017, KoNLTK Project'
 author = 'Hyunyoung Lee'
 
@@ -59,7 +59,7 @@ release = __version__
 # ones.
 extensions = [
      'sphinx.ext.autodoc',
-#     'sphinx.ext.doctest',
+     'sphinx.ext.doctest',
 #     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
      'sphinx.ext.coverage',
