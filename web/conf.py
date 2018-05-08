@@ -63,8 +63,8 @@ extensions = [
 #     'sphinx.ext.intersphinx',
 #     'sphinx.ext.todo',
      'sphinx.ext.coverage',
-     'sphinx.ext.imgmath',   # for Latex pdf build error 
-#     'sphinx.ext.mathjax', 
+#     'sphinx.ext.imgmath',
+     'sphinx.ext.mathjax', 
 #     'sphinx.ext.ifconfig',
      'sphinx.ext.viewcode',
 #     'sphinx.ext.githubpages', # For .nojekyll
