@@ -173,7 +173,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'KoNLP.tex', 'KoNLP Documentation',
-     'Hyunyoung2', 'manual'),
+     'Hyunyoung Lee', 'manual'),
 ]
 
 
