@@ -10,6 +10,7 @@ install:
   - sudo apt-get install python3-pip
   - pip3 install pytest-cov==2.4.0
   - pip3 install coveralls==1.1
+# - pip3 install codecov # If enabled
 
 script:
   - python3 setup.py install
@@ -17,6 +18,10 @@ script:
 
 after_success:
   - coveralls
+  - bash <(curl -s https://codecov.io/bash)
+# - codecov # you have to use this with pip3 install codecove
+  
+
 
 notifications:
   email:
