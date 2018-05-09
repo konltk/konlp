@@ -1,5 +1,12 @@
-sudo: require
+dist: trusty
+sudo: required
+
 language: python
+
+branches:
+   only:
+     - master
+
 python:
 #  - "2.7"
 #  - "3.3"
@@ -23,8 +30,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 # - codecov # you have to use this with pip3 install codecove
   
-
-
 notifications:
   email:
     recipients:
