@@ -33,6 +33,7 @@ install:
 script:
   - python3 setup.py install
   - coverage run --source=konlp -m py.test
+  - coverage report -m
 
 after_success:
   - coveralls
