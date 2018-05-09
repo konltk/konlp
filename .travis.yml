@@ -1,8 +1,10 @@
 sudo: require
 language: python
 python:
-  - "3.3"
-  - "3.4"
+#  - "2.7"
+#  - "3.3"
+#  - "3.4"
+# I think you have to minimally support the following 
   - "3.5"
   - "3.6"
 
