@@ -13,7 +13,7 @@ python:
 #  - "3.4"
 # I think you have to minimally support the following 
   - "3.5"
-  - "3.6"
+#  - "3.6"
 
 install:
   - sudo apt-get install python3-pip
