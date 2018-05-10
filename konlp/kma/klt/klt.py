@@ -51,7 +51,7 @@ cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 from konlp.kma.api import KmaI # pylint: disable=C0413
 from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
 # we change the way to import index with cython
-from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
+# from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
 
 
 class KltKma(KmaI):
@@ -74,38 +74,40 @@ class KltKma(KmaI):
         """
         if dic_path == "":
             dic_path = self.dic_path
-        _kma.init(dic_path) # pylint: disable=I1101
+        # _kma.init(dic_path) # pylint: disable=I1101
         _index.init(dic_path) # pylint: disable=I1101
 
     def analyze(self, _input):
-        """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
+        return ""
+    #     """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
 
-        Args:
-            _input(str): 형태소/품사 분석한 문장
+    #     Args:
+    #         _input(str): 형태소/품사 분석한 문장
 
-        Returns:
-            (원본, [(형태소, 품사)]) list
-        """
-        return _kma.morpha(_input)[1] # pylint: disable=I1101
+    #     Returns:
+    #         (원본, [(형태소, 품사)]) list
+    #     """
+    #     return _kma.morpha(_input)[1] # pylint: disable=I1101
 
     def morphs(self, _input):
-        """문장을 입력받아 형태소만 출력합니다.
+        return ""
+    #     """문장을 입력받아 형태소만 출력합니다.
 
-        Args:
-            _input(str): 형태소를 분석한 문장
+    #     Args:
+    #         _input(str): 형태소를 분석한 문장
 
-        Returns:
-            형태소 분석된 list
-        """
-        morpha = _kma.morpha(_input)[1] # pylint: disable=I1101
+    #     Returns:
+    #         형태소 분석된 list
+    #     """
+    #     morpha = _kma.morpha(_input)[1] # pylint: disable=I1101
 
-        list_morphs = []
+    #     list_morphs = []
 
-        for i in morpha:
-            for j in i[1]:
-                list_morphs.append(j[0])
+    #     for i in morpha:
+    #         for j in i[1]:
+    #             list_morphs.append(j[0])
 
-        return list_morphs
+    #     return list_morphs
 
     def nouns(self, _input):
         """문장을 입력받아 색인어들을 출력합니다.
