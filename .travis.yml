@@ -3,9 +3,9 @@ sudo: required
 
 language: python
 
-branches:
-   only:
-     - master
+# branches:
+#    only:
+#      - master
 
 python:
 #  - "2.7"
