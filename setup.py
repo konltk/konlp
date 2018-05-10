@@ -67,6 +67,9 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
     package_data={'konlp':['*/*/lib/*', 'VERSION', 'test/files/*',
     # kma/klt 모듈의 사전 파일 위치
     'kma/klt/data/hdic/*',
+    # kma/komoran 모듈의 사전 파일 위치
+    'kma/komoran/data/models-full/*',
+    'kma/komoran/data/models-light/*',
     # tokenize/klt 모듈의 사전 파일 위치
     'tokenize/klt/data/dic/*',
     ]}, # Later on we have to change it
