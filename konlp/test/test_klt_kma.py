@@ -30,4 +30,4 @@ def test_analyze(input_list):
 
 def test_noun_comp(input_list):
     k = klt.KltKma()
-    assert k.noun_comp(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
+    assert k.noun_comp("국민대학교자연어처리연구실") == ['국민', '대학교', '자연어', '처리', '연구실']
