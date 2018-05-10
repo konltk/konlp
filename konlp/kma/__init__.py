@@ -11,3 +11,4 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 """We are preparing"""
+from konlp.kma.klt import klt
