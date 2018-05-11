@@ -18,7 +18,7 @@ def input_list():
 
 def test_morphs(input_list):
     k = klt.KltKma()
-    assert k.morphs(input_list) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+    assert k.tokens(input_list) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
 
 def test_nouns(input_list):
     k = klt.KltKma()
@@ -30,4 +30,4 @@ def test_analyze(input_list):
 
 def test_noun_comp(input_list):
     k = klt.KltKma()
-    assert k.noun_comp(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
+    assert k.cnouns(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
