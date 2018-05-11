@@ -9,13 +9,11 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-"""
-Klt 한국어 형태소 분석기
+"""Klt 한국어 형태소 분석기
 
-klt 한국어 형태소 분석기는 국민대학교 강승식 교수님이 만든 형태소 분석기 입니다.
-더 많은 정보를 보실려면 http://nlp.kookmin.ac.kr/HAM/kor/index.html 에서 보시면 됩니다.
+klt에 대한 정보는 http://nlp.kookmin.ac.kr/HAM/kor/index.html에서 참조하면 됩니다.
 
-현재 klt는 analyze, morphs, nouns 기능을 제공합니다.
+현재 klt는 analyze, tokens, nouns 기능을 제공합니다.
 모든 기능을 사용하기 위해서는 dictionary를 초기화해야합니다.
 dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 기본 dictionary파일들은 klt모듈을 쓸 때 자동으로 초기화가 됩니다.
@@ -50,7 +48,22 @@ from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
 
 class KltKma(KmaI):
     """
-    국민대학교 강승식 교수님의 KLT2000입니다
+    Klt 한국어 형태소 분석기
+
+    klt에 대한 정보는 http://nlp.kookmin.ac.kr/HAM/kor/index.html에서 참조하면 됩니다.
+
+    Example:
+        >>> from konlp.kma.klt import klt
+        >>> k = klt.KltKma()
+        >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
+        >>> k.analyze(simple_txt)
+        [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
+        ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',
+        [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+        >>> k.morphs(simple_txt)
+        ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+        >>> k.nouns(simple_txt)
+        ['안녕', '국민대학교', '자연어처리', '연구실']
     """
 
     def __init__(self):
@@ -82,7 +95,7 @@ class KltKma(KmaI):
         """
         return _kma.morpha(_input)[1] # pylint: disable=I1101
 
-    def morphs(self, _input):
+    def tokens(self, _input):
         """문장을 입력받아 형태소만 출력합니다.
 
         Args:
