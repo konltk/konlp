@@ -9,11 +9,11 @@ branches:
 
 python:
 #  - "2.7"
-  - "3.3"
-  - "3.4"
+#  - "3.3"
+#  - "3.4"
 # I think you have to minimally support the following 
   - "3.5"
-  - "3.6"
+#  - "3.6"
 
 
 matrix:
