@@ -133,7 +133,7 @@ class KltKma(KmaI):
 
         return list_nouns
 
-    def noun_comp(self, _input): # pylint: disable=R0201
+    def cnouns(self, _input): # pylint: disable=R0201
         """복합명사를 입력받아 복합명사 분해를 합니다.
 
         Args:
