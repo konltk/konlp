@@ -5,6 +5,7 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 EXTERNAL_LIBRARY_PATH = ROOT_DIR+"/lib"
 
 MORPHEME_ANALYSIS_DATA = ROOT_DIR+"/resource/morpheme"
+
 NAMED_ENTITY_ROOT = ROOT_DIR+"/utils/gru_crf_NER"
 NAMED_ENTITY_DATA = ROOT_DIR+"/utils/gru_crf_NER/model_new"
 
