@@ -32,7 +32,7 @@ install:
 
 script:
   - python3 setup.py install
-  - coverage run --source=konlp -m py.test
+  - coverage run --source=konlp -m py.test -v
   - coverage report -m
 
 after_success:
