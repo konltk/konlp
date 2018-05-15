@@ -11,7 +11,7 @@
 # ========================================================
 """KoNLP Korean morpheme analyzer Package - klt
 
-TODO : We will introduce klt.
+TODO : We will introduce klt in detail.
 """
 
 from konlp.kma.klt.klt import KltKma
