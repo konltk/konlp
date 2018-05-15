@@ -9,4 +9,4 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-# from konlp.kma import klt
+# from konlp.kma.klt.klt import KltKma
