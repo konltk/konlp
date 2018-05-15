@@ -4,6 +4,7 @@
 #
 #
 # Author: Younghun Cho <cyh905@gmail.com>
+#         Hyunyoung Lee <hyun02.engineer@gmail.com>
 #
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
@@ -36,6 +37,8 @@ Example:
     >>> kk.nouns(simple_text)
     ['안녕', '국민', '국민대학교', '대학교',
     '자연어', '자연어처리', '처리', '연구실']
+    
+TODO : The way to initialize JVM have to change
 """
 import jpype as jp
 from konlp.kma.api import KmaI
