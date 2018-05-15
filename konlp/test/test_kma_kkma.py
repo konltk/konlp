@@ -14,7 +14,7 @@ import pytest
 from konlp.kma.kkma import kkma
 
 @pytest.fixture
-def string()
+def string():
     return "안녕하세요. 국민대학교 자연어처리 연구실입니다."
 
 @pytest.fixture
