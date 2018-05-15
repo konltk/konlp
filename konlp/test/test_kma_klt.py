@@ -18,7 +18,7 @@ def input_string():
 
 @pytest.fixture
 def klt_instance():
-    k = klt.KltKma
+    k = klt.KltKma()
     return k
 
 def test_tokens(klt_instance, input_string):
