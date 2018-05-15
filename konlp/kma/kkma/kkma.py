@@ -138,7 +138,7 @@ class Kkma(KmaI):
             result_list.append([sentence.getSentence(), morphs_list])
         return result_list
 
-    def morphs(self, string):
+    def tokens(self, string):
         """형태소 분리
 
         형태소 분석 후에 분리된 형태소만 얻는 함수 입니다.
