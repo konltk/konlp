@@ -4,6 +4,7 @@
 #
 #
 # Author: Younghun Cho <cyh905@gmail.com>
+#         Hyunyoung Lee <hyun02.engieer@gmail.com>
 #
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
