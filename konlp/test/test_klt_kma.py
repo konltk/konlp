@@ -10,24 +10,25 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 import pytest
-from konlp.kma.klt import klt
+from konlp.kma import klt
 
 @pytest.fixture
-def input_list():
+def input_string():
     return "안녕하세요. 국민대학교 자연어처리 연구실입니다."
 
-def test_morphs(input_list):
-    k = klt.KltKma()
-    assert k.tokens(input_list) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+@pytest.fixture
+def klt_instance():
+    k = klt.KltKma
+    return 
 
-def test_nouns(input_list):
-    k = klt.KltKma()
-    assert k.nouns(input_list) == ['안녕', '국민대학교', '자연어처리', '연구실']
+def test_tokens(klt_instance, input_list):
+    assert klt_instance.tokens(input_list) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
 
-def test_analyze(input_list):
-    k = klt.KltKma()
-    assert k.analyze(input_list) == [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+def test_nouns(klt_instance, input_list):
+    assert klt_instance.nouns(input_list) == ['안녕', '국민대학교', '자연어처리', '연구실']
 
-def test_noun_comp(input_list):
-    k = klt.KltKma()
-    assert k.cnouns(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
+def test_analyze(klt_instance, input_list):
+    assert klt_instance.analyze(input_list) == [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+
+def test_couns(klt_instance, input_list):
+    assert klt_instance.cnouns(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
