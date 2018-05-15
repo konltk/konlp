@@ -3,10 +3,6 @@ sudo: required
 
 language: python
 
-branches:
-   only:
-     - master
-
 python:
 #  - "2.7"
 #  - "3.3"
@@ -29,6 +25,7 @@ install:
   - pip3 install pytest-cov==2.4.0
   - pip3 install coveralls==1.1
 # - pip3 install codecov # If enabled
+  - pip3 install JPype1-py3>=0.5.5.1
 
 script:
   - python3 setup.py install
