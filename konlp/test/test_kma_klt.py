@@ -19,7 +19,7 @@ def input_string():
 @pytest.fixture
 def klt_instance():
     k = klt.KltKma
-    return 
+    return k
 
 def test_tokens(klt_instance, input_string):
     assert klt_instance.tokens(input_string) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
