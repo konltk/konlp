@@ -21,14 +21,14 @@ def klt_instance():
     k = klt.KltKma
     return 
 
-def test_tokens(klt_instance, input_list):
-    assert klt_instance.tokens(input_list) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+def test_tokens(klt_instance, input_string):
+    assert klt_instance.tokens(input_string) == ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
 
-def test_nouns(klt_instance, input_list):
-    assert klt_instance.nouns(input_list) == ['안녕', '국민대학교', '자연어처리', '연구실']
+def test_nouns(klt_instance, input_string):
+    assert klt_instance.nouns(input_string) == ['안녕', '국민대학교', '자연어처리', '연구실']
 
-def test_analyze(klt_instance, input_list):
-    assert klt_instance.analyze(input_list) == [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+def test_analyze(klt_instance, input_string):
+    assert klt_instance.analyze(input_string) == [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
 
-def test_couns(klt_instance, input_list):
-    assert klt_instance.cnouns(input_list) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
+def test_couns(klt_instance, input_string):
+    assert klt_instance.cnouns(input_string) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
