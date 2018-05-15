@@ -77,9 +77,9 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
     'chat/indexer_extractor/utils/gru_crf_NER/model_new/*',
     'chat/indexer_extractor/preprocess/data/*',
     # chat/pseudo_morpeme_analyzer 모듈의 사전 파일 위치
-    'chat/pseudo_morpeme_analyzer/data/*',
+    'chat/pseudo_morpheme_analyzer/data/*',
     # chat/pseudo_morpeme_analyzer 모듈 모델 위치
-    'chat/pseudo_morpeme_analyzer/model_for_graph/*'
+    'chat/pseudo_morpheme_analyzer/model_for_graph/*'
     ]},
 
     # Later on we have to change it

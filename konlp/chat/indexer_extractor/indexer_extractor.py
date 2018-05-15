@@ -69,12 +69,12 @@ class IndexerExtractor(IndexerExtractorInterface):
                     morpheme_result = morpheme_result[:-1] + [[check_pattern + ' @Q']]
         return morpheme_result
 
-    def indexer_extract(self, input_str, with_symbol_form=False):
+    def indexer_extract(self, input_str, with_original_form=False):
         """
         입력 문장에서 색인어 추출을 하는 함수
         Args:
             input_str (str) : 입력 문장
-            with_symbol_form (bool) : 색인어의 원형 출력 여부(Default-False)
+            with_original_form (bool) : 색인어의 원형 출력 여부(Default-False)
 
         Returns:
             List : [색인어 리스트], [색인어와 색인어 원형 리스트]
@@ -83,9 +83,9 @@ class IndexerExtractor(IndexerExtractorInterface):
             '[ "색인어1 색인어1-원형", "색인어2 색인어2-원형" ]'
 
         ex) "학교 어디냐?"
-        'with_symbol_form - False 인 경우'
+        'with_original_form - False 인 경우'
         '['학교/NNG', '어디/NP', '이/VCP', '@Q'] , None'
-        'with_symbol_form - True 인 경우'
+        'with_original_form - True 인 경우'
         '['학교/NNG', '어디/NP', '이/VCP', '@Q'],
         ['학교/NNG 학교/NNG', '어디/NP 어디/NP', '이/VCP 이/VCP', '냐/EF+?/SF @Q']'
         """
@@ -275,7 +275,7 @@ class IndexerExtractor(IndexerExtractorInterface):
             for term in idx_term:
                 feature_list.append(term + ' ' + term)
 
-        if with_symbol_form:
+        if with_original_form:
             return idx_term, feature_list
         return idx_term, None
 
