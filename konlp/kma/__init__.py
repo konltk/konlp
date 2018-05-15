@@ -10,4 +10,9 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-"""We are preparing"""
+"""KoNLP Korean morpheme analyzer Package
+
+TODO : We will introduce the Korean morphem analyzer's feature and representative engine.
+"""
+
+from konlp.kma import klt
