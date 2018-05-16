@@ -9,12 +9,9 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-<<<<<<< HEAD
-=======
 """KoNLP Korean morpheme analyzer Package - klt
 
 TODO : We will introduce klt in detail.
 """
 
->>>>>>> upstream/master
 from konlp.kma.klt.klt import KltKma
