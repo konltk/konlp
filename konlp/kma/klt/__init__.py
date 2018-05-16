@@ -14,4 +14,6 @@
 TODO : We will introduce klt in detail.
 """
 
-from konlp.kma.klt import KltKma
+# for user, from konlp.kma import klt
+# k = klt.KltKma
+from konlp.kma.klt.klt import KltKma
