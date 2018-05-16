@@ -14,4 +14,4 @@
 TODO : We will introduce klt in detail.
 """
 
-from konlp.kma.klt.klt import KltKma
+from konlp.kma.klt import KltKma
