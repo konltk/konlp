@@ -36,15 +36,15 @@ Example:
 from ctypes import cdll
 
 # load libindex.so.3
-# Later on we will change the method to load the libindex.so.3 
+# Later on we will change the method to load the libindex.so.3
 import konlp
 cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
+from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
+# we change the way to import index with cython
 from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
-# we change the way to import index with cython 
-from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
 
 class KltKma(KmaI):
     """
@@ -82,7 +82,7 @@ class KltKma(KmaI):
         if dic_path == "":
             dic_path = self.dic_path
         _kma.init(dic_path) # pylint: disable=I1101
-        _index.init(dic_path) # pylint: disable=I1101
+        _index.init(dic_path)  # pylint: disable=I1101
 
     def analyze(self, _input):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
@@ -123,15 +123,9 @@ class KltKma(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        result_of_index = _index.index(_input) # pylint: disable=I1101
+        result_of_index = _index.nouns(_input)  # pylint: disable=I1101
 
-        list_nouns = []
-
-        for i in result_of_index:
-            if i[1]:
-                list_nouns.append(i[1][0])
-
-        return list_nouns
+        return result_of_index
 
     def cnouns(self, _input): # pylint: disable=R0201
         """복합명사를 입력받아 복합명사 분해를 합니다.
@@ -142,4 +136,4 @@ class KltKma(KmaI):
         Returns:
             복합명상 분해된 list
         """
-        return _index.noun_comp(_input, " ") # pylint: disable=I1101
+        return _index.noun_comp(_input)  # pylint: disable=I1101
