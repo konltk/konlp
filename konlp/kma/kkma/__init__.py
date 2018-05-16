@@ -9,4 +9,9 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
+"""KoNLP Korean morpheme analyzer Package - kkma
+
+TODO : We will introduce kkma in detail.
+"""
+
 from konlp.kma.kkma.kkma import Kkma
