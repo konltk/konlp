@@ -97,3 +97,14 @@ __classifiers__ = [
     'Topic :: Text Processing :: Indexing',
     'Topic :: Text Processing :: Linguistic',
 ]
+
+
+
+# ===========================================================
+# Package
+# ===========================================================
+
+# Later on, we have to add some package this here
+
+from konlp.kma import *
+
