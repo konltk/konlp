@@ -23,8 +23,8 @@
     $ sudo pip3 install JPype1-py3
 
 Example:
-    >>> from konlp.kma.kkma import kkma
-    >>> kk = kkma.Kkma()
+    >>> from konlp.kma import Kkma
+    >>> kk = Kkma()
     >>> simple_text = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> kk.analyze(simple_text)
     [['안녕하세요.', ['안녕/NNG', '하/XSV', '세요/EFN', './SF']],
@@ -53,8 +53,8 @@ class Kkma(KmaI):
         $ sudo pip3 install JPype1-py3
 
     Example:
-        >>> from konlp.kma.kkma import kkma
-        >>> kk = kkma.Kkma()
+        >>> from konlp.kma import Kkma
+        >>> kk = Kkma()
         >>> simple_text = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
         >>> kk.analyze(simple_text)
         [['안녕하세요.', ['안녕/NNG', '하/XSV', '세요/EFN', './SF']],
