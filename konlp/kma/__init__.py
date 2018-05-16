@@ -17,5 +17,5 @@ TODO : We will introduce the Korean morphem analyzer's feature and representativ
 """
 
 # for user, from konlp.kma import KltKma
-# k = KltKma
+# k = KltKma()
 from konlp.kma.klt import KltKma
