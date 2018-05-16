@@ -90,27 +90,27 @@ class KltKma(KmaI):
         _kma.init(dic_path) # pylint: disable=I1101
         _index.init(dic_path)  # pylint: disable=I1101
 
-    def analyze(self, _input):
+    def analyze(self, sentence):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
 
         Args:
-            _input(str): 형태소/품사 분석한 문장
+            sentence(str): 형태소/품사 분석한 문장
 
         Returns:
             (원본, [(형태소, 품사)]) list
         """
-        return _kma.morpha(_input)[1] # pylint: disable=I1101
+        return _kma.morpha(sentence)[1] # pylint: disable=I1101
 
-    def tokens(self, _input):
+    def tokens(self, sentence):
         """문장을 입력받아 형태소만 출력합니다.
 
         Args:
-            _input(str): 형태소를 분석한 문장
+            sentence(str): 형태소를 분석한 문장
 
         Returns:
             형태소 분석된 list
         """
-        morpha = _kma.morpha(_input)[1] # pylint: disable=I1101
+        morpha = _kma.morpha(sentence)[1] # pylint: disable=I1101
 
         list_morphs = []
 
@@ -120,26 +120,40 @@ class KltKma(KmaI):
 
         return list_morphs
 
-    def nouns(self, _input):
+    def nouns(self, sentence):
         """문장을 입력받아 색인어들을 출력합니다.
 
         Args:
-            _input(str): 색인어 추출한 문장
+            sentence(str): 색인어 추출한 문장
 
         Returns:
             색인어가 추출된 list
         """
+<<<<<<< HEAD
         result_of_index = _index.nouns(_input)  # pylint: disable=I1101
+=======
+        result_of_index = _index.index(sentence) # pylint: disable=I1101
+
+        list_nouns = []
+
+        for i in result_of_index:
+            if i[1]:
+                list_nouns.append(i[1][0])
+>>>>>>> upstream/master
 
         return result_of_index
 
-    def cnouns(self, _input): # pylint: disable=R0201
+    def cnouns(self, sentence): # pylint: disable=R0201
         """복합명사를 입력받아 복합명사 분해를 합니다.
 
         Args:
-            _input(str): 부해한 복합명사
+            sentence(str): 부해한 복합명사
 
         Returns:
             복합명상 분해된 list
         """
+<<<<<<< HEAD
         return _index.noun_comp(_input)  # pylint: disable=I1101
+=======
+        return _index.noun_comp(sentence, " ") # pylint: disable=I1101
+>>>>>>> upstream/master
