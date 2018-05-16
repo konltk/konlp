@@ -16,4 +16,5 @@ TODO : We will introduce the Korean morphem analyzer's feature and representativ
        We have to select standard Korean morpheme ananlyzer
 """
 
-from konlp.kma import klt
+# for user, from konlp.kma import KltKma
+from konlp.kma.klt import KltKma
