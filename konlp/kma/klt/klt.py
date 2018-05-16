@@ -31,6 +31,10 @@ Example:
     ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
+    
+TODO: 
+    We will change the index functionality with Cython
+    
 """
 # for load libindex.so.3
 from ctypes import cdll
@@ -47,14 +51,13 @@ from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
 from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
 
 class KltKma(KmaI):
-    """
-    Klt 한국어 형태소 분석기
+    """Klt 한국어 형태소 분석기
 
     klt에 대한 정보는 http://nlp.kookmin.ac.kr/HAM/kor/index.html에서 참조하면 됩니다.
 
     Example:
-        >>> from konlp.kma.klt import klt
-        >>> k = klt.KltKma()
+        >>> from konlp.kma import KltKma
+        >>> k = KltKma()
         >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
         >>> k.analyze(simple_txt)
         [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
@@ -67,7 +70,8 @@ class KltKma(KmaI):
     """
 
     def __init__(self):
-        """
+        """ Klt module's __init__ method
+        
         Args:
             dic_path(str): 사전 위치
         """
@@ -76,6 +80,7 @@ class KltKma(KmaI):
 
     def dic_init(self, dic_path=""):
         """사전을 초기화하는 함수입니다.
+        
         Args:
             dic_path(str): 사전 위치
         """
