@@ -10,7 +10,7 @@
 # For license information, see LICENSE.TXT
 # ========================================================
 import pytest
-from konlp.kma import klt
+from konlp.kma import KltKma
 
 @pytest.fixture
 def input_string():
@@ -18,7 +18,7 @@ def input_string():
 
 @pytest.fixture
 def klt_instance():
-    k = klt.KltKma()
+    k = KltKma()
     return k
 
 def test_tokens(klt_instance, input_string):
