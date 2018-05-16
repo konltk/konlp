@@ -14,4 +14,6 @@
 TODO : We will introduce kkma in detail.
 """
 
+# for user, from konlp.kma.kkma impor Kkma
+# k = Kkma()
 from konlp.kma.kkma.kkma import Kkma
