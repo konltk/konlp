@@ -129,13 +129,7 @@ class KltKma(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        result_of_index = _index.index(sentence) # pylint: disable=I1101
-
-        list_nouns = []
-
-        for i in result_of_index:
-            if i[1]:
-                list_nouns.append(i[1][0])
+        result_of_index = _index.nouns(sentence)  # pylint: disable=I1101
 
         return result_of_index
 
@@ -148,4 +142,4 @@ class KltKma(KmaI):
         Returns:
             복합명상 분해된 list
         """
-        return _index.noun_comp(sentence, " ") # pylint: disable=I1101
+        return _index.noun_comp(sentence)  # pylint: disable=I1101
