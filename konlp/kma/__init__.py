@@ -19,3 +19,14 @@ TODO : We will introduce the Korean morphem analyzer's feature and representativ
 # for user, from konlp.kma import KltKma
 # k = KltKma()
 from konlp.kma.klt import KltKma
+
+
+
+
+
+
+## third-party Korean morpheme analyzer 
+
+# for user, from konlp.kma impor Kkma
+# k = Kkma()
+from konlp.kma.kkma import Kkma
