@@ -10,11 +10,11 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ============================================================
-"""
-we are preparing this module
+"""KoNLP : Korean Natural Language Toolkit(KoNLTK) project
 
 The Korean Natural Language Toolkit(KoNLTK) project is an open source Python library
 for Korean Natural Langugae Processing.
+
 Later on We would create free online book to be available.
 (Then, if you use the library for academic research, Pleas cite the book.)
 """
@@ -37,14 +37,11 @@ except NameError:
 except IOError as ex:
     __version__ = "unknow (%s)" % ex
 
-if __doc__ is not None:
-    __doc__ += "\n@version: " + __version__
-
 # Copyright notice
 __copyright__ = """\
 Copyright (c) 2017 - 0000 KoNLTK Project.
 
-Distributed and Licensed under 000000
+
 which is included by reference.
 """
 
@@ -105,6 +102,4 @@ __classifiers__ = [
 # ===========================================================
 
 # Later on, we have to add some package this here
-
-from konlp.kma import *
 
