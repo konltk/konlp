@@ -27,7 +27,7 @@ class Mock(MagicMock):
     def __getattr__(cls, name):
         return MagicMock()
 
-MOCK_MODULES = ['JPype1-py3', 'pytest']
+MOCK_MODULES = ['jpype', 'pytest']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # build docs using konltk's konlp from the upper dir, not the installed version
