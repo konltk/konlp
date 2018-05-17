@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    konlp.kma.kkma
     konlp.kma.klt
 
 Submodules
