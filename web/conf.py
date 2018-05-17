@@ -19,6 +19,16 @@
 import os
 import sys
 
+# [read the docs](read-the-docs.readthedocs.org/en/latest/faq.html)
+from mock import Mock as MagicMock
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return Mock()
+
+sys.modules.update((mod, Mock) for mod in ['jpype'])
+
 # build docs using konltk's konlp from the upper dir, not the installed version
 # for index and module on readthedocs
 sys.path.insert(0, os.path.abspath('..'))
