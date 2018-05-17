@@ -56,7 +56,7 @@ author = 'Hyunyoung Lee'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = __version__ 
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -69,17 +69,17 @@ release = __version__
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-     'sphinx.ext.autodoc',
-#     'sphinx.ext.doctest', # later on, we have to change this to automatically check
-#     'sphinx.ext.intersphinx',
-     'sphinx.ext.todo',
-     'sphinx.ext.coverage',
-#     'sphinx.ext.imgmath',
-     'sphinx.ext.mathjax', 
-#     'sphinx.ext.ifconfig',
-     'sphinx.ext.viewcode',
-#     'sphinx.ext.githubpages', # For .nojekyll
-     'sphinx.ext.napoleon',  # For Google docstring style
+    'sphinx.ext.autodoc',
+    #'sphinx.ext.doctest', # later on, we have to change this to automatically check
+    #'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    #'sphinx.ext.imgmath',
+    'sphinx.ext.mathjax',
+    #'sphinx.ext.ifconfig',
+    'sphinx.ext.viewcode',
+    #'sphinx.ext.githubpages', # For .nojekyll
+    'sphinx.ext.napoleon',  # For Google docstring style
 ]
 
 # Add any paths that contain templates here, relative to this directory.
