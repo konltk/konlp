@@ -20,14 +20,15 @@ import os
 import sys
 
 # [read the docs](read-the-docs.readthedocs.org/en/latest/faq.html)
-from mock import Mock as MagicMock
+from unittest.mock import MagicMock
 
 class Mock(MagicMock):
     @classmethod
     def __getattr__(cls, name):
-        return Mock()
+        return MagicMock()
 
-sys.modules.update((mod, Mock) for mod in ['jpype', 'pytest'])
+MOCK_MODULES = ['JPype1-py3', 'pytest']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # build docs using konltk's konlp from the upper dir, not the installed version
 # for index and module on readthedocs
