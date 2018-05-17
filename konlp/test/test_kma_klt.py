@@ -17,6 +17,10 @@ def input_string():
     return "안녕하세요. 국민대학교 자연어처리 연구실입니다."
 
 @pytest.fixture
+def input_string_for_couns():
+    return "국민대학교자연어처리연구실"
+
+@pytest.fixture
 def klt_instance():
     k = KltKma()
     return k
@@ -30,5 +34,5 @@ def test_nouns(klt_instance, input_string):
 def test_analyze(klt_instance, input_string):
     assert klt_instance.analyze(input_string) == [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
 
-def test_couns(klt_instance, input_string):
-    assert klt_instance.cnouns(input_string) == ['안녕하세요.', '국민대학교', '자연어처리', '연구실입니다.']
+def test_couns(klt_instance, input_string_for_couns):
+    assert klt_instance.cnouns(input_string_for_couns) == ['국민', '대학교', '자연어', '처리', '연구실']
