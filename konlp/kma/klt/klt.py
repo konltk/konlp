@@ -21,18 +21,23 @@ dictionary는 konlp설치시 konlp의 dist-pacakge에 설치가 됩니다.
 만약 다른 위치에 있으면 dic_init함수를 써서 초기화하면 됩니다.
 
 Example:
-    >>> from konlp.kma.klt import klt
-    >>> k = klt.KltKma()
+    >>> from  konlp.kma import KltKma
+    >>> k = KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
+    >>> simple_txt2 = "국민대학교자연어처리연구실"
     >>> k.analyze(simple_txt)
-    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
-    ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',
-    [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
-    >>> k.morphs(simple_txt)
+    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]),
+    ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]),
+    ('자연어처리', [('자연어처리', 'N')]),
+    ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]),
+    ('.', [('.', 'q')])]
+    >>> k.tokens(simple_txt)
     ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
-    >>> k.couns()
+    >>> k.cnouns(simple_txt2)
+    ['국민', '대학교', '자연어', '처리', '연구실']
+
 TODO:
     We will change functionality with Cython
 
@@ -60,7 +65,7 @@ class KltKma(KmaI):
         >>> from  konlp.kma import KltKma
         >>> k = KltKma()
         >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
-        >>> simple_txt2 = "국민대학교 자연어처리 연구실"
+        >>> simple_txt2 = "국민대학교자연어처리연구실"
         >>> k.analyze(simple_txt)
         [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]),
         ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]),
@@ -72,7 +77,7 @@ class KltKma(KmaI):
         >>> k.nouns(simple_txt)
         ['안녕', '국민대학교', '자연어처리', '연구실']
         >>> k.cnouns(simple_txt2)
-        ['국민대학교', '자연어처리', '연구실']
+        ['국민', '대학교', '자연어', '처리', '연구실']
 
     """
 
