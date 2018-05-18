@@ -24,31 +24,36 @@ Example:
     >>> k = klt.KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
     >>> k.analyze(simple_txt)
-    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
-    ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), ('연구실입니다',
-    [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), ('.', [('.', 'q')])]
+    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]),
+    ('.', [('.', 'q')]), ('국민대학교', [('국민대학교', 'N')]),
+    ('자연어처리', [('자연어처리', 'N')]),
+    ('연구실입니다',[('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]),
+    ('.', [('.', 'q')])]
     >>> k.morphs(simple_txt)
-    ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
+    ['안녕', '하', '세요', '.', '국민대학교', '자연어처리',
+    '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
-    
+    >>> k.noun_comp("국민대학교자연어처리연구실")
+    ['국민', '대학교', '자연어', '처리', '연구실']
+
 TODO: 
-    We will change the index functionality with Cython
-    
+    We will change the analyze functionality with Cython
 """
 # for load libindex.so.3
 from ctypes import cdll
 
 # load libindex.so.3
-# Later on we will change the method to load the libindex.so.3 
+# Later on we will change the method to load the libindex.so.3
 import konlp
 cdll.LoadLibrary(konlp.__path__[0] + "/kma/klt/lib/libindex.so.3")
 
 # libindex.so.3 파일을 먼저 load해야하기 때문에 pylint disable을 했습니다.
 from konlp.kma.api import KmaI # pylint: disable=C0413
+from konlp.kma.klt.lib import klt_index as _index # pylint: disable=C0413
+# we change the way to import index with cython
 from konlp.kma.klt.lib import kma  as _kma # pylint: disable=C0413
-# we change the way to import index with cython 
-from konlp.kma.klt.lib import index as _index # pylint: disable=C0413
+
 
 class KltKma(KmaI):
     """Klt 한국어 형태소 분석기
@@ -87,7 +92,7 @@ class KltKma(KmaI):
         if dic_path == "":
             dic_path = self.dic_path
         _kma.init(dic_path) # pylint: disable=I1101
-        _index.init(dic_path) # pylint: disable=I1101
+        _index.init(dic_path)  # pylint: disable=I1101
 
     def analyze(self, sentence):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
@@ -128,15 +133,9 @@ class KltKma(KmaI):
         Returns:
             색인어가 추출된 list
         """
-        result_of_index = _index.index(sentence) # pylint: disable=I1101
+        result_of_index = _index.nouns(sentence)  # pylint: disable=I1101
 
-        list_nouns = []
-
-        for i in result_of_index:
-            if i[1]:
-                list_nouns.append(i[1][0])
-
-        return list_nouns
+        return result_of_index
 
     def cnouns(self, sentence): # pylint: disable=R0201
         """복합명사를 입력받아 복합명사 분해를 합니다.
@@ -147,4 +146,4 @@ class KltKma(KmaI):
         Returns:
             복합명상 분해된 list
         """
-        return _index.noun_comp(sentence, " ") # pylint: disable=I1101
+        return _index.noun_comp(sentence)  # pylint: disable=I1101
