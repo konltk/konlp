@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
 # Korean Natural Language Toolkit: Korean morpheme analyzer - kkma
@@ -37,10 +38,12 @@ Example:
     >>> kk.nouns(simple_text)
     ['안녕', '국민', '국민대학교', '대학교',
     '자연어', '자연어처리', '처리', '연구실']
-    
+
 TODO : The way to initialize JVM have to change
+
 """
-import jpype as jp
+
+import jpype as jp # pylint: disable=import-error
 from konlp.kma.api import KmaI
 
 class Kkma(KmaI):
@@ -67,6 +70,7 @@ class Kkma(KmaI):
         >>> kk.nouns(simple_text)
         ['안녕', '국민', '국민대학교', '대학교',
         '자연어', '자연어처리', '처리', '연구실']
+
     """
 
     def __init__(self, jvmpath=None):
@@ -77,6 +81,7 @@ class Kkma(KmaI):
 
         Args:
             jvmpath(str): jvm의 경로
+
         """
         import konlp
         classpath = konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar"
@@ -99,6 +104,7 @@ class Kkma(KmaI):
 
         Returns:
             단어가 추출된 list
+
         """
         j_p = jp.JPackage('org.snu.ids.ha.index')
         key_l = j_p.KeywordExtractor().extractKeyword(string, True)
@@ -117,6 +123,7 @@ class Kkma(KmaI):
 
         Returns:
             [[원본, [형태소/품사]]]
+
         """
         j_p = jp.JPackage('org.snu.ids.ha.ma')
         m_a = j_p.MorphemeAnalyzer()
@@ -148,6 +155,7 @@ class Kkma(KmaI):
 
         Returns:
             분리된 형태소의 list
+
         """
         morphs_list = []
         analyze = self.analyze(string)
