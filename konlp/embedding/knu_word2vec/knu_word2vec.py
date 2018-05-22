@@ -94,7 +94,7 @@ class knu_word2vec(abstract_embedding_model):
 			LP_LP_c_char = ctypes.POINTER(LP_c_char) # **char
 			c_program.main.argtypes = (ctypes.c_int, LP_LP_c_char) # main 함수 인자 세팅
 			argc = len(argv) # argc 부분
-			argv_v = (LP_c_char * (argc+1))() # ???
+			argv_v = (LP_c_char * (argc+1))() 
 			for i, arg in enumerate(argv) : # cstring용에 맞춰 변환
 				enc_arg = arg.encode('utf-8')
 				argv_v[i] = ctypes.create_string_buffer(enc_arg)
