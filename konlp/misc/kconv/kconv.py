@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
 # Korean Natural Language Toolkit: korean converter
@@ -8,10 +9,9 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-"""
-kconv - 한국어 인코딩 변환도구
+"""kconv - 한국어 인코딩 변환도구
 
-kconv 는 국민대학교 강승식 교수님이 만든 한국어 인코딩 변환 도구 입니다.
+kconv 는 국민대학교 강승식 교수의 한국어 인코딩 변환 도구 입니다.
 파일이나 스트링에 대한 인코딩 변환을 도와주는 도구들이 있습니다.
 EUC-KR, UTF-8, UTF-16-LE, UTF-16-BE 간의 인코딩 변환을 지원합니다.
 
@@ -26,6 +26,7 @@ Example:
     >>> file_dir = 'input.txt'
     >>> kconv.scan(file_dir)
     >>> kconv.convert_file(file_dir, 'output.txt', 'UTF_8', 'UTF_16_LE')
+
 """
 import os
 
@@ -49,11 +50,11 @@ def _cvt_enc_name(enc):
 
     Raises:
         ValueError: 정의되지 않은 인코딩 이름이 들어올 경우 발생
+
     """
     class Encoding:
-        """
-        인코딩 이름 클래스
-        """
+        """인코딩 이름 클래스"""
+
         CP949 = 'CP949'
         EUC_KR = 'EUC_KR'
         UTF_8 = 'UTF_8'
@@ -80,6 +81,7 @@ def _cvt_enc_name(enc):
 
 def synopsis():
     """kconv 사용 설명 함수"""
+
     _synopsis()
 
 def convert(string, in_enc, out_enc):
@@ -96,6 +98,7 @@ def convert(string, in_enc, out_enc):
 
     Returns:
         bytes: 인코딩 변환된 bytes string
+
     """
     if not isinstance(string, str) and not isinstance(string, bytes):
         raise TypeError('string type must be string or bytes')
@@ -136,6 +139,7 @@ def scan(file_dir):
 
     Returns:
         int: 인코딩 타입
+
     """
     if not os.path.exists(file_dir):
         raise FileNotFoundError('Can not find file in the path : {}'.format(file_dir))

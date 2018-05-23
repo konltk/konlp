@@ -12,10 +12,18 @@ konlp.test.test\_kconv module
     :undoc-members:
     :show-inheritance:
 
-konlp.test.test\_klt\_kma module
+konlp.test.test\_kma\_kkma module
+---------------------------------
+
+.. automodule:: konlp.test.test_kma_kkma
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+konlp.test.test\_kma\_klt module
 --------------------------------
 
-.. automodule:: konlp.test.test_klt_kma
+.. automodule:: konlp.test.test_kma_klt
     :members:
     :undoc-members:
     :show-inheritance:

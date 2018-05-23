@@ -31,3 +31,4 @@ from konlp.kma.klt import KltKma
 # k = Kkma()
 from konlp.kma.kkma import Kkma
 from konlp.kma.eunjeon import Eunjeon
+
