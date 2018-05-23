@@ -155,7 +155,7 @@ class Eunjeon(KmaI):
 
         return parse_list
 
-    def morphs(self, string, **kwargs):
+    def tokens(self, string, **kwargs):
         """형태소 추출 함수
 
         문장(string) 을 입력받아 형태소만 추출합니다. analyze 함수처럼 3가지의 옵션을 가집니다.
@@ -167,11 +167,11 @@ class Eunjeon(KmaI):
             >>> from konlp.kma import Eunjeon
             >>> ej = Eunjeon()
             >>> simple_text = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
-            >>> ej.morphs(simple_text)
+            >>> ej.tokens(simple_text)
             ['안녕', '하', '세요', '.', '국민대', '학교', '자연어', '처리', '연구실', '입니다', '.']
-            >>> ej.morphs(simple_text, inflect=True)
+            >>> ej.tokens(simple_text, inflect=True)
             ['안녕', '하', '시', '.', '국민대', '학교', '자연어', '처리', '연구실', '이', 'ᄇ니다', '.']
-            >>> ej.morphs(simple_text, inflect=True, compound=True)
+            >>> ej.tokens(simple_text, inflect=True, compound=True)
             ['안녕', '하', '시', '.', '국민', '대', '학교', '자연', '어', '처리', '연구', '실', '이', 'ᄇ 니다', '.']
 
         Args:

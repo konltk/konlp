@@ -10,5 +10,24 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
+"""KoNLP Korean morpheme analyzer Package
 
-from .eunjeon import *
+TODO : We will introduce the Korean morphem analyzer's feature and representative engine.
+       We have to select standard Korean morpheme ananlyzer
+"""
+
+# for user, from konlp.kma import KltKma
+# k = KltKma()
+from konlp.kma.klt import KltKma
+
+
+
+
+
+
+## third-party Korean morpheme analyzer 
+
+# for user, from konlp.kma impor Kkma
+# k = Kkma()
+from konlp.kma.kkma import Kkma
+from konlp.kma.eunjeon import Eunjeon
