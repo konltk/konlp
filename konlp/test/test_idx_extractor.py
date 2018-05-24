@@ -1,7 +1,7 @@
 # -*- coding : utf-8 -*-
 
 import pytest
-from konlp.chat.indexer_extractor import IndexerExtractor
+from konlp.kma.indexer_extractor import IndexerExtractor
 
 extractor = IndexerExtractor()
 
@@ -19,3 +19,5 @@ def test_idx_extractor():
     assert idx_term == ['철수/NNP @PER', '영희/NNP @PER', '영화/NNG', '보/VV']
     assert with_original_form is None
 
+test_idx_extractor()
+test_idx_extractor_with_original_form()

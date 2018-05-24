@@ -1,4 +1,0 @@
-numpy
-Cython==0.25.2
-tensorflow==1.4
-jnius==1.1.0

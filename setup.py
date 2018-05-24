@@ -69,21 +69,21 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
     'kma/klt/data/hdic/*',
     # tokenize/klt 모듈의 사전 파일 위치
     'tokenize/klt/data/dic/*',
-    # chat/indexer_extractor 모듈의 resource 파일 위치
-    'chat/indexer_extractor/resource/morpheme/binaryDic/*',
-    'chat/indexer_extractor/resource/morpheme/hmmModel/*',
-    'chat/indexer_extractor/resource/morpheme/space/*',
-    'chat/indexer_extractor/utils/gru_crf_NER/*',
-    'chat/indexer_extractor/utils/gru_crf_NER/model_new/*',
-    'chat/indexer_extractor/preprocess/data/*',
-    # chat/pseudo_morpeme_analyzer 모듈의 사전 파일 위치
-    'chat/pseudo_morpheme_analyzer/data/*',
-    # chat/pseudo_morpeme_analyzer 모듈 모델 위치
-    'chat/pseudo_morpheme_analyzer/model_for_graph/*'
+    # kma/indexer_extractor 모듈의 resource 파일 위치
+    'kma/indexer_extractor/data/morpheme/binaryDic/*',
+    'kma/indexer_extractor/data/morpheme/hmmModel/*',
+    'kma/indexer_extractor/data/morpheme/space/*',
+    'kma/indexer_extractor/utils/gru_crf_NER/model_new/*',
+    'kma/indexer_extractor/data/*',
+    'kma/indexer_extractor/lib/*'
+    # kma/pseudo_morpeme_analyzer 모듈의 사전 파일 위치
+    'kma/pseudo_morpheme_analyzer/data/*',
+    # kma/pseudo_morpeme_analyzer 모듈 모델 위치
+    'kma/pseudo_morpheme_analyzer/model_for_graph/*'
     ]},
 
     # Later on we have to change it
-    setup_requires=['pytest', 'numpy', 'Cython==0.25.2'],
+    setup_requires=['pytest', 'numpy', 'Cython==0.25.2', 'pytest'],
     # Later on we have to change it
     install_requires=['tensorflow==1.4', 'jnius==1.1.0'],
     # Later on, we have to select
