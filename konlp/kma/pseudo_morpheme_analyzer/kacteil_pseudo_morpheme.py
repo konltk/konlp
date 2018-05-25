@@ -19,9 +19,9 @@ class PseudoMorphemeAnalyzer(object):
         model_path(str): 의사 형태소 분석기 모델 경로
         """
         self.restore_morpheme = RestoredMorpheme()
-        pre_analyzed_dic_path = config.MORPHEME_ANALYSIS_DATA + "pre-analyzedDic.txt"
+        pre_analyzed_dic_path = config.MORPHEME_ANALYSIS_DATA + "/pre-analyzedDic.txt"
         self.pre_analyzed_dic = self.restore_morpheme.open_pre_analyzed_dic(pre_analyzed_dic_path)
-        restored_dic_path = config.MORPHEME_ANALYSIS_DATA + "DicForRestoration_add.txt"
+        restored_dic_path = config.MORPHEME_ANALYSIS_DATA + "/DicForRestoration_add.txt"
         self.restore_dic = self.restore_morpheme.open_restore_dic(restored_dic_path)
 
         self.morpheme_helper = MorphemeHelper()
