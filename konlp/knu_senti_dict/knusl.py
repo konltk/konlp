@@ -19,7 +19,7 @@ import json
 class KnuSL():
 
 	def data_list(wordname):	
-		with open('SentiWord_info.json', encoding='utf-8-sig', mode='r') as f:
+		with open('data/SentiWord_info.json', encoding='utf-8-sig', mode='r') as f:
 			data = json.load(f)
 		result = ['None','None']	
 		for i in range(0, len(data)):
