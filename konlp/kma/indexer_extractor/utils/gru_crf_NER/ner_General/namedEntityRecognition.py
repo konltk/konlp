@@ -6,8 +6,9 @@ from konlp.kma.indexer_extractor import config
 
 class NER(object):
     def __init__(self):
-        tf.app.flags.DEFINE_string("dictionary_file", config.NAMED_ENTITY_ROOT + "/vocab.txt", "Word2Vec Dictionary File.")
-        tf.app.flags.DEFINE_string("target_dictionary_file", config.NAMED_ENTITY_ROOT + "/ner_vocab.txt", "Target Word2Vec Dictionary File.")
+        tf.app.flags.FLAGS._parse_flags()
+        tf.app.flags.DEFINE_string("ner_dictionary_file", config.NAMED_ENTITY_ROOT + "/vocab.txt", "Word2Vec Dictionary File.")
+        tf.app.flags.DEFINE_string("ner_target_dictionary_file", config.NAMED_ENTITY_ROOT + "/ner_vocab.txt", "Target Word2Vec Dictionary File.")
         tf.app.flags.DEFINE_string("chiSquareBiDicPER_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_PER.txt",
                                    "Ne Bi_gram ChiSquare dic File")
         tf.app.flags.DEFINE_string("chiSquareBiDicLOC_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_LOC.txt",
@@ -25,23 +26,23 @@ class NER(object):
         tf.app.flags.DEFINE_string("morTriDic_file", config.NAMED_ENTITY_ROOT + "/tri_gramFreqVector.txt",
                                    "sejong mor copurs Tri-Eumjul vector dic File")
 
-        tf.app.flags.DEFINE_string("test_file", config.NAMED_ENTITY_ROOT + "/unitNERTestDataSample.txt", "test file")
-        tf.app.flags.DEFINE_string("train_dir", config.NAMED_ENTITY_ROOT + "/model_new", "Training directory.")
+        tf.app.flags.DEFINE_string("ner_test_file", config.NAMED_ENTITY_ROOT + "/unitNERTestDataSample.txt", "test file")
+        tf.app.flags.DEFINE_string("ner_train_dir", config.NAMED_ENTITY_ROOT + "/model_new", "Training directory.")
 
-        tf.app.flags.DEFINE_integer("batch_size", 1, "Size of mini batch.")
-        tf.app.flags.DEFINE_integer("embedding_size", 50, "embedding_size")
-        tf.app.flags.DEFINE_integer("hidden_size", 128, "hidden_size")
-        tf.app.flags.DEFINE_string("cell_mode", "GRU", "cell_mode")
-        tf.app.flags.DEFINE_integer("num_epoch", 50, "number of epoch")
-        tf.app.flags.DEFINE_float("learning_rate", 0.0001, "learning rate")
-        tf.app.flags.DEFINE_integer("max_length", 105, "max_input_length")
-        tf.app.flags.DEFINE_integer("rate_per_checkpoint", 5, "percent rate per checkpoint.")
-        tf.app.flags.DEFINE_integer("epoch_per_checkpoint", 20, "epoch per checkpoint.")
-        tf.app.flags.DEFINE_float("dropout", 1.0, "dropout")
-        tf.app.flags.DEFINE_integer("num_layers", 1, "num_layers")
-        tf.app.flags.FLAGS._parse_flags()
+        tf.app.flags.DEFINE_integer("ner_batch_size", 1, "Size of mini batch.")
+        tf.app.flags.DEFINE_integer("ner_embedding_size", 50, "embedding_size")
+        tf.app.flags.DEFINE_integer("ner_hidden_size", 128, "hidden_size")
+        tf.app.flags.DEFINE_string("ner_cell_mode", "GRU", "cell_mode")
+        tf.app.flags.DEFINE_integer("ner_num_epoch", 50, "number of epoch")
+        tf.app.flags.DEFINE_float("ner_learning_rate", 0.0001, "learning rate")
+        tf.app.flags.DEFINE_integer("ner_max_length", 105, "max_input_length")
+        tf.app.flags.DEFINE_integer("ner_rate_per_checkpoint", 5, "percent rate per checkpoint.")
+        tf.app.flags.DEFINE_integer("ner_epoch_per_checkpoint", 20, "epoch per checkpoint.")
+        tf.app.flags.DEFINE_float("ner_dropout", 1.0, "dropout")
+        tf.app.flags.DEFINE_integer("ner_num_layers", 1, "num_layers")
 
         self.FLAGS = tf.app.flags.FLAGS
+        tf.app.flags.FLAGS._parse_flags()
 
         self.word2idx = {"<PADDING>": 0, "<UNK>": 1}
         self.idx2word = {0: "<PADDING>", 1: "<UNK>"}
@@ -56,7 +57,7 @@ class NER(object):
         self.chiIdx = 0
 
         # Dictionary Open
-        with open(self.FLAGS.dictionary_file, 'r') as inFile:
+        with open(self.FLAGS.ner_dictionary_file, 'r') as inFile:
             for line in inFile:
                 line = line.strip()
                 # line = line.decode('utf-8')
@@ -64,7 +65,7 @@ class NER(object):
                 idx = len(self.word2idx)
                 self.word2idx[tokens[0]] = idx
                 self.idx2word[idx] = tokens[0]
-        with open(self.FLAGS.target_dictionary_file, 'r') as inFile:
+        with open(self.FLAGS.ner_target_dictionary_file, 'r') as inFile:
             for line in inFile:
                 line = line.strip()
                 # line = line.decode('utf-8')
@@ -144,17 +145,17 @@ class NER(object):
             else:
                 test_x.append(self.word2idx["<UNK>"])
 
-        if len(test_x) > self.FLAGS.max_length:
-            test_x = test_x[:self.FLAGS.max_length]
+        if len(test_x) > self.FLAGS.ner_max_length:
+            test_x = test_x[:self.FLAGS.ner_max_length]
         sequence_length = len(test_x)
-        if sequence_length > self.FLAGS.max_length:
-            sequence_length = self.FLAGS.max_length
+        if sequence_length > self.FLAGS.ner_max_length:
+            sequence_length = self.FLAGS.ner_max_length
         return (test_x, sequence_length)
 
     def create_model(self, args, session, isTest, keep_prob):
         model = gru_crf.GRUCRF(args, self.word2idx, self.decode_word2idx, 1040)
 
-        ckpt = tf.train.get_checkpoint_state(self.FLAGS.train_dir)
+        ckpt = tf.train.get_checkpoint_state(self.FLAGS.ner_train_dir)
         if ckpt:
             file_name = ckpt.model_checkpoint_path + ".meta"
         if ckpt and tf.gfile.Exists(file_name):
@@ -212,7 +213,7 @@ class NER(object):
 
         for inputEumjul in splitEumList:
             test_x, sequence_length = self.formatting_data(inputEumjul)
-            test_x, _, _, sequence_length = model.get_batch([(test_x, [], sequence_length)], self.FLAGS.max_length)
+            test_x, _, _, sequence_length = model.get_batch([(test_x, [], sequence_length)], self.FLAGS.ner_max_length)
             test_hasDic = []
             for col in range(len(test_x)):
                 temp = []
@@ -316,7 +317,7 @@ class NER(object):
                         morDicFeature = [0.0 for _ in range(24)]
                     test_hasDic[j][i] += morDicFeature
 
-            predict = model.predict_step(sess, test_x, test_hasDic, sequence_length, self.FLAGS.dropout)
+            predict = model.predict_step(sess, test_x, test_hasDic, sequence_length, self.FLAGS.ner_dropout)
             #                 print predict
             strResult = ""
             for s in predict[0]:
@@ -485,7 +486,7 @@ class NER(object):
     def ner_model_road(self,):
         sess = tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True)))
         model = self.create_model(self.FLAGS, sess, True, 1.0)
-        model.batch_size = 1
+        model.ner_batch_size = 1
         return sess, model
 
 if __name__ == "__main__":
