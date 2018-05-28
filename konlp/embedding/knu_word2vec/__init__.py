@@ -10,4 +10,4 @@
 TODO : We will introduce kkma in detail.
 """
 
-from konlp.embedding.knu_word2vec.knu_word2vec import knu_word2vec
+from konlp.embedding.knu_word2vec.knu_word2vec import KnuWord2Vec
