@@ -68,4 +68,5 @@ class KGUNER(TaggerI):
         return predict
 
     def tag(self, sentence):
+        ## 품사 정보가 필요한데 사용할 수 없어, 일단 미구현 상태로 두었습니다.
         raise NotImplemented
