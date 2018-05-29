@@ -11,4 +11,4 @@
 # ============================================================
 """we are preparing this module"""
 
-from konlp.tag.kguner import kguner
+from kguner import kguner
