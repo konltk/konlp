@@ -16,7 +16,7 @@ KGUNER 한국어 개체명 인식기
 2016 국어정보처리 데이터셋을 활용하여 학습하였으며,
 경기대학교 ICL(Intelligent Content Lab.)에서 만들어졌습니다.
 
-현재 KGUNER은 ner, file_ner 기능을 제공합니다.
+현재 KGUNER은 ner 기능을 제공합니다.
 """
 
 
@@ -69,31 +69,3 @@ class KGUNER(TaggerI):
 
     def tag(self, sentence):
         raise NotImplemented
-
-    def file_ner(self, filename_input, filename_output):
-        """
-        CONLL 양식의 한국어 단어 및 품사 리스트 파일을 분석하여 결과값을 덧붙여 출력함
-
-        Args:
-            filename_input(str) : 입력 파일 경로 (CONLL 양식으로 단어와 품사 정보가 나열되어 있어야 함)
-            filename_output(str) : 출력 파일 경로
-
-        """
-        with codecs.open(filename_input, encoding="utf-8") as f:
-            words, pos = [], []
-            for line in f:
-                line = line.strip()
-                items = line.split("\t")
-                if len(items) > 2:
-                    words.append(items[0])
-                    pos.append(items[1])
-                elif words:
-                    predictions = self.recognize_entity(words, pos)
-
-                    with codecs.open(filename_output, "a", encoding="utf-8") as w:
-                        for word, p, pred in zip(words, pos, predictions):
-                            w.write("%s\t%s\t%s\n" % (word, p, pred))
-                        w.write("\n")
-
-                    words = []
-                    pos = []
