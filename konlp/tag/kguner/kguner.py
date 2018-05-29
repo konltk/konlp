@@ -97,8 +97,3 @@ class KGUNER(TaggerI):
 
                     words = []
                     pos = []
-
-
-if __name__ == '__main__':
-    k = KGUNER()
-    print(k.ner(["ABC", "는", "D", "다", "."], ["NN", "JO", "NN", "EM", "SY"]))
