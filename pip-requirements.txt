@@ -1,1 +1,4 @@
-# Later on we would write this
+pytest-cov==2.4.0
+coveralls==1.1
+JPype1-py3>=0.5.5.1
+tensorflow==1.8.0
