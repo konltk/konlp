@@ -37,7 +37,7 @@ class KmaI:
         raise NotImplementedError()
 
     @abstractmethod
-    def morphs(self, string):
+    def tokens(self, string):
         """문장을 입력받아 형태소만 출력합니다.
 
         Args:

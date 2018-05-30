@@ -210,7 +210,7 @@ class PseudoMorphemeAnalyzer(KmaI):
                                                                        self.pre_analyzed_dic)
         return morpheme_results
 
-    def morphs(self, string):
+    def tokens(self, string):
         """문장을 입력받아 형태소만 출력합니다.
 
         Args:

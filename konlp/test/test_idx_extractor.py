@@ -21,7 +21,7 @@ def test_analyze():
     assert result == ['밥/NNG', '먹/VV', 'M#34']
 
 @pytest.fixture
-def test_morphs():
+def test_tokens():
     str = "밥이 먹고 싶다."
     result = extractor.morphs(str)
     assert result == ['밥/NNG', '먹/VV', '고/EC 싶/VX']
@@ -34,5 +34,5 @@ def test_nouns():
 
 
 test_analyze()
-test_morphs()
+test_tokens()
 test_nouns()

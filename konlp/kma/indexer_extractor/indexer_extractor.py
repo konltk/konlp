@@ -270,7 +270,7 @@ class IndexerExtractor(KmaI):
 
         return idx_term
 
-    def morphs(self, string):
+    def tokens(self, string):
         """
         추출된 색인어의 원형을 추출
         Args:
