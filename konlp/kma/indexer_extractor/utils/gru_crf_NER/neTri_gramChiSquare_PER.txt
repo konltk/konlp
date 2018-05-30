@@ -1,3 +1,0 @@
-<SP>남궁	PERSON
-<SP>황보	PERSON
-레스<SP>	PERSON

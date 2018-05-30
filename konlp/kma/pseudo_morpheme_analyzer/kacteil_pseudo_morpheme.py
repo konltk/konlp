@@ -5,9 +5,11 @@ import tensorflow as tf
 from konlp.kma.pseudo_morpheme_analyzer.morpheme_helper import MorphemeHelper
 from konlp.kma.pseudo_morpheme_analyzer.post_processing.restore_morpheme import RestoredMorpheme
 from konlp.kma.pseudo_morpheme_analyzer import config
+from konlp.kma.api import KmaI
+import re
 
 
-class PseudoMorphemeAnalyzer(object):
+class PseudoMorphemeAnalyzer(KmaI):
     """
     강원대학교 한국어 의사 형태소 분석기
     """
@@ -207,3 +209,45 @@ class PseudoMorphemeAnalyzer(object):
                                                                        self.restore_dic,
                                                                        self.pre_analyzed_dic)
         return morpheme_results
+
+    def morphs(self, string):
+        """문장을 입력받아 형태소만 출력합니다.
+
+        Args:
+            string (str): 형태소 분석을 할 문장
+
+        Returns:
+            list(str): 형태소 리스트
+        """
+        morpheme_results = self.analyze(string)
+        for i, tagged_eojeol in enumerate(morpheme_results):
+            morphemes = re.sub(r"/[A-Z]+", "", tagged_eojeol)
+            morpheme_results[i] = morphemes
+
+        return morpheme_results
+
+    def nouns(self, string):
+        """문장을 입력받아 색인어(명사류)들을 출력합니다.
+        Args:
+            string (str): 색인어를 추출할 문장
+
+        Returns:
+            list(str): 색인어 리스트
+        """
+        nouns_list = []
+        morpheme_results = self.analyze(string)
+        for tagged_eojeol in morpheme_results:
+            tagged_morphemes = tagged_eojeol.split(" + ")
+            for morpheme_pair in tagged_morphemes:
+                split_indx = morpheme_pair.rfind("/")
+                tag = morpheme_pair[split_indx+1:]
+                if tag[0]=="N" and tag[1]!="A":
+                    nouns_list.append(morpheme_pair)
+        return nouns_list
+
+if __name__ == '__main__':
+    analyzer = PseudoMorphemeAnalyzer(config.MORPHEME_ANALYSIS_MODEL)
+    str = '철수와 영희는 영화를 본다.'
+    print(analyzer.morphs(str))
+    print(analyzer.nouns(str))
+    print(analyzer.analyze(str))

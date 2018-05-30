@@ -4,7 +4,7 @@
 """
 
 import re
-from konlp.kma.api import IndexerExtractorInterface
+from konlp.kma.api import KmaI
 from konlp.kma.indexer_extractor import config
 from konlp.kma.indexer_extractor.preprocess.code_separation import Separation
 from konlp.kma.indexer_extractor.preprocess.find_modal_place import ModalPlace
@@ -14,11 +14,10 @@ from konlp.kma.indexer_extractor.preprocess.unregistered_word_processing \
 from konlp.kma.indexer_extractor.utils import nlu
 
 
-class IndexerExtractor(IndexerExtractorInterface):
+class IndexerExtractor(KmaI):
     """
     문장으로부터 색인어를 추출하는 모듈
     """
-
     def __init__(self):
         self._nlu = nlu.NLU()
         #질의패턴 사전 불러오기
@@ -69,30 +68,15 @@ class IndexerExtractor(IndexerExtractorInterface):
                     morpheme_result = morpheme_result[:-1] + [[check_pattern + ' @Q']]
         return morpheme_result
 
-    def indexer_extract(self, input_str, with_original_form=False):
+    def _extract(self, input_str):
         """
         입력 문장에서 색인어 추출을 하는 함수
         Args:
             input_str (str) : 입력 문장
-            with_original_form (bool) : 색인어의 원형 출력 여부(Default-False)
 
         Returns:
-            List : [색인어 리스트], [색인어와 색인어 원형 리스트]
-
-             '[ "색인어1", "색인어2", ... ]'
-            '[ "색인어1 색인어1-원형", "색인어2 색인어2-원형" ]'
-
-        ex) "학교 어디냐?"
-        with_original_form - False 인 경우
-        ['학교/NNG', '어디/NP', '이/VCP', '@Q'] , None
-
-        with_original_form - True 인 경우
-        ['학교/NNG', '어디/NP', '이/VCP', '@Q'], ['학교/NNG 학교/NNG', '어디/NP 어디/NP', '이/VCP 이/VCP', '냐/EF+?/SF @Q']
+            List : [색인어 리스트], [형태소 분석된 리스트], [색인어 중 명사 리스트]
         """
-
-        #불필요 특수문자 제거
-        idx_term = []
-        feature_list = []
 
         query = self._separation.remove_needless_in_query(input_str)
         if query.strip() == "":
@@ -244,12 +228,28 @@ class IndexerExtractor(IndexerExtractorInterface):
             elif 'T#' in mor or 'M#' in mor:
                 stopword_remove_list.append(mor)
 
-        #출력 포멧으로 변경
+        noun_list = []
+        for mor in mor_list:
+            if re.search(r'/[N]{1}|@', mor):
+                noun_list.append(mor)
+
+        return stopword_remove_list, morpheme_result, noun_list
+
+    def analyze(self, string):
+        """
+        입력 문장에서 색인어 추출을 하는 함수
+        Args:
+            input_str (str) : 입력 문장
+        Returns:
+            List : [색인어 리스트]
+        """
+
+        idx_term = []
+        stopword_remove_list, morpheme_result, _ = self._extract(string)
         for token in stopword_remove_list:
             split_tokens = token.split()
             if not len(split_tokens) == 2:
                 idx_term.append(token)
-                feature_list.append(token + " " + token)
             else:
                  # '###' => 보조용언이 겹치는 어휘부분 처리하기 위함 '이' M#16,M32
                 if '###' in split_tokens[1]:
@@ -260,10 +260,6 @@ class IndexerExtractor(IndexerExtractorInterface):
                     idx_term.append(token.strip())
                 else:
                     idx_term.append(split_tokens[1].strip())
-                if '#SPACE#' in token:
-                    token = token.replace('#SPACE#', ' ')
-                    token = token.replace('###', ' ')
-                feature_list.append(token)
 
         #query가 모두 불용어라 idx_term 이 없는 경우 query 그대로 사용
         if not idx_term:
@@ -271,33 +267,51 @@ class IndexerExtractor(IndexerExtractorInterface):
             for eojeol in morpheme_result:
                 for char in eojeol:
                     idx_term.append(char)
-            feature_list = []
-            for term in idx_term:
-                feature_list.append(term + ' ' + term)
 
-        if with_original_form:
-            return idx_term, feature_list
-        return idx_term, None
+        return idx_term
+
+    def morphs(self, string):
+        """
+        추출된 색인어의 원형을 추출
+        Args:
+            input_str (str) : 입력 문장
+        Returns:
+            List : [색인어 원형 리스트]
+        """
+        original_starte_list = []
+        stopword_remove_list, morpheme_result, _ = self._extract(string)
+
+        #출력 포멧으로 변경
+        for token in stopword_remove_list:
+            split_tokens = token.split()
+            if not len(split_tokens) == 2:
+                original_starte_list.append(token)
+            else:
+                if '#SPACE#' in token:
+                    token = token.replace('#SPACE#', ' ')
+                    token = token.replace('###', ' ')
+                token_spl = token.split()
+                original_starte_list.append(' '.join(token_spl[:-1]))
+
+        #query가 모두 불용어라 idx_term 이 없는 경우 query 그대로 사용
+        if not original_starte_list:
+            for eojeol in morpheme_result:
+                for char in eojeol:
+                    original_starte_list.append(char)
+
+        return original_starte_list
+
+    def nouns(self, string):
+        """
+        색인어의 명사 추출
+        Args:
+            input_str (str) : 입력 문장
+        Returns:
+            List : [색인어 중 명사 리스트]
+        """
+        _, _, nouns = self._extract(string)
+        return nouns
 
 
-#Test
-if __name__ == "__main__":
-    import os
-    extractor = IndexerExtractor()
 
-    query = "밥이 먹고 싶다."
-    idx_term, feature_list = extractor.indexer_extract(query)
-    print (idx_term, feature_list)
-
-    query = "밥을 먹었다."
-    idx_term, feature_list = extractor.indexer_extract(query)
-    print(idx_term, feature_list)
-
-    query = "학교 어디냐?"
-    idx_term, feature_list = extractor.indexer_extract(query, True)
-    print (idx_term, feature_list)
-
-    query = "철수와 영희는 학교에 갔다"
-    idx_term, feature_list = extractor.indexer_extract(query, True)
-    print(idx_term, feature_list)
 
