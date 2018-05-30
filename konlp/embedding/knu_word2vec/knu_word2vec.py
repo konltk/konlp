@@ -12,8 +12,8 @@
 한국어 단어, 어절 임베딩입니다.
 
 Example: 
-    >>> from konlp.embedding import knu_word2vec
-    >>> test = knu_word2vec()
+    >>> from konlp.embedding import KnuWord2Vec
+    >>> test = KnuWord2Vec()
     >>> test.train("007.txt", "temp.vocab", "emb.bin", "b")
         Warning: temp.vocab is already exist.
         Warning: emb.bin is already exist.
