@@ -6,7 +6,6 @@ from konlp.kma.indexer_extractor import config
 
 class NER(object):
     def __init__(self):
-        tf.app.flags.FLAGS._parse_flags()
         tf.app.flags.DEFINE_string("ner_dictionary_file", config.NAMED_ENTITY_ROOT + "/vocab.txt", "Word2Vec Dictionary File.")
         tf.app.flags.DEFINE_string("ner_target_dictionary_file", config.NAMED_ENTITY_ROOT + "/ner_vocab.txt", "Target Word2Vec Dictionary File.")
         tf.app.flags.DEFINE_string("chiSquareBiDicPER_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_PER.txt",
@@ -41,8 +40,8 @@ class NER(object):
         tf.app.flags.DEFINE_float("ner_dropout", 1.0, "dropout")
         tf.app.flags.DEFINE_integer("ner_num_layers", 1, "num_layers")
 
-        self.FLAGS = tf.app.flags.FLAGS
         tf.app.flags.FLAGS._parse_flags()
+        self.FLAGS = tf.app.flags.FLAGS
 
         self.word2idx = {"<PADDING>": 0, "<UNK>": 1}
         self.idx2word = {0: "<PADDING>", 1: "<UNK>"}
