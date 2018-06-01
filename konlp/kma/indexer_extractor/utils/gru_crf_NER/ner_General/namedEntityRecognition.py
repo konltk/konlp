@@ -24,10 +24,8 @@ class NER(object):
                                    "sejong mor copurs Bi-Eumjul vector dic File")
         tf.app.flags.DEFINE_string("morTriDic_file", config.NAMED_ENTITY_ROOT + "/tri_gramFreqVector.txt",
                                    "sejong mor copurs Tri-Eumjul vector dic File")
-
         tf.app.flags.DEFINE_string("ner_test_file", config.NAMED_ENTITY_ROOT + "/unitNERTestDataSample.txt", "test file")
         tf.app.flags.DEFINE_string("ner_train_dir", config.NAMED_ENTITY_ROOT + "/model_new", "Training directory.")
-
         tf.app.flags.DEFINE_integer("ner_batch_size", 1, "Size of mini batch.")
         tf.app.flags.DEFINE_integer("ner_embedding_size", 50, "embedding_size")
         tf.app.flags.DEFINE_integer("ner_hidden_size", 128, "hidden_size")
@@ -59,7 +57,6 @@ class NER(object):
         with open(self.FLAGS.ner_dictionary_file, 'r') as inFile:
             for line in inFile:
                 line = line.strip()
-                # line = line.decode('utf-8')
                 tokens = line.split()
                 idx = len(self.word2idx)
                 self.word2idx[tokens[0]] = idx
@@ -67,7 +64,6 @@ class NER(object):
         with open(self.FLAGS.ner_target_dictionary_file, 'r') as inFile:
             for line in inFile:
                 line = line.strip()
-                # line = line.decode('utf-8')
                 tokens = line.split()
                 idx = len(self.decode_word2idx)
                 self.decode_word2idx[tokens[0]] = idx
@@ -76,21 +72,18 @@ class NER(object):
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
-                # biWord = biWord.decode('utf-8')
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
         with open(self.FLAGS.chiSquareBiDicLOC_file, 'r') as chiSquareBi:
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
-                # biWord = biWord.decode('utf-8')
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
         with open(self.FLAGS.chiSquareBiDicORG_file, 'r') as chiSquareBi:
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
-                # biWord = biWord.decode('utf-8')
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
         self.chiIdx = 0
@@ -98,43 +91,36 @@ class NER(object):
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
-                # triWord = triWord.decode('utf-8')
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
         with open(self.FLAGS.chiSquareTriDicLOC_file, 'r') as chiSquareTri:
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
-                # triWord = triWord.decode('utf-8')
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
         with open(self.FLAGS.chiSquareTriDicORG_file, 'r') as chiSquareTri:
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
-                # triWord = triWord.decode('utf-8')
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
         with open(self.FLAGS.morBiDic_file, 'r') as morBi:
             for line in morBi:
                 line = line.strip()
                 morBiWord = line.split("\t")[0]
-                # morBiWord = morBiWord.decode('utf-8')
                 morBiFreq = line.split('\t')[1].split()
                 self.morBiDic[morBiWord] = morBiFreq
         with open(self.FLAGS.morTriDic_file, 'r') as morTri:
             for line in morTri:
                 line = line.strip()
                 morTriWord = line.split("\t")[0]
-                # morTriWord = morTriWord.decode('utf-8')
                 morTriFreq = line.split('\t')[1].split()
                 self.morTriDic[morTriWord] = morTriFreq
 
     def formatting_data(self, line):
         query = line
         query = re.sub("[0-9]", "0", query)
-        #     sentence = tokens[1]
-        #     answer = tokens[2]
         query = re.sub("[0-9]", "0", query)
         test_x = []
 

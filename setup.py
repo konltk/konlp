@@ -83,7 +83,7 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
     ]},
 
     # Later on we have to change it
-    setup_requires=['pytest', 'numpy', 'Cython==0.25.2', 'pytest'],
+    setup_requires=['pytest', 'numpy', 'Cython==0.25.2'],
     # Later on we have to change it
     install_requires=['tensorflow==1.4', 'jnius==1.1.0'],
     # Later on, we have to select

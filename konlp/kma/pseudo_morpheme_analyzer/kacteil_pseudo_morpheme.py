@@ -248,6 +248,6 @@ class PseudoMorphemeAnalyzer(KmaI):
 if __name__ == '__main__':
     analyzer = PseudoMorphemeAnalyzer(config.MORPHEME_ANALYSIS_MODEL)
     str = '철수와 영희는 영화를 본다.'
-    print(analyzer.morphs(str))
+    print(analyzer.tokens(str))
     print(analyzer.nouns(str))
     print(analyzer.analyze(str))

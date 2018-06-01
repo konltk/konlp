@@ -21,7 +21,7 @@ def test_analyzer():
 @pytest.fixture
 def test_tokens():
     str = '철수와 영희는 영화를 본다.'
-    assert analyzer.morphs(str) == ['철수 + 와', '영희 + 는', '영화 + 를', '보 + ㄴ다 + .']
+    assert analyzer.tokens(str) == ['철수 + 와', '영희 + 는', '영화 + 를', '보 + ㄴ다 + .']
 
 @pytest.fixture
 def test_nouns():
@@ -31,3 +31,4 @@ def test_nouns():
 test_analyzer()
 test_tokens()
 test_nouns()
+
