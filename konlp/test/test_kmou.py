@@ -3,7 +3,7 @@
 # Korean Natural Language Toolkit: pyTest
 #
 # Author: Jae-Hoon Kim <jhoon@kmou.ac.kr>
-#         Ho-Min Park <homin2006@hanmail.net>
+#         Ho Yoon <4168615@naver.com>
 #         Young Namgoong <aei0109@naver.com>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
