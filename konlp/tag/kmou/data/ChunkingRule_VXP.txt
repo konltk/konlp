@@ -1,0 +1,17 @@
+VXP:
+{<ETN><NNG><JKS><VA>}
+{<ETM><NNB><JKS><VA>}
+{<ETM><NNB><JKC><VCN>}
+{<ETM><NNB><JKB><VA>}
+{<ETM><NNB><JX><VX|VA>}
+{<ETM><XR><JKS><VX|VA>}
+
+{<EC><NNB><VCP>}
+{<EC><MAG><VV>}
+{<ETN><NNG|NNB><VCP>}
+{<ETN><JX><VV>}
+{<ETM><NNG|NNP|XR><VCP>}
+{<ETM><NNB><VX|VA|VCP>}
+
+{<EF|EC|ETM><VV>}
+
