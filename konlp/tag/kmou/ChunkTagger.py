@@ -1,34 +1,42 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit: Autospacing of klt
+# Korean Natural Language Toolkit: ChunkTagger of kmou
 #
-# Author: Younghun Cho <cyh905@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer@gmail.com>
-#         Seungshik Kang <sskang@kookmin.ac.kr>
+# Author: Jae-Hoon Kim <jhoon@kmou.ac.kr>
+#         Young Namgoong <aei0109@naver.com>
+#         Ho Yoon <4168615@naver.com>
+#
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
 from nltk.chunk import RegexpParser
 from nltk.tree import Tree
 import re
+
 from konlp.tag.api import TaggerI
 
 
 """ Korean Auxiliary Verb Phrase Recognizer ver.0.8"""
+
+
 class VXP_ChunkTagger(TaggerI):
     """
-    
+
     >>> ct = VXP_ChunkTagger()
-    
+
     >>> sent = '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
-    
+
     >>> ct.tag(sent)
     '가게/NNG+에서/JKB 사/VV+아_가지/VXP+고_가/VXP+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
-    
+
     """
+
     def __init__(self):
         self._CHUNK_RULE_VXP_ = "Data\ChunkingRule_VXP.txt"
-        
+
+    def set_chunk_rule(self, rule_file):
+        self._CHUNK_RULE_VXP_ = rule_file
+
     def _make_chunkStruct(self, sent):
         """Transform the input sentence into list of tuples.
         Args:
@@ -41,7 +49,7 @@ class VXP_ChunkTagger(TaggerI):
         """
         tuple_sent = []
         sent = re.split('\+|\s', sent)
-        
+
         for morph in sent:
             morph = tuple(morph.split('/'))
             tuple_sent.append(morph)
@@ -56,7 +64,7 @@ class VXP_ChunkTagger(TaggerI):
 
         Returns:
             ChunkRules (str): string of whole chunking rules of an phrase
-            
+
         """
         ChunkRules = open(ChunkingRule, 'r').read()
 
@@ -67,7 +75,7 @@ class VXP_ChunkTagger(TaggerI):
 
         Args:
             tuple_sent (list(tuple(str, str)))
-            
+
         Returns:
             chunk_struct Tree('S', [Tree('CHUNK', [(str, str), (str, str)]], (str, str), ...): chunked sentence
         """
@@ -76,7 +84,7 @@ class VXP_ChunkTagger(TaggerI):
         chunker = RegexpParser(self._ChunkingRule(self._CHUNK_RULE_VXP_))
 
         chunk_struct = chunker.parse(tuple_sent)
-         
+
         return chunk_struct
 
     def _toStr(self, chunk_struct, sent):
@@ -93,7 +101,7 @@ class VXP_ChunkTagger(TaggerI):
             if type(morph) != tuple:
                 chunked_morph = morph[0][0]
                 for idx in range(1, len(morph)):
-                    chunked_morph += '_' +morph[idx][0]
+                    chunked_morph += '_' + morph[idx][0]
                 chunked_morph += '/' + morph.label()
 
                 re_morph = morph[0][0] + '/' + morph[0][1]
@@ -101,11 +109,11 @@ class VXP_ChunkTagger(TaggerI):
                     re_morph += '.' + morph[idx][0] + '/' + morph[idx][1]
 
                 sent = re.sub(re_morph, chunked_morph, sent)
-        
+
         return sent
-    
+
     def tag(self, sent):
-        """Chunking phrase and tagging 
+        """Chunking phrase and tagging
 
         Args:
             sent (str): POS tagged & spaced sentence
@@ -119,20 +127,26 @@ class VXP_ChunkTagger(TaggerI):
 
 
 """ Korean Particle Equivalent Phrase Recognizer ver.0.8"""
+
+
 class JSP_ChunkTagger(TaggerI):
     """
-    
+
     >>> ct = JSP_ChunkTagger()
-    
+
     >>> sent = '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
-    
+
     >>> ct.tag(sent)
     '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에_대하_어서는/JSP 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
-    
+
     """
+
     def __init__(self):
         self._CHUNK_RULE_JSP_ = "Data\ChunkingRule_JSP.txt"
-        
+
+    def set_chunk_rule(self, rule_file):
+        self._CHUNK_RULE_JSP_ = rule_file
+
     def _make_chunkStruct(self, sent):
         """Transform the input sentence into list of tuples.
         Args:
@@ -145,7 +159,7 @@ class JSP_ChunkTagger(TaggerI):
         """
         tuple_sent = []
         sent = re.split('\+|\s', sent)
-        
+
         for morph in sent:
             morph = tuple(morph.split('/'))
             tuple_sent.append(morph)
@@ -160,7 +174,7 @@ class JSP_ChunkTagger(TaggerI):
 
         Returns:
             ChunkRules (str): string of whole chunking rules of an phrase
-            
+
         """
         ChunkRules = open(ChunkingRule, 'r').read()
 
@@ -171,7 +185,7 @@ class JSP_ChunkTagger(TaggerI):
 
         Args:
             tuple_sent (list(tuple(str, str)))
-            
+
         Returns:
             chunk_struct Tree('S', [Tree('CHUNK', [(str, str), (str, str)]], (str, str), ...): chunked sentence
         """
@@ -180,7 +194,7 @@ class JSP_ChunkTagger(TaggerI):
         chunker = RegexpParser(self._ChunkingRule(self._CHUNK_RULE_JSP_))
 
         chunk_struct = chunker.parse(tuple_sent)
-         
+
         return chunk_struct
 
     def _toStr(self, chunk_struct, sent):
@@ -197,7 +211,7 @@ class JSP_ChunkTagger(TaggerI):
             if type(morph) != tuple:
                 chunked_morph = morph[0][0]
                 for idx in range(1, len(morph)):
-                    chunked_morph += '_' +morph[idx][0]
+                    chunked_morph += '_' + morph[idx][0]
                 chunked_morph += '/' + morph.label()
 
                 re_morph = morph[0][0] + '/' + morph[0][1]
@@ -205,11 +219,11 @@ class JSP_ChunkTagger(TaggerI):
                     re_morph += '.' + morph[idx][0] + '/' + morph[idx][1]
 
                 sent = re.sub(re_morph, chunked_morph, sent)
-        
+
         return sent
-    
+
     def tag(self, sent):
-        """Chunking phrase and tagging 
+        """Chunking phrase and tagging
 
         Args:
             sent (str): POS tagged & spaced sentence
@@ -221,20 +235,6 @@ class JSP_ChunkTagger(TaggerI):
         chunk_struct = self._chunker(self._make_chunkStruct(sent))
         return self._toStr(chunk_struct, sent)
 
-if __name__ == "__main__":
-    vxp = VXP_ChunkTagger()
 
-    sent = '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
-    print("[Input] POS tagged sentence\n", sent, '\n')
-    print("[Output] Chunk tagged sentence\n", vxp.tag(sent))
-
-
-    print("\n\n")
-    
-    jsp = JSP_ChunkTagger()
-    sent = vxp.tag(sent) # 가게/NNG+에서/JKB 사/VV+아_가지/VXP+고_가/VXP+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF
-    print("[Input] POS tagged sentence\n", sent, '\n')
-    print("[Output] Chunk tagged sentence\n", jsp.tag(sent))
-    
 
 

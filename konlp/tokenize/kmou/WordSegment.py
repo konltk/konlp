@@ -1,10 +1,10 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit: Autospacing of klt
+# Korean Natural Language Toolkit: WordSegment of kmou
 #
-# Author: Younghun Cho <cyh905@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer@gmail.com>
-#         Seungshik Kang <sskang@kookmin.ac.kr>
+# Author: Jae-Hoon Kim <jhoon@kmou.ac.kr>
+#         Min-Ah Cheon <dkahffk0218@naver.com>
+#         Minseok Choi <ehdgus5136@naver.com>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
@@ -275,10 +275,6 @@ class WordSegment(CRFTagger):
         return " ".join(result)
 
 
-if __name__ == '__main__':
-    kmou = WordSegment()
-    kmou.set_model_file("data\SPACE.crf.model")
-    print(kmou.tag("아버지가방에들어간다."))
 
 
 

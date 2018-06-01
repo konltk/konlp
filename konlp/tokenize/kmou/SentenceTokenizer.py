@@ -1,10 +1,10 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit: Autospacing of klt
+# Korean Natural Language Toolkit: SentenceTokenizer of kmou
 #
-# Author: Younghun Cho <cyh905@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer@gmail.com>
-#         Seungshik Kang <sskang@kookmin.ac.kr>
+# Author: Jae-Hoon Kim <jhoon@kmou.ac.kr>
+#         Ho-Min Park <homin2006@hanmail.net>
+#         Young Namgoong <aei0109@naver.com>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
@@ -34,7 +34,7 @@ class SentenceTokenizer():
         self.PADDING = '$$'
         self._MODEL_FILE_ = 'sentence_crf.model'
 
-    def feature_detector(self,tokens, index):
+    def feature_detector(self, tokens, index):
         """자질 추출하는 함수입니다.
 
         Args:
@@ -65,7 +65,7 @@ class SentenceTokenizer():
         right1 = word1[0] if len(word1) > 1 else self.PADDING
         right2 = word1[1] if len(word1) > 2 else self.PADDING
         right3 = word1[2] if len(word1) > 3 else self.PADDING
-    
+
         feature_list = []
         feature_list.append('C11_' + left_1)
         feature_list.append('C12_' + left_2)
@@ -73,22 +73,21 @@ class SentenceTokenizer():
         feature_list.append('C21_' + left_3 + left_2)
         feature_list.append('C22_' + left_2 + left_1)
         feature_list.append('C31_' + left_3 + left_2 + left_1)
-    
+
         feature_list.append('R11_' + right1)
         feature_list.append('R12_' + right2)
         feature_list.append('R13_' + right3)
         feature_list.append('R21_' + right1 + right2)
         feature_list.append('R22_' + right2 + right3)
         feature_list.append('R31_' + right1 + right2 + right3)
-    
+
         feature_list.append('B21_' + left_1 + right1)
         feature_list.append('B31_' + left_2 + left_1 + right1)
-    
+
         feature_list.append('S1_' + shape)
         return feature_list
-    
-    
-    def _to_sentence(self,tagged_sent):
+
+    def _to_sentence(self, tagged_sent):
         """태깅된 어절을 문장으로 바꿔주는 함수입니다.
 
         Args:
@@ -98,7 +97,7 @@ class SentenceTokenizer():
             sents(list(str)): 각 문장이 담긴 리스트를 반환합니다.
 
         """
-        
+
         sents = []
         sent = []
         for word, tag in tagged_sent:
@@ -111,11 +110,10 @@ class SentenceTokenizer():
         else:
             if sent:
                 sents.append(" ".join(sent))
-        
+
         return sents
-    
-    
-    def batch_sent_tokenizer(self,paragraphs):
+
+    def batch_sent_tokenizer(self, paragraphs):
         """단락들을 문장으로 바꿔주는 함수입니다.
 
         Args:
@@ -132,9 +130,8 @@ class SentenceTokenizer():
             tagged = tagger.tag(words)
             sentences.append(self._to_sentence(tagged))
         return sentences
-    
-    
-    def sent_tokenizer(self,paragraph):
+
+    def sent_tokenizer(self, paragraph):
         """단락을 문장으로 바꿔주는 함수입니다.
 
         Args:
@@ -148,9 +145,8 @@ class SentenceTokenizer():
         words = re.split('\s+', paragraph.strip())
         tagged = tagger.tag(words)
         return self._to_sentence(tagged)
-    
-    
-    def demo(self,test_sents):
+
+    def demo(self, test_sents):
         tagger = CRFTagger(feature_func=self.feature_detector)
         tagger.set_model_file("data\sentence_crf.model")
         for sent in test_sents:
@@ -159,19 +155,21 @@ class SentenceTokenizer():
                 print(s)
         print(tagger.evaluate(test_sents))
 
+    def pyt_sent_tokenizer(self, paragraph):
+        """단락을 문장으로 바꿔주는 함수입니다. 파이테스트용입니다.
 
-if __name__ == '__main__':
-    a=SentenceTokenizer()
-    paragraph = '아버지가 방에 들어간다. 학교는 잠을 자는 곳이 아니라 공부하는 곳이다.'
-    for sent in a.sent_tokenizer(paragraph):
-        print(sent)
+        Args:
+            paragraph(list(str)): 단락이 리스트 인자로 들어옵니다.
 
-    paragraphs = ['아버지가 방에 들어간다 학교는 잠을 자는 곳이 아니라 공부하는 곳이다',
-                  '항상 이웃을 돌볼 줄 알아야한다 그러나 믿음으로 살아갑시다']
+        Returns:
+            sentences(list(list(str))): 단락을 문장단위로 잘라서 반환합니다.
+        """
+        tagger = CRFTagger(feature_func=self.feature_detector)
+        tagger.set_model_file("file\sentence_crf.model")
+        words = re.split('\s+', paragraph.strip())
+        tagged = tagger.tag(words)
+        return self._to_sentence(tagged)
 
-    for i, sents in enumerate(a.batch_sent_tokenizer(paragraphs)):
-        for s in sents:
-            print(i, s)
 
 
 

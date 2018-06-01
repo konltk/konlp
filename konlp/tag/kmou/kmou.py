@@ -1,10 +1,10 @@
 # Copyright (C) 2017 - 0000 KoNLTK project
 #
-# Korean Natural Language Toolkit: Autospacing of klt
+# Korean Natural Language Toolkit: NERTagger of kmou
 #
-# Author: Younghun Cho <cyh905@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer@gmail.com>
-#         Seungshik Kang <sskang@kookmin.ac.kr>
+# Author: Jae-Hoon Kim <jhoon@kmou.ac.kr>
+#         Ho Yoon <4168615@naver.com>
+#         Ho-Min Park <homin2006@hanmail.net>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
@@ -263,8 +263,3 @@ class NERTagger(CRFTagger):
             result.append((sent[i], tag))
         return result
 
-
-if __name__ == '__main__':
-    kmou = NERTagger()
-    kmou.set_model_file(r"data\NER.crfsuite")
-    print(kmou.tag("박용운씨는 사람이다."))
