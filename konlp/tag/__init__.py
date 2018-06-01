@@ -10,3 +10,6 @@
 # For license information, see LICENSE.TXT
 # ============================================================
 """we are preparing this module"""
+from konlp.tag.kmou import NERTagger
+from konlp.tag.kmou import VXP_ChunkTagger
+from konlp.tag.kmou import JSP_ChunkTagger
