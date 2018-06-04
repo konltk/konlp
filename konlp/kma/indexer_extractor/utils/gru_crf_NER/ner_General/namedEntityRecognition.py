@@ -37,7 +37,6 @@ class NER(object):
         tf.app.flags.DEFINE_integer("ner_epoch_per_checkpoint", 20, "epoch per checkpoint.")
         tf.app.flags.DEFINE_float("ner_dropout", 1.0, "dropout")
         tf.app.flags.DEFINE_integer("ner_num_layers", 1, "num_layers")
-        tf.app.flags.DEFINE_integer("z", 1, "z")
 
         tf.app.flags.FLAGS._parse_flags()
         self.FLAGS = tf.app.flags.FLAGS
