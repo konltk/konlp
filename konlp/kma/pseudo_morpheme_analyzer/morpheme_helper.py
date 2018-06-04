@@ -14,33 +14,51 @@ class MorphemeHelper(object):
         """
             hyper parameter, 사전 경로 설정 및 자질, 입출력 단어 사전 불러오기
         """
-        tf.app.flags.DEFINE_string("dictionary_file", config.MORPHEME_ANALYSIS_DATA +
-                                   "/vocab.txt", "Word2Vec Dictionary File.")
-        tf.app.flags.DEFINE_string("target_dictionary_file", config.MORPHEME_ANALYSIS_DATA +
-                                   "/mor_vocab.txt", "Target Word2Vec Dictionary File.")
-        tf.app.flags.DEFINE_string("mor_bi_dic_file", config.MORPHEME_ANALYSIS_DATA +
-                                   "/bi_gramFreqVector.txt",
-                                   "sejong corpus bi-syllable frequency vectors")
-        tf.app.flags.DEFINE_string("mor_tri_dic_file", config.MORPHEME_ANALYSIS_DATA +
-                                   "/tri_gramFreqVector.txt",
-                                   "sejong corpus tri-syllable frequency vectors")
-        tf.app.flags.DEFINE_string("train_dir", config.MORPHEME_ANALYSIS_MODEL,
-                                   "Training directory.")
+        self.flags = {"dictionary_file": config.MORPHEME_ANALYSIS_DATA + "/vocab.txt",
+                      "target_dictionary_file": config.MORPHEME_ANALYSIS_DATA + "/mor_vocab.txt",
+                      "mor_bi_dic_file": config.MORPHEME_ANALYSIS_DATA + "/bi_gramFreqVector.txt",
+                      "mor_tri_dic_file": config.MORPHEME_ANALYSIS_DATA + "/tri_gramFreqVector.txt",
+                      "train_dir": config.MORPHEME_ANALYSIS_MODEL,
+                      "batch_size": 1,
+                      "embedding_size": 50,
+                      "hidden_size": 128,
+                      "cell_mode": "GRU",
+                      "num_epoch": 10,
+                      "learning_rate": 0.001,
+                      "max_length": 100,
+                      "rate_per_checkpoint": 5,
+                      "epoch_per_checkpoint": 1,
+                      "dropout": 1.0,
+                      "num_layers": 1
+                     }
 
-        tf.app.flags.DEFINE_integer("batch_size", 1, "Size of mini batch.")
-        tf.app.flags.DEFINE_integer("embedding_size", 50, "embedding_size")
-        tf.app.flags.DEFINE_integer("hidden_size", 128, "hidden_size")
-        tf.app.flags.DEFINE_string("cell_mode", "GRU", "cell_mode")
-        tf.app.flags.DEFINE_integer("num_epoch", 10, "number of epoch")
-        tf.app.flags.DEFINE_float("learning_rate", 0.001, "learning rate")
-        tf.app.flags.DEFINE_integer("max_length", 100, "max_input_length")
-        tf.app.flags.DEFINE_integer("rate_per_checkpoint", 5, "percent rate per checkpoint.")
-        tf.app.flags.DEFINE_integer("epoch_per_checkpoint", 1, "epoch per checkpoint.")
-        tf.app.flags.DEFINE_float("dropout", 1.0, "dropout")
-        tf.app.flags.DEFINE_integer("num_layers", 1, "num_layers")
-
-        tf.app.flags.FLAGS._parse_flags()
-        self.flags = tf.app.flags.FLAGS
+        # tf.app.flags.DEFINE_string("dictionary_file", config.MORPHEME_ANALYSIS_DATA +
+        #                            "/vocab.txt", "Word2Vec Dictionary File.")
+        # tf.app.flags.DEFINE_string("target_dictionary_file", config.MORPHEME_ANALYSIS_DATA +
+        #                            "/mor_vocab.txt", "Target Word2Vec Dictionary File.")
+        # tf.app.flags.DEFINE_string("mor_bi_dic_file", config.MORPHEME_ANALYSIS_DATA +
+        #                            "/bi_gramFreqVector.txt",
+        #                            "sejong corpus bi-syllable frequency vectors")
+        # tf.app.flags.DEFINE_string("mor_tri_dic_file", config.MORPHEME_ANALYSIS_DATA +
+        #                            "/tri_gramFreqVector.txt",
+        #                            "sejong corpus tri-syllable frequency vectors")
+        # tf.app.flags.DEFINE_string("train_dir", config.MORPHEME_ANALYSIS_MODEL,
+        #                            "Training directory.")
+        #
+        # tf.app.flags.DEFINE_integer("batch_size", 1, "Size of mini batch.")
+        # tf.app.flags.DEFINE_integer("embedding_size", 50, "embedding_size")
+        # tf.app.flags.DEFINE_integer("hidden_size", 128, "hidden_size")
+        # tf.app.flags.DEFINE_string("cell_mode", "GRU", "cell_mode")
+        # tf.app.flags.DEFINE_integer("num_epoch", 10, "number of epoch")
+        # tf.app.flags.DEFINE_float("learning_rate", 0.001, "learning rate")
+        # tf.app.flags.DEFINE_integer("max_length", 100, "max_input_length")
+        # tf.app.flags.DEFINE_integer("rate_per_checkpoint", 5, "percent rate per checkpoint.")
+        # tf.app.flags.DEFINE_integer("epoch_per_checkpoint", 1, "epoch per checkpoint.")
+        # tf.app.flags.DEFINE_float("dropout", 1.0, "dropout")
+        # tf.app.flags.DEFINE_integer("num_layers", 1, "num_layers")
+        #
+        # tf.app.flags.FLAGS._parse_flags()
+        # self.flags = tf.app.flags.FLAGS
 
         self.split_length = 100
 
@@ -53,27 +71,27 @@ class MorphemeHelper(object):
         self.mor_tri_dic = {}
 
         # Dictionary Open
-        with open(self.flags.dictionary_file, 'r') as file:
+        with open(self.flags["dictionary_file"], 'r') as file:
             for line in file:
                 line = line.strip()
                 tokens = line.split()
                 idx = len(self.word2idx)
                 self.word2idx[tokens[0]] = idx
                 self.idx2word[idx] = tokens[0]
-        with open(self.flags.target_dictionary_file, 'r') as file:
+        with open(self.flags["target_dictionary_file"], 'r') as file:
             for line in file:
                 line = line.strip()
                 tokens = line.split()
                 idx = len(self.decode_word2idx)
                 self.decode_word2idx[tokens[0]] = idx
                 self.decode_idx2word[idx] = tokens[0]
-        with open(self.flags.mor_bi_dic_file, 'r') as mor_bi_syllable_file:
+        with open(self.flags["mor_bi_dic_file"], 'r') as mor_bi_syllable_file:
             for line in mor_bi_syllable_file:
                 line = line.strip()
                 mor_bi_word = line.split("\t")[0]
                 mor_bi_freq = line.split('\t')[1].split()
                 self.mor_bi_dic[mor_bi_word] = mor_bi_freq
-        with open(self.flags.mor_tri_dic_file, 'r') as mor_tri_syllable_file:
+        with open(self.flags["mor_tri_dic_file"], 'r') as mor_tri_syllable_file:
             for line in mor_tri_syllable_file:
                 line = line.strip()
                 mor_tri_word = line.split("\t")[0]
@@ -96,11 +114,11 @@ class MorphemeHelper(object):
                 test_x.append(self.word2idx[token])
             else:
                 test_x.append(self.word2idx["<UNK>"])
-        if len(test_x) > self.flags.max_length:
-            test_x = test_x[:self.flags.max_length]
+        if len(test_x) > self.flags["max_length"]:
+            test_x = test_x[:self.flags["max_length"]]
         sequence_length = len(test_x)
-        if sequence_length > self.flags.max_length:
-            sequence_length = self.flags.max_length
+        if sequence_length > self.flags["max_length"]:
+            sequence_length = self.flags["max_length"]
         return test_x, sequence_length
 
     def has_bi_mor_freq_dic(self, word):

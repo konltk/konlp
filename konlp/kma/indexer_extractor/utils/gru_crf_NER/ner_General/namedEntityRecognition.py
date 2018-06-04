@@ -6,40 +6,30 @@ from konlp.kma.indexer_extractor import config
 
 class NER(object):
     def __init__(self):
-        tf.app.flags.DEFINE_string("ner_dictionary_file", config.NAMED_ENTITY_ROOT + "/vocab.txt", "Word2Vec Dictionary File.")
-        tf.app.flags.DEFINE_string("ner_target_dictionary_file", config.NAMED_ENTITY_ROOT + "/ner_vocab.txt", "Target Word2Vec Dictionary File.")
-        tf.app.flags.DEFINE_string("chiSquareBiDicPER_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_PER.txt",
-                                   "Ne Bi_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("chiSquareBiDicLOC_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_LOC.txt",
-                                   "Ne Bi_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("chiSquareBiDicORG_file", config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_ORG.txt",
-                                   "Ne Bi_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("chiSquareTriDicPER_file", config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_PER.txt",
-                                   "Ne Tri_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("chiSquareTriDicLOC_file", config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_LOC.txt",
-                                   "Ne Tri_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("chiSquareTriDicORG_file", config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_ORG.txt",
-                                   "Ne Tri_gram ChiSquare dic File")
-        tf.app.flags.DEFINE_string("morBiDic_file", config.NAMED_ENTITY_ROOT + "/bi_gramFreqVector.txt",
-                                   "sejong mor copurs Bi-Eumjul vector dic File")
-        tf.app.flags.DEFINE_string("morTriDic_file", config.NAMED_ENTITY_ROOT + "/tri_gramFreqVector.txt",
-                                   "sejong mor copurs Tri-Eumjul vector dic File")
-        tf.app.flags.DEFINE_string("ner_test_file", config.NAMED_ENTITY_ROOT + "/unitNERTestDataSample.txt", "test file")
-        tf.app.flags.DEFINE_string("ner_train_dir", config.NAMED_ENTITY_ROOT + "/model_new", "Training directory.")
-        tf.app.flags.DEFINE_integer("ner_batch_size", 1, "Size of mini batch.")
-        tf.app.flags.DEFINE_integer("ner_embedding_size", 50, "embedding_size")
-        tf.app.flags.DEFINE_integer("ner_hidden_size", 128, "hidden_size")
-        tf.app.flags.DEFINE_string("ner_cell_mode", "GRU", "cell_mode")
-        tf.app.flags.DEFINE_integer("ner_num_epoch", 50, "number of epoch")
-        tf.app.flags.DEFINE_float("ner_learning_rate", 0.0001, "learning rate")
-        tf.app.flags.DEFINE_integer("ner_max_length", 105, "max_input_length")
-        tf.app.flags.DEFINE_integer("ner_rate_per_checkpoint", 5, "percent rate per checkpoint.")
-        tf.app.flags.DEFINE_integer("ner_epoch_per_checkpoint", 20, "epoch per checkpoint.")
-        tf.app.flags.DEFINE_float("ner_dropout", 1.0, "dropout")
-        tf.app.flags.DEFINE_integer("ner_num_layers", 1, "num_layers")
-
-        tf.app.flags.FLAGS._parse_flags()
-        self.FLAGS = tf.app.flags.FLAGS
+        self.FLAGS = {"ner_dictionary_file" : config.NAMED_ENTITY_ROOT + "/vocab.txt",
+                      "ner_target_dictionary_file" : config.NAMED_ENTITY_ROOT + "/ner_vocab.txt",
+                      "chiSquareBiDicPER_file": config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_PER.txt",
+                      "chiSquareBiDicLOC_file": config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_LOC.txt",
+                      "chiSquareBiDicORG_file": config.NAMED_ENTITY_ROOT + "/neBi_gramChiSquare_ORG.txt",
+                      "chiSquareTriDicPER_file": config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_PER.txt",
+                      "chiSquareTriDicLOC_file": config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_LOC.txt",
+                      "chiSquareTriDicORG_file": config.NAMED_ENTITY_ROOT + "/neTri_gramChiSquare_ORG.txt",
+                      "morBiDic_file": config.NAMED_ENTITY_ROOT + "/bi_gramFreqVector.txt",
+                      "morTriDic_file": config.NAMED_ENTITY_ROOT + "/tri_gramFreqVector.txt",
+                      "ner_test_file": config.NAMED_ENTITY_ROOT,
+                      "ner_train_dir": config.NAMED_ENTITY_ROOT + "/model_new",
+                      "ner_batch_size": 1,
+                      "ner_embedding_size": 50,
+                      "ner_hidden_size": 128,
+                      "ner_cell_mode": "GRU",
+                      "ner_num_epoch": 50,
+                      "ner_learning_rate": 0.0001,
+                      "ner_max_length": 105,
+                      "ner_rate_per_checkpoint": 5,
+                      "ner_epoch_per_checkpoint": 20,
+                      "ner_dropout": 1.0,
+                      "ner_num_layers": 1
+                      }
 
         self.word2idx = {"<PADDING>": 0, "<UNK>": 1}
         self.idx2word = {0: "<PADDING>", 1: "<UNK>"}
@@ -54,64 +44,64 @@ class NER(object):
         self.chiIdx = 0
 
         # Dictionary Open
-        with open(self.FLAGS.ner_dictionary_file, 'r') as inFile:
+        with open(self.FLAGS["ner_dictionary_file"], 'r') as inFile:
             for line in inFile:
                 line = line.strip()
                 tokens = line.split()
                 idx = len(self.word2idx)
                 self.word2idx[tokens[0]] = idx
                 self.idx2word[idx] = tokens[0]
-        with open(self.FLAGS.ner_target_dictionary_file, 'r') as inFile:
+        with open(self.FLAGS["ner_target_dictionary_file"], 'r') as inFile:
             for line in inFile:
                 line = line.strip()
                 tokens = line.split()
                 idx = len(self.decode_word2idx)
                 self.decode_word2idx[tokens[0]] = idx
                 self.decode_idx2word[idx] = tokens[0]
-        with open(self.FLAGS.chiSquareBiDicPER_file, 'r') as chiSquareBi:
+        with open(self.FLAGS["chiSquareBiDicPER_file"], 'r') as chiSquareBi:
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
-        with open(self.FLAGS.chiSquareBiDicLOC_file, 'r') as chiSquareBi:
+        with open(self.FLAGS["chiSquareBiDicLOC_file"], 'r') as chiSquareBi:
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
-        with open(self.FLAGS.chiSquareBiDicORG_file, 'r') as chiSquareBi:
+        with open(self.FLAGS["chiSquareBiDicORG_file"], 'r') as chiSquareBi:
             for line in chiSquareBi:
                 line = line.strip()
                 biWord = line.split("\t")[0]
                 self.chiSquareBiDic[biWord] = self.chiIdx
                 self.chiIdx += 1
         self.chiIdx = 0
-        with open(self.FLAGS.chiSquareTriDicPER_file, 'r') as chiSquareTri:
+        with open(self.FLAGS["chiSquareTriDicPER_file"], 'r') as chiSquareTri:
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
-        with open(self.FLAGS.chiSquareTriDicLOC_file, 'r') as chiSquareTri:
+        with open(self.FLAGS["chiSquareTriDicLOC_file"], 'r') as chiSquareTri:
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
-        with open(self.FLAGS.chiSquareTriDicORG_file, 'r') as chiSquareTri:
+        with open(self.FLAGS["chiSquareTriDicORG_file"], 'r') as chiSquareTri:
             for line in chiSquareTri:
                 line = line.strip()
                 triWord = line.split("\t")[0]
                 self.chiSquareTriDic[triWord] = self.chiIdx
                 self.chiIdx += 1
-        with open(self.FLAGS.morBiDic_file, 'r') as morBi:
+        with open(self.FLAGS["morBiDic_file"], 'r') as morBi:
             for line in morBi:
                 line = line.strip()
                 morBiWord = line.split("\t")[0]
                 morBiFreq = line.split('\t')[1].split()
                 self.morBiDic[morBiWord] = morBiFreq
-        with open(self.FLAGS.morTriDic_file, 'r') as morTri:
+        with open(self.FLAGS["morTriDic_file"], 'r') as morTri:
             for line in morTri:
                 line = line.strip()
                 morTriWord = line.split("\t")[0]
@@ -130,17 +120,17 @@ class NER(object):
             else:
                 test_x.append(self.word2idx["<UNK>"])
 
-        if len(test_x) > self.FLAGS.ner_max_length:
-            test_x = test_x[:self.FLAGS.ner_max_length]
+        if len(test_x) > self.FLAGS["ner_max_length"]:
+            test_x = test_x[:self.FLAGS["ner_max_length"]]
         sequence_length = len(test_x)
-        if sequence_length > self.FLAGS.ner_max_length:
-            sequence_length = self.FLAGS.ner_max_length
+        if sequence_length > self.FLAGS["ner_max_length"]:
+            sequence_length = self.FLAGS["ner_max_length"]
         return (test_x, sequence_length)
 
     def create_model(self, args, session, isTest, keep_prob):
         model = gru_crf.GRUCRF(args, self.word2idx, self.decode_word2idx, 1040)
 
-        ckpt = tf.train.get_checkpoint_state(self.FLAGS.ner_train_dir)
+        ckpt = tf.train.get_checkpoint_state(self.FLAGS["ner_train_dir"])
         if ckpt:
             file_name = ckpt.model_checkpoint_path + ".meta"
         if ckpt and tf.gfile.Exists(file_name):
@@ -198,7 +188,7 @@ class NER(object):
 
         for inputEumjul in splitEumList:
             test_x, sequence_length = self.formatting_data(inputEumjul)
-            test_x, _, _, sequence_length = model.get_batch([(test_x, [], sequence_length)], self.FLAGS.ner_max_length)
+            test_x, _, _, sequence_length = model.get_batch([(test_x, [], sequence_length)], self.FLAGS["ner_max_length"])
             test_hasDic = []
             for col in range(len(test_x)):
                 temp = []
@@ -302,7 +292,7 @@ class NER(object):
                         morDicFeature = [0.0 for _ in range(24)]
                     test_hasDic[j][i] += morDicFeature
 
-            predict = model.predict_step(sess, test_x, test_hasDic, sequence_length, self.FLAGS.ner_dropout)
+            predict = model.predict_step(sess, test_x, test_hasDic, sequence_length, self.FLAGS["ner_dropout"])
             #                 print predict
             strResult = ""
             for s in predict[0]:

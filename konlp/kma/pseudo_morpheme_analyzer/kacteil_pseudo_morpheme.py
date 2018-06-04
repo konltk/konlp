@@ -51,7 +51,7 @@ class PseudoMorphemeAnalyzer(KmaI):
                                                                       "crf/MatMul").outputs[0]
 
                 self.unary_scores = tf.reshape(matricized_unary_scores,
-                                               [1, self.morpheme_helper.flags.max_length,
+                                               [1, self.morpheme_helper.flags["max_length"],
                                                 len(self.morpheme_helper.decode_idx2word)])
                 self.save_transition = graph.get_operation_by_name("BidirectionalRNNCRF/"
                                                                    "save_transition").outputs[0]
@@ -124,7 +124,7 @@ class PseudoMorphemeAnalyzer(KmaI):
         for input_syllable in split_syllable_list:
             test_x, sequence_length = self.morpheme_helper.formatting_data(input_syllable)
             test_x, sequence_length = self.__get_batch([(test_x, sequence_length)],
-                                                       self.morpheme_helper.flags.max_length)
+                                                       self.morpheme_helper.flags["max_length"])
             test_has_dic = []
             for col, _ in enumerate(test_x):
                 temp = [0.0 for _ in range(len(test_x[col]))]
@@ -200,7 +200,7 @@ class PseudoMorphemeAnalyzer(KmaI):
                     test_has_dic[j][i] += morpheme_dic_feature
 
             predict = self.__predict_step(test_x, test_has_dic, sequence_length,
-                                          self.morpheme_helper.flags.dropout)
+                                          self.morpheme_helper.flags["dropout"])
             str_result = ""
             for _s in predict[0]:
                 str_result += self.morpheme_helper.decode_idx2word[_s] + " "

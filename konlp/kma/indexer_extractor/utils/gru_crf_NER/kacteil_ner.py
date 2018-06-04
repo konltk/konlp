@@ -21,7 +21,7 @@ class KacteilNER(object):
                 matricized_unary_scores = graph.get_operation_by_name("BidirectionalRNNCRF/crf/MatMul").outputs[0]
 
                 self.unary_scores = tf.reshape(matricized_unary_scores,
-                                               [1, self.ner.FLAGS.ner_max_length, len(self.ner.decode_idx2word)])
+                                               [1, self.ner.FLAGS["ner_max_length"], len(self.ner.decode_idx2word)])
                 self.save_transition = graph.get_operation_by_name("BidirectionalRNNCRF/save_transition").outputs[0]
 
     def predict_step(self, test_x, test_hasDic, sequence_length, keep_prob):
@@ -30,7 +30,8 @@ class KacteilNER(object):
             self.inputs: test_x,
             self.pl_hasDic: test_hasDic,
             self.sequence_length: sequence_length,
-            self.keep_porv:keep_prob}
+            self.keep_porv:keep_prob
+        }
         tf_unary_scores, transition = self.sess.run(output_feed, feed_dict=input_feed)
 
         resultList = []
@@ -72,7 +73,7 @@ class KacteilNER(object):
 
         for inputEumjul in splitEumList:
             test_x, sequence_length =  self.ner.formatting_data(inputEumjul)
-            test_x, _, _, sequence_length = self.get_batch([(test_x, [], sequence_length)],  self.ner.FLAGS.ner_max_length)
+            test_x, _, _, sequence_length = self.get_batch([(test_x, [], sequence_length)],  self.ner.FLAGS["ner_max_length"])
             test_hasDic = []
             for col in range(len(test_x)):
                 temp = []
@@ -175,7 +176,7 @@ class KacteilNER(object):
                     if not morDicFeature:
                         morDicFeature = [0.0 for _ in range(24)]
                     test_hasDic[j][i] += morDicFeature
-            predict = self.predict_step(test_x, test_hasDic, sequence_length, self.ner.FLAGS.ner_dropout)
+            predict = self.predict_step(test_x, test_hasDic, sequence_length, self.ner.FLAGS["ner_dropout"])
             #                 print predict
             strResult = ""
             for s in predict[0]:
