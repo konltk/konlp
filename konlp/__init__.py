@@ -40,8 +40,6 @@ except IOError as ex:
 # Copyright notice
 __copyright__ = """\
 Copyright (c) 2017 - 0000 KoNLTK Project.
-
-
 which is included by reference.
 """
 
@@ -103,3 +101,21 @@ __classifiers__ = [
 
 # Later on, we have to add some package this here
 
+
+
+# ===========================================================
+# Jnius initialize
+# ===========================================================
+
+import jnius_config
+
+jar_list = list()
+cur_dir = os.path.dirname(__file__)
+
+for (file_path, _, file_list) in os.walk(cur_dir):
+    for file in file_list:
+        _, file_ext = os.path.splitext(file)
+        if file_ext == '.jar':
+            jar_list.append(os.path.join(file_path, file))
+
+jnius_config.add_classpath(os.pathsep.join(jar_list))
