@@ -11,8 +11,7 @@ def test_analyze():
     result = extractor.analyze(str)
     assert result == ['밥/NNG', '먹/VV', 'M#34']
 
-
-    def test_tokens():
+def test_tokens():
     str = "밥이 먹고 싶다."
     result = extractor.tokens(str)
     assert result == ['밥/NNG', '먹/VV', '고/EC 싶/VX']
