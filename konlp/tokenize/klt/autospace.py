@@ -3,7 +3,7 @@
 # Korean Natural Language Toolkit: Autospacing of klt
 #
 # Author: Younghun Cho <cyh905@gmail.com>
-#         Hyunyoung Lee <hyun02.engineer@gmail.com>
+#         Hyunyoung Lee <hyun02.engineer.com>
 #         Seungshik Kang <sskang@kookmin.ac.kr>
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
