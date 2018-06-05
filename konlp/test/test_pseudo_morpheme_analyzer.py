@@ -19,20 +19,10 @@ def test_analyzer():
     str = '철수와 영희는 영화를 본다.'
     assert analyzer.analyze(str) == ['철수/NNP + 와/JC', '영희/NNP + 는/JX', '영화/NNG + 를/JKO', '보/VV + ㄴ다/EF + ./SF']
 
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> KMA - indexer_extractor, pseudo_morpheme_analyzer package init
 def test_tokens():
     str = '철수와 영희는 영화를 본다.'
     assert analyzer.tokens(str) == ['철수 + 와', '영희 + 는', '영화 + 를', '보 + ㄴ다 + .']
 
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> KMA - indexer_extractor, pseudo_morpheme_analyzer package init
 def test_nouns():
     str = '철수와 영희는 영화를 본다.'
     assert analyzer.nouns(str) == ['철수/NNP', '영희/NNP', '영화/NNG']

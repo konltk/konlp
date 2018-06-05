@@ -5,10 +5,6 @@ from konlp.kma.indexer_extractor import IndexerExtractor
 
 extractor = IndexerExtractor()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> KMA - indexer_extractor, pseudo_morpheme_analyzer package init
 def test_analyze():
     str = "밥이 먹고 싶다."
     result = extractor.analyze(str)
@@ -19,10 +15,6 @@ def test_tokens():
     result = extractor.tokens(str)
     assert result == ['밥/NNG', '먹/VV', '고/EC 싶/VX']
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> KMA - indexer_extractor, pseudo_morpheme_analyzer package init
 def test_nouns():
     str = "밥이 먹고 싶다."
     result = extractor.nouns(str)
