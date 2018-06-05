@@ -1,20 +1,39 @@
-sudo: require
+#dist: trusty
+sudo: required
+
 language: python
+
 python:
+#  - "2.7"
+#  - "3.3"
+#  - "3.4"
+# I think you have to minimally support the following 
   - "3.5"
+#  - "3.6"
+
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - python: 3.3
+    - python: 3.4
+    - python: 3.6
+
 
 install:
   - sudo apt-get install python3-pip
-  - pip3 install pytest-cov==2.4.0
-  - pip3 install coveralls==1.1
+  - pip3 install -r pip-requirements.txt
 
 script:
   - python3 setup.py install
-  - coverage run --source=konlp -m py.test
+  - coverage run --source=konlp -m py.test -v
+  - coverage report -m
 
 after_success:
   - coveralls
-
+  - bash <(curl -s https://codecov.io/bash)
+# - codecov # you have to use this with pip3 install codecove
+  
 notifications:
   email:
     recipients:
