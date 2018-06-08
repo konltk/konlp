@@ -3,7 +3,7 @@ import os
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 EXTERNAL_LIBRARY_PATH = ROOT_DIR+"/lib"
 
-MORPHEME_ANALYSIS_DATA = ROOT_DIR+"/data/morpheme"
+MORPHEME_ANALYSIS_DATA = ROOT_DIR+"/data/morpheme/"
 
 NAMED_ENTITY_ROOT = ROOT_DIR+"/data"
 NAMED_ENTITY_DATA = ROOT_DIR+"/data/model_new"
