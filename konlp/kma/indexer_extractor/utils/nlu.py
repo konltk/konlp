@@ -16,8 +16,6 @@ class NLU(object):
         print ("# Morpheme Analyzer Loading...")
         morpheme_java_class = autoclass('kacteil.kma.MorphemeAnalysis')
         self.morpheme_analyzer = morpheme_java_class(True, False, False)
-        print(config.MORPHEME_ANALYSIS_DATA)
-        print(os.listdir(config.MORPHEME_ANALYSIS_DATA))
         self.morpheme_analyzer.loadFile(config.MORPHEME_ANALYSIS_DATA)
 
     def _load_named_entity_recognizer(self):
