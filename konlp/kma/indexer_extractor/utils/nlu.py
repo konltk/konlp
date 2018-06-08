@@ -1,6 +1,7 @@
 from konlp.kma.indexer_extractor.utils.gru_crf_NER.kacteil_ner import KacteilNER
 from konlp.kma.indexer_extractor import config
 from jnius import autoclass
+import os
 
 class NLU(object):
     def __init__(self):
@@ -16,6 +17,7 @@ class NLU(object):
         morpheme_java_class = autoclass('kacteil.kma.MorphemeAnalysis')
         self.morpheme_analyzer = morpheme_java_class(True, False, False)
         print(config.MORPHEME_ANALYSIS_DATA)
+        print(os.listdir(config.MORPHEME_ANALYSIS_DATA))
         self.morpheme_analyzer.loadFile(config.MORPHEME_ANALYSIS_DATA)
 
     def _load_named_entity_recognizer(self):
