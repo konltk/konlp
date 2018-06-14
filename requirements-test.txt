@@ -1,3 +1,7 @@
 # Test optional requirement
 pytest>=3.5.1
 JPype1-py3>=0.5.5.1
+numpy
+Cython==0.25.2
+tensorflow==1.4
+jnius==1.1.0

@@ -40,8 +40,6 @@ except IOError as ex:
 # Copyright notice
 __copyright__ = """\
 Copyright (c) 2017 - 0000 KoNLTK Project.
-
-
 which is included by reference.
 """
 
