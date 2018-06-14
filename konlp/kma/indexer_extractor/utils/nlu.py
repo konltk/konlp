@@ -1,6 +1,7 @@
 from konlp.kma.indexer_extractor.utils.gru_crf_NER.kacteil_ner import KacteilNER
 from konlp.kma.indexer_extractor import config
 from jnius import autoclass
+import os
 
 class NLU(object):
     def __init__(self):
