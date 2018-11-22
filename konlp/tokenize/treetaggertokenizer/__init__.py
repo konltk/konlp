@@ -9,4 +9,4 @@
 # URL: <https://www.konltk.org>
 # For license information, see LICENSE.TXT
 # ========================================================
-from konlp.tokenize.TreetaggerTokenizer.treetaggertokenizer import TreetaggerTokenizer
+from konlp.tokenize.treetaggertokenizer.treetaggertokenizer import TreetaggerTokenizer
