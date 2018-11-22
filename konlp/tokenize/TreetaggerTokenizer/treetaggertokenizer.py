@@ -12,7 +12,7 @@
 """한국어 TreeTagger 토큰화 도구
 
 TreetaggerTokenizer 는 한국어 문장에 대하여 Treetagger를 위한 토큰화를 제공합니다.
-기존의 Perl 소스를 파이썬으로 포팅한 소스입니다.
+기존의 Perl 소스를 파이썬으로 구현한 소스입니다.
 
 Example:
     >>> from konlp.tokenize import TreetaggerTokenizer
@@ -25,6 +25,18 @@ from konlp.tokenize.api import TokenizerI
 import re
 
 class TreetaggerTokenizer(TokenizerI):
+
+    """한국어 TreeTagger 토큰화 도구
+
+    TreetaggerTokenizer 는 한국어 문장에 대하여 Treetagger를 위한 토큰화를 제공합니다.
+    기존의 Perl 소스를 파이썬으로 포팅한 소스입니다.
+
+    Example:
+        >>> from konlp.tokenize import TreetaggerTokenizer
+        >>> tt = TreetaggerTokenizer()
+        >>> tt.tokenize('국민대 "자연어처리 연구실"입니다.')
+        ['국민대', '"', '자연어처리', '"', '연구실입니다', '.']
+    """
 
     def tokenize(sent):
         """입력 String값을 토큰화합니다.
