@@ -13,6 +13,6 @@ from konlp.tokenize.treetaggertokenizer.treetaggertokenizer import TreetaggerTok
 
 def test_treetaggertokenizer():
     tt = TreetaggerTokenizer()
-    assert tt.tokenize(sent="국민대학교 '자연어처리 연구실'입니다.") == ['국민대학교', "'", '자연어처리', '연구실', "'", '입니다', '.']
-    assert tt.tokenize(sent="본 소스는 'Treetagger Tokenizer'를 파이썬으로 포팅한 소스입니다.") == ['본', '소스는', "'", 'Treetagger', 'Tokenizer', "'", '를', '파이썬으로', '포팅한', '소스입니다', '.']
+    assert tt.tokenize(string="국민대학교 '자연어처리 연구실'입니다.") == ['국민대학교', "'", '자연어처리', '연구실', "'", '입니다', '.']
+    assert tt.tokenize(string="본 소스는 'Treetagger Tokenizer'를 파이썬으로 포팅한 소스입니다.") == ['본', '소스는', "'", 'Treetagger', 'Tokenizer', "'", '를', '파이썬으로', '포팅한', '소스입니다', '.']
 
