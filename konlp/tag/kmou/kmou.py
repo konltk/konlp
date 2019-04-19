@@ -74,7 +74,8 @@ class NERTagger(CRFTagger):
         self.END = "<END>"
         self._model_file = ''
         self._tagger = pycrfsuite.Tagger()
-
+        self.hangul_re = re.compile(r"[ㄱ-ㅣ가-힣]")
+        
         if feature_func is None:
             self._feature_func = self._get_features
         else:
@@ -84,6 +85,9 @@ class NERTagger(CRFTagger):
         self._training_options = training_opt
         self._pattern = re.compile(r'\d')
 
+    def is_hangul(self, text):
+        return self.hangul_re.search(text) is not None
+    
     def _get_context(self, sent, i, window_size=2, train=True):
         """윈도우 사이즈만큼 문장의 크기를 늘려줍니다.
 
@@ -140,6 +144,7 @@ class NERTagger(CRFTagger):
             'bias',
             'word=' + word,
             'word.isdigit=%s' % word.isdigit(),
+            'word.ishangul=%s' % is_hangul(word),
         ]
         context = self._get_context(sent, i, train=train)
         context = self._make_context_features(context)
