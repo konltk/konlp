@@ -144,7 +144,7 @@ class NERTagger(CRFTagger):
             'bias',
             'word=' + word,
             'word.isdigit=%s' % word.isdigit(),
-            'word.ishangul=%s' % is_hangul(word),
+            'word.ishangul=%s' % self.is_hangul(word),
         ]
         context = self._get_context(sent, i, train=train)
         context = self._make_context_features(context)

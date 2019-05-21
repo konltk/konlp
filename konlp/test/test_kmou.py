@@ -19,7 +19,7 @@ tag_modelpath = konlp.__path__[0] + "/tag/kmou/data/"
 token_modelpath = konlp.__path__[0] + "/tokenize/kmou/data/"
 @pytest.fixture
 def input_string():
-    return '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
+    return '사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
 
 
 def test_SentenceTokenizer():
@@ -36,13 +36,13 @@ def test_WordSegment():
 def test_VXP_ChunkTagger(input_string):
     vxp = VXP_ChunkTagger()
     vxp.set_chunk_rule(tag_modelpath+"ChunkingRule_VXP.txt")
-    assert vxp.tag(input_string) == '가게/NNG+에서/JKB 사/VV+아_가지/VXP+고_가/VXP+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
+    assert vxp.tag(input_string) == '사/VV+아_가지/VXP+고_가/VXP+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에/JKB 대하/VV+어서는/EC 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
 
 
 def test_JSP_ChunkTagger(input_string):
     jsp = JSP_ChunkTagger()
     jsp.set_chunk_rule(tag_modelpath+"ChunkingRule_JSP.txt")
-    assert jsp.tag(input_string) == '가게/NNG+에서/JKB 사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에_대하_어서는/JSP 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
+    assert jsp.tag(input_string) == '사/VV+아/EC 가지/VV+고/EC 가/VV+ㄴ/ETM 사탕/NNG+이나/JC 초콜릿/NNG+에_대하_어서는/JSP 별/MM 말/XR+이/JKS 없/VA+었/EP+다/EF+./SF'
 
 
 def test_NERTagger():
