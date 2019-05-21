@@ -48,4 +48,4 @@ def test_JSP_ChunkTagger(input_string):
 def test_NERTagger():
     NERT = NERTagger()
     NERT.set_model_file(tag_modelpath+"NER.crfsuite")
-    assert NERT.tag("박용운씨는 사람이다.") == [('박', 'B-PER'), ('용', 'I-PER'), ('운', 'I-PER'), (' ', 'O'), ('씨', 'O'), ('는', 'O'), (' ', 'O'), ('사', 'O'), ('람', 'O'), ('이', 'O'), ('다', 'O'), ('.', 'O')]
+    assert NERT.tag("박용운씨는 사람이다.") == [('박', 'B-PER'), ('용', 'I-PER'), ('운', 'I-PER'), ('씨', 'O'), ('는', 'O'), (' ', 'O'), ('사', 'O'), ('람', 'O'), ('이', 'O'), ('다', 'O'), ('.', 'O')]
