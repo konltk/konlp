@@ -33,7 +33,7 @@ class SentenceTokenizer():
         self.EOS = '__self.EOS__'
         self.PADDING = '$$'
         self._MODEL_FILE_ = 'sentence_crf.model'
-
+        self.modelpath = konlp.__path__[0] + "/tag/kmou/data/" + "sentence_crf.model"
     def feature_detector(self, tokens, index):
         """자질 추출하는 함수입니다.
 
@@ -123,7 +123,7 @@ class SentenceTokenizer():
             sentences(list(str)): 단락을 문장단위로 잘라서 반환합니다.
         """
         tagger = CRFTagger(feature_func=self.feature_detector)
-        tagger.set_model_file("data\sentence_crf.model")
+        tagger.set_model_file(self.modelpath)
         sentences = []
         for paragraph in paragraphs:
             words = re.split('\s', paragraph.strip())
@@ -140,7 +140,7 @@ class SentenceTokenizer():
         Returns:
             sentences(list(list(str))): 단락을 문장단위로 잘라서 반환합니다.
         """
-        self.modelpath = konlp.__path__[0] + "/tag/kmou/data/" + "sentence_crf.model"
+
         tagger = CRFTagger(feature_func=self.feature_detector)
         tagger.set_model_file(self.modelpath)
         words = re.split('\s+', paragraph.strip())
@@ -166,7 +166,7 @@ class SentenceTokenizer():
             sentences(list(list(str))): 단락을 문장단위로 잘라서 반환합니다.
         """
         tagger = CRFTagger(feature_func=self.feature_detector)
-        tagger.set_model_file("data\sentence_crf.model")
+        tagger.set_model_file(self.modelpath)
         words = re.split('\s+', paragraph.strip())
         tagged = tagger.tag(words)
         return self._to_sentence(tagged)
