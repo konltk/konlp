@@ -165,7 +165,7 @@ class SentenceTokenizer():
             sentences(list(list(str))): 단락을 문장단위로 잘라서 반환합니다.
         """
         tagger = CRFTagger(feature_func=self.feature_detector)
-        tagger.set_model_file("file\sentence_crf.model")
+        tagger.set_model_file("data\sentence_crf.model")
         words = re.split('\s+', paragraph.strip())
         tagged = tagger.tag(words)
         return self._to_sentence(tagged)
