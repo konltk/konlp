@@ -11,9 +11,9 @@
 # ============================================================
 """we are preparing this module"""
 from konlp.tokenize.klt import *
-
+from konlp.tokenize.klt import *
+from konlp.tokenize.kmuasp import KmuAsp
+from konlp.tokenize.treetaggertokenizer import TreetaggerTokenizer
 from konlp.tokenize.kmou import SentenceTokenizer
 
 from konlp.tokenize.kmou import WordSegment
-from konlp.tokenize.kmuasp import KmuAsp
-from konlp.tokenize.treetaggertokenizer import TreetaggerTokenizer
