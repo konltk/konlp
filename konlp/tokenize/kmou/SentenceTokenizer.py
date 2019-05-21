@@ -13,7 +13,7 @@
 from nltk.tag.crf import CRFTagger
 from nltk.tag import untag
 import re
-
+import konlp
 
 class SentenceTokenizer():
     def __init__(self):
@@ -140,15 +140,16 @@ class SentenceTokenizer():
         Returns:
             sentences(list(list(str))): 단락을 문장단위로 잘라서 반환합니다.
         """
+        self.modelpath = konlp.__path__[0] + "/tag/kmou/data/" + "sentence_crf.model"
         tagger = CRFTagger(feature_func=self.feature_detector)
-        tagger.set_model_file("data\sentence_crf.model")
+        tagger.set_model_file(self.modelpath)
         words = re.split('\s+', paragraph.strip())
         tagged = tagger.tag(words)
         return self._to_sentence(tagged)
 
     def demo(self, test_sents):
         tagger = CRFTagger(feature_func=self.feature_detector)
-        tagger.set_model_file("data\sentence_crf.model")
+        tagger.set_model_file(self.modelpath)
         for sent in test_sents:
             tagged = tagger.tag(untag(sent))
             for s in self._to_sentence(tagged):
