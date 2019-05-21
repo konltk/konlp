@@ -33,7 +33,7 @@ class SentenceTokenizer():
         self.EOS = '__self.EOS__'
         self.PADDING = '$$'
         self._MODEL_FILE_ = 'sentence_crf.model'
-        self.modelpath = konlp.__path__[0] + "/tag/kmou/data/" + "sentence_crf.model"
+        self.modelpath = konlp.__path__[0] + "/tokenize/kmou/data/" + "sentence_crf.model"
     def feature_detector(self, tokens, index):
         """자질 추출하는 함수입니다.
 

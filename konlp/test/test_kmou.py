@@ -30,7 +30,7 @@ def test_SentenceTokenizer():
 def test_WordSegment():
     WS = WordSegment()
     WS.set_model_file(token_modelpath+"SPACE.crf.model")
-    assert WS.tag("아버지가방에들어간다") == "아버지가 방에 들어간다."
+    assert WS.tag("아버지가방에들어간다") == "아버지가 방에 들어간다"
 
 
 def test_VXP_ChunkTagger(input_string):
