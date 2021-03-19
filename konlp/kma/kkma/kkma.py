@@ -84,7 +84,7 @@ class Kkma(KmaI):
 
         """
         import konlp
-        classpath = konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar"
+        classpath = os.pathsep.join([konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar",konlp.__path__[0] + "/kma/jklt/lib/" + "Kma.jar"])
         jvmpath = jvmpath or jp.getDefaultJVMPath()
         if jvmpath and not jp.isJVMStarted():
             jp.startJVM(jvmpath, '-Djava.class.path=%s' % classpath,

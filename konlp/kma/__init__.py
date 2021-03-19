@@ -30,3 +30,6 @@ from konlp.kma.klt import KltKma
 # for user, from konlp.kma impor Kkma
 # k = Kkma()
 from konlp.kma.kkma import Kkma
+
+
+from konlp.kma.jklt import Jklt
