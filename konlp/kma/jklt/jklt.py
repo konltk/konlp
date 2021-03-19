@@ -75,17 +75,17 @@ class Jklt(KmaI):
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        result = []
-        for word in self.kma.pos(string):
-            word = word[1:len(word)-1]
+        #result = []
+        #for word in self.kma.pos(string):
+        #    word = word[1:len(word)-1]
 
-            w = word.split(',')
+        #    w = word.split(',')
 
-            temp = (w[0],w[1])
+        #   temp = (w[0],w[1])
 
-            result.append(temp)
+        #    result.append(temp)
         
-        return result
+        #return result
 
     def tokens(self, string):
         """문장을 입력받아 형태소만 출력합니다.
