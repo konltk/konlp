@@ -75,17 +75,17 @@ class Jklt(KmaI):
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        #result = []
-        #for word in self.kma.pos(string):
-        #    word = word[1:len(word)-1]
+        result = []
+        for word in self.kma.pos(string):
+           word = word[1:len(word)-1]
 
-        #    w = word.split(',')
+           w = word.split(',')
 
-        #   temp = (w[0],w[1])
+           temp = (w[0],w[1])
 
-        #    result.append(temp)
+           result.append(temp)
         
-        #return result
+        return result
 
     def tokens(self, string):
         """문장을 입력받아 형태소만 출력합니다.
@@ -100,7 +100,7 @@ class Jklt(KmaI):
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        return list(self.kma.getNouns(string,1))
+        return list(self.kma.getToken(string))
 
     def nouns(self, string):
         """문장을 입력받아 색인어들을 출력합니다.
@@ -115,4 +115,26 @@ class Jklt(KmaI):
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        return list(self.kma.getNouns(string,0))
+        return list(self.kma.getNouns(string))
+
+    def options(self,options):
+        """token추출시 형태소 분석 옵션을 설정할수 있습니다.
+
+        Args:
+            options (dictionary): 설정할 옵션들의 Dictionary, key : str, value : bool
+            syl_1	// 1음절 명사 추출시
+			verbs	// 동사, 형용사, 부사 등 추출시
+			syl_9	// 9음절 이상인 명사 제거
+			at_sp	// 자동띄어쓰기 기능 적용
+			ns_cn	// 제목에 대한 자동띄어쓰기 기능
+			ascii	// 영문자, 숫자가 포함된 것 추출
+			anorm	// 숫자와 한글이 혼합된 숫자를 아라비아 숫자로 변환
+			cnoun	// 복합명사를 분해하지 않음
+			cnn_2	// 복합명사 분해시 이웃한 2 명사들을 조합하여 출력
+									// '정보검색시스템' --> '정보검색', '검색시스템'도 출력
+			stopw	// 불용어를 제거하지 않음
+			key1	// 명사+'하다/되다/스럽다'는 추출하지 않음
+			key2	// 복합명사와 미등록어만 추출시
+            
+        """
+        self.kma.setOption(options)
