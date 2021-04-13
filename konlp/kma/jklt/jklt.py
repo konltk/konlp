@@ -51,7 +51,7 @@ class Jklt(KmaI):
         """
         import konlp
         # path = os.path.dirname(os.path.abspath(__file__))
-        classpath = os.pathsep.join([konlp.__path__[0] + "\\kma\\kkma\\lib\\" + "kkma-2.0.jar",konlp.__path__[0] + "\\kma\\jklt\\lib\\" + "Kma.jar"])
+        classpath = os.pathsep.join([os.path.join(konlp.__path__[0], "kma","kkma","lib","kkma-2.0.jar"),os.path.join(konlp.__path__[0],'kma','jklt','lib', "Kma.jar")])
         # print(classpath)
         if not jpype.isJVMStarted():
             jpype.startJVM(
@@ -65,7 +65,7 @@ class Jklt(KmaI):
         print(jpkg)
         # jpkg.Morphs('dsafsaf')
         # print(konlp.__path__[0])
-        self.kma = jpkg.Morphs(konlp.__path__[0] + "\\kma\\jklt\\hdic\\")
+        self.kma = jpkg.Morphs(konlp.__path__[0].replace('\\','/') + "/kma/jklt/hdic/")
         
 
     def analyze(self, string):
