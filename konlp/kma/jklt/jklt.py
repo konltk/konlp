@@ -51,16 +51,22 @@ class Jklt(KmaI):
         """
         import konlp
         # path = os.path.dirname(os.path.abspath(__file__))
-        classpath = os.pathsep.join([konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar",konlp.__path__[0] + "/kma/jklt/lib/" + "Kma.jar"])
-        
+        classpath = os.pathsep.join([konlp.__path__[0] + "\\kma\\kkma\\lib\\" + "kkma-2.0.jar",konlp.__path__[0] + "\\kma\\jklt\\lib\\" + "Kma.jar"])
+        # print(classpath)
         if not jpype.isJVMStarted():
             jpype.startJVM(
                 jpype.getDefaultJVMPath(),
                 "-Djava.class.path={classpath}".format(classpath=classpath)
             )
+        # print(jpype.getDefaultJVMPath())
+        # print(konlp.__path__[0].replace('\\','/') + "/kma/jklt/hdic/")
+        # print(jpype.getClassPath())
         jpkg = jpype.JPackage("HamPack.Run")
-        self.kma = jpkg.Morphs(konlp.__path__[0] + "/kma/jklt/hdic/")
-        print(konlp.__path__[0] + "/kma/jklt/hdic/")
+        print(jpkg)
+        # jpkg.Morphs('dsafsaf')
+        # print(konlp.__path__[0])
+        self.kma = jpkg.Morphs(konlp.__path__[0] + "\\kma\\jklt\\hdic\\")
+        
 
     def analyze(self, string):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
@@ -117,7 +123,7 @@ class Jklt(KmaI):
         """
         return list(self.kma.getNouns(string))
 
-    def options(self,options):
+    def options(self,o):
         """token추출시 형태소 분석 옵션을 설정할수 있습니다.
 
         Args:
@@ -137,4 +143,12 @@ class Jklt(KmaI):
 			key2	// 복합명사와 미등록어만 추출시
             
         """
-        self.kma.setOption(options)
+        # java = jpype.JPackage("java.util")
+        # oo = java.util.Map(o)
+        oo = jpype.JClass('java.util.HashMap')
+        hm = oo()
+        
+        for k,v in o.items():
+            hm[k] = v
+
+        self.kma.setOption(hm)
