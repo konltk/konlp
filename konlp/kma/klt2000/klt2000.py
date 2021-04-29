@@ -75,15 +75,7 @@ class klt2000:
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        # result = []
-        # for word in self.kma.pos(string):
-        #    word = word[1:len(word)-1]
 
-        #    w = word.split(',')
-
-        #    temp = (w[0],w[1])
-
-        #    result.append(temp)
         if sep == '':
             return list(self.kma.pos(string,'/'))
         else:
