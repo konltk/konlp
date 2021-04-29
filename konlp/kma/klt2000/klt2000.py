@@ -66,6 +66,7 @@ class klt2000:
 
         Args:
             string (str): 형태소 분석을 할 문장
+            sep (str): 형태소 품사 구분자 (default='/')
 
         Returns:
             list(list(str)): 형태소 후보군들 리스트
