@@ -124,19 +124,6 @@ class klt2000:
 
         Args:
             options (dictionary): 설정할 옵션들의 Dictionary, key : str, value : bool
-            syl_1	// 1음절 명사 추출시
-			verbs	// 동사, 형용사, 부사 등 추출시
-			syl_9	// 9음절 이상인 명사 제거
-			at_sp	// 자동띄어쓰기 기능 적용
-			ns_cn	// 제목에 대한 자동띄어쓰기 기능
-			ascii	// 영문자, 숫자가 포함된 것 추출
-			anorm	// 숫자와 한글이 혼합된 숫자를 아라비아 숫자로 변환
-			cnoun	// 복합명사를 분해하지 않음
-			cnn_2	// 복합명사 분해시 이웃한 2 명사들을 조합하여 출력
-									// '정보검색시스템' --> '정보검색', '검색시스템'도 출력
-			stopw	// 불용어를 제거하지 않음
-			key1	// 명사+'하다/되다/스럽다'는 추출하지 않음
-			key2	// 복합명사와 미등록어만 추출시
             
         """
         self.kma.setOption(options)
