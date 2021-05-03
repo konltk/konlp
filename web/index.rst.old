@@ -21,13 +21,16 @@ Some simple things you can do with konlp
 
 Morphological analysis:
 
-    >>> from konlp.kma.klt2000 import klt2000
-    >>> k = klt2000()
+    >>> from konlp.kma.klt import klt
+    >>> k = klt.KltKma()
     >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
-    >>> k.pos(simple_txt)
-    ['안녕/N', '국민대학교/C', '자연어처리/C', '연구실/N']
+    >>> k.analyze(simple_txt)
+    [('안녕하세요', [('안녕', 'N'), ('하', 't'), ('세요', 'e')]), ('.', [('.', 'q')]),
+    ('국민대학교', [('국민대학교', 'N')]), ('자연어처리', [('자연어처리', 'N')]), 
+    ('연구실입니다', [('연구실', 'N'), ('이', 'c'), ('습니다', 'e')]), 
+    ('.', [('.', 'q')])]
     >>> k.morphs(simple_txt)
-    ['안녕', '국민대학교', '자연어처리', '연구실']
+    ['안녕', '하', '세요', '.', '국민대학교', '자연어처리', '연구실', '이', '습니다', '.']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
 
