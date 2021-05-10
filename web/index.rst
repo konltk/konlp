@@ -18,6 +18,16 @@ KoNLP 플랫폼을 통해 제공되는 연구결과물은 연구-개발 및 비�
 
 Some simple things you can do with konlp
 ----------------------------------------
+How to Install konlp
+    JAVA >= 1.8, Python3(3.8 이하) 필요
+    
+    Windows
+    >>> pip install wheel
+    >>> pip install konlp
+    
+    Linux
+    >>> pip3 install wheel
+    >>> pip3 install konlp
 
 Morphological analysis:
 
@@ -30,17 +40,6 @@ Morphological analysis:
     ['안녕', '국민대학교', '자연어처리', '연구실']
     >>> k.nouns(simple_txt)
     ['안녕', '국민대학교', '자연어처리', '연구실']
-
-Automatic word spacing:
-
-    >>> from konlp.tokenize import KltAsp
-    >>> k = KltAsp()
-    >>> k.asp(text="국민대학교자연어처리연구실")
-    ['국민대학교', '자연어처리', '연구실']
-    >>> k.asp(text="국민대학교자연어처리연구실", split=False)
-    '국민대학교 자연어처리 연구실'
-    >>> k.asp(text="국민대학교자연어처리연구실", split=True)
-    ['국민대학교', '자연어처리', '연구실']
 
 Display a parse tree:
 
