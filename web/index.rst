@@ -18,7 +18,9 @@ KoNLP 플랫폼을 통해 제공되는 연구결과물은 연구-개발 및 비�
 
 Some simple things you can do with konlp
 ----------------------------------------
+
 How to Install konlp:
+
     >>> # JAVA >= 1.8, Python3(3.8 이하) 필요
     
     >>> # Windows
