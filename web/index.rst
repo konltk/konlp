@@ -21,7 +21,7 @@ Some simple things you can do with konlp
 
 How to Install konlp:
 
-> JAVA >= 1.8, Python3(3.8 이하) 필요
+> JAVA >= 1.8, Python3(3.8 이하) 필요<br>
 > *<i class="fa fa-info-circle" aria-hidden="true"></i> 정보:* # **** Microsoft Visual C++ Build Tools 에러 발생시 ****
 > https://visualstudio.microsoft.com/ko/vs/older-downloads/ 에서 재배포 가능  패키지 및 빌드 도구 설치 필요   
 
