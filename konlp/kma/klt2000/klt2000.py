@@ -146,13 +146,13 @@ class klt2000:
             if not match: break
             find_pos = match.end()
             sent = text[start:find_pos].strip()
-            print(sent)
+            
             if sent.count('\"') % 2 == 1:
                 continue
             elif sent.count("\'") % 2 == 1:
                 continue
             elif len(text) != find_pos and text[find_pos:][0] >= '0' and  text[find_pos:][0] <= '9':
-                print('f',dot_count)
+                
                 dot_count += 1
                 if dot_count == 1:
                     continue
@@ -164,7 +164,7 @@ class klt2000:
                 start = find_pos
                 sent_list.append(sent)
                 dot_count = 0
-                # print(dot_count)
+                
                 
         
         if start < len(text) -1:
