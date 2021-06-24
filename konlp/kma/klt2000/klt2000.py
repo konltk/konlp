@@ -37,6 +37,7 @@ import jpype
 import json
 import os
 import sys
+import re
 
 # from konlp.kma.api import KmaI
 
@@ -61,6 +62,14 @@ class klt2000:
         jpkg = jpype.JPackage("HamPack.Run")
         self.kma = jpkg.Morphs(konlp.__path__[0] + "/kma/klt2000/hdic/")
 
+        self.open_paran = r'\(\【\['
+        self.close_paran = r'\)\】\]'
+        self.hangul = r'가-힣|a-z|A-Z'
+        self.number = r'[0-9]+'
+
+        self.EF_SF_pattern = re.compile(r'([{}]|{})[\s]*([.?!])'.format(self.hangul,self.number))
+        # self.EF_SF_pattern = re.compile(r'([{}])[\s]*([.?!])'.format(self.hangul))
+
     def pos(self, string,sep=''):
         """문장을 입력받아 모든 형태소/품사 후보군들을 출력합니다.
 
@@ -75,11 +84,13 @@ class klt2000:
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-
+        result = None
         if sep == '':
-            return list(self.kma.pos(string,'/'))
+            result = list(self.kma.pos(string,'/'))
         else:
-            return list(self.kma.pos(string,sep))
+            result = list(self.kma.pos(string,sep))
+        
+        return result#self.to_str(result)
 
     def morphs(self, string):
         """문장을 입력받아 형태소만 출력합니다.
@@ -94,7 +105,10 @@ class klt2000:
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        return list(self.kma.morphs(string))
+
+        result = list(self.kma.morphs(string))
+
+        return result#self.to_str(result)
 
     def nouns(self, string):
         """문장을 입력받아 색인어들을 출력합니다.
@@ -109,7 +123,9 @@ class klt2000:
             NotImplementedError: 이 클래스를 상속한 클래스가 메소드를 구현하지 않았을 경우 발생
 
         """
-        return list(self.kma.nouns(string))
+        result = list(self.kma.nouns(string))
+
+        return result#self.to_str(result)
 
     def options(self,options):
         """token추출시 형태소 분석 옵션을 설정할수 있습니다.
@@ -119,3 +135,47 @@ class klt2000:
             
         """
         self.kma.setOption(options)
+    
+    def sentences(self,text):
+        find_pos = 0
+        start = 0
+        sent_list = []
+        dot_count = 0
+        while True:
+            match = self.EF_SF_pattern.search(text, find_pos)
+            if not match: break
+            find_pos = match.end()
+            sent = text[start:find_pos].strip()
+            print(sent)
+            if sent.count('\"') % 2 == 1:
+                continue
+            elif sent.count("\'") % 2 == 1:
+                continue
+            elif len(text) != find_pos and text[find_pos:][0] >= '0' and  text[find_pos:][0] <= '9':
+                print('f',dot_count)
+                dot_count += 1
+                if dot_count == 1:
+                    continue
+                elif dot_count >= 2:
+                    start = find_pos
+                    sent_list.append(sent)
+                    dot_count = 0
+            else:
+                start = find_pos
+                sent_list.append(sent)
+                dot_count = 0
+                # print(dot_count)
+                
+        
+        if start < len(text) -1:
+            sent = text[start:].strip()
+            sent_list.append(sent)
+
+        return sent_list
+
+    def to_str(self,result):
+        temp = []
+        for re in result:
+            temp.append(str(re))
+        
+        return temp
