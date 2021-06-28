@@ -43,7 +43,7 @@ import re
 
 
 class klt2000:
-    def __init__(self):
+    def __init__(self, jvmpath=None):
         """Klt module's __init__ method
 
         Args:
@@ -54,10 +54,13 @@ class klt2000:
         # path = os.path.dirname(os.path.abspath(__file__))
         classpath = os.pathsep.join([konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar",konlp.__path__[0] + "/kma/klt2000/lib/" + "klt2000.jar"])
         
-        if not jpype.isJVMStarted():
+        jvmpath = jvmpath or jpype.getDefaultJVMPath()
+        if jvmpath and not jpype.isJVMStarted():
             jpype.startJVM(
-                jpype.getDefaultJVMPath(),
-                "-Djava.class.path={classpath}".format(classpath=classpath)
+                jvmpath,
+                "-Djava.class.path={classpath}".format(classpath=classpath),
+		'-Dfile.encoding=UTF8',
+                '-ea', '-Xmx1024m'
             )
         jpkg = jpype.JPackage("HamPack.Run")
         self.kma = jpkg.Morphs(konlp.__path__[0] + "/kma/klt2000/hdic/")
@@ -152,7 +155,6 @@ class klt2000:
             elif sent.count("\'") % 2 == 1:
                 continue
             elif len(text) != find_pos and text[find_pos:][0] >= '0' and  text[find_pos:][0] <= '9':
-                
                 dot_count += 1
                 if dot_count == 1:
                     continue
@@ -164,8 +166,6 @@ class klt2000:
                 start = find_pos
                 sent_list.append(sent)
                 dot_count = 0
-                
-                
         
         if start < len(text) -1:
             sent = text[start:].strip()
