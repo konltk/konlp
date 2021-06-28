@@ -78,7 +78,7 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
             'jpype1==1.2.0',
             #'JPype1-py3>=0.5.5.1',
             #'tensorflow>=1.8.0',
-            'pyjnius==1.2.0'
+            #'pyjnius==1.2.0'
     ], # Later on, we have to select
     packages=find_packages(), # later on, with exclude setting
     extras_require={}, # Later on, refer to k-NLTK resource
