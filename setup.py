@@ -37,7 +37,7 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
               'morpheme anaylisis', 'chunk',
               'natural language', 'text anayltics'],
     author="Hyunyoung Lee, GyuHyeon Nam", # Later on, maintainer
-    author_email="hyun02.engineer@gmail.com, ngh3053@gmail.com",
+    author_email="hyun02.engineer@gmail.com, ngh3053@gmail.com, ty3411@gmail.com",
     classifiers=[
         # How mature is this project? common value are
         #    3 - Alpha
@@ -69,8 +69,17 @@ Korean natural Language precessing. KoNLP currently requires Python 3.5.""",
     'kma/klt/data/hdic/*',
     # tokenize/klt 모듈의 사전 파일 위치
     'tokenize/klt/data/dic/*',
+    # kma/klt2000 모듈의 사전 파일 위치
+    'kma/klt2000/hdic/*',
     ]}, # Later on we have to change it
-    install_requires=[], # Later on, we have to select
+    install_requires=[
+            'pytest-cov==2.4.0',
+            'coveralls==1.1',
+            'jpype1==1.2.0',
+            #'JPype1-py3>=0.5.5.1',
+            #'tensorflow>=1.8.0',
+            'pyjnius==1.2.0'
+    ], # Later on, we have to select
     packages=find_packages(), # later on, with exclude setting
     extras_require={}, # Later on, refer to k-NLTK resource
     python_requires='>=3', # Later on, we change this to classifier above
