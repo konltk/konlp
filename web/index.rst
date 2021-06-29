@@ -23,7 +23,8 @@ How to Install konlp:
 .. code-block::
     JAVA >= 11, Python3(3.8 이하) 필요
     **Microsoft Visual C++ Build Tools 에러 발생시**
-    https://visualstudio.microsoft.com/ko/vs/older-downloads/ 에서 재배포 가능  패키지 및 빌드 도구 설치 필요
+    https://visualstudio.microsoft.com/ko/vs/older-downloads/ 에서 재배포 가능  패키지 및 빌드 도구 설치
+    필요
 
     #Windows
     pip install wheel
@@ -44,7 +45,8 @@ Morphological analysis:
     ['국민대학교', '자연어처리', '연구실', '만들', '파이썬기반', '형태소', '분석기']
     >>> k.nouns(simple_txt)
     ['국민대학교', '자연어처리', '연구실', '파이썬기반', '형태소', '분석기']
-    >>> k.sentences('국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.많은 이용 부탁드립니다.')# 문장 분리기
+    >>> k.sentences('''국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.많은 이용 
+        부탁드립니다.''')# 문장 분리기
     ['국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.', '많은 이용 부탁드립니다.']
 
 Display a parse tree:
