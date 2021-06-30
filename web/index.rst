@@ -21,9 +21,10 @@ Some simple things you can do with konlp
 
 How to Install konlp:
 .. code-block::
-    JAVA >= 1.8, Python3(3.8 이하) 필요
+    JAVA >= 11, Python3(3.8 이하) 필요
     **Microsoft Visual C++ Build Tools 에러 발생시**
-    https://visualstudio.microsoft.com/ko/vs/older-downloads/ 에서 재배포 가능  패키지 및 빌드 도구 설치 필요
+    https://visualstudio.microsoft.com/ko/vs/older-downloads/ 에서 재배포 가능  패키지 및 빌드 도구 설치
+    필요
 
     #Windows
     pip install wheel
@@ -37,13 +38,16 @@ Morphological analysis:
 
     >>> from konlp.kma.klt2000 import klt2000
     >>> k = klt2000()
-    >>> simple_txt = "안녕하세요. 국민대학교 자연어처리 연구실입니다."
+    >>> simple_txt = "운동을 하고 밥을 허겁지겁 먹었더니 아주 배가 부릅니다."
     >>> k.pos(simple_txt)
-    ['안녕/N', '국민대학교/C', '자연어처리/C', '연구실/N']
+    ['운동/N', '하/V', '밥/1', '허겁지겁/W', '먹/V', '아주/W', '배가/N', '부르/V']
     >>> k.morphs(simple_txt)
-    ['안녕', '국민대학교', '자연어처리', '연구실']
+    ['운동', '하', '밥', '허겁지겁', '먹', '아주', '배가', '부르']
     >>> k.nouns(simple_txt)
-    ['안녕', '국민대학교', '자연어처리', '연구실']
+    ['운동', '밥', '배가']
+    >>> k.sentences('''국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.많은 이용 
+    >>> 부탁드립니다.''')# 문장 분리기
+    ['국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.', '많은 이용 부탁드립니다.']
 
 Display a parse tree:
 
