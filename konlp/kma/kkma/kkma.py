@@ -42,7 +42,7 @@ Example:
 TODO : The way to initialize JVM have to change
 
 """
-
+import os
 import jpype as jp # pylint: disable=import-error
 from konlp.kma.api import KmaI
 
