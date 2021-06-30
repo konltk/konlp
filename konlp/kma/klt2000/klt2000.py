@@ -93,7 +93,8 @@ class klt2000:
         else:
             result = list(self.kma.pos(string,sep))
         
-        return result#self.to_str(result)
+        #return result#
+        return self.to_str(result)
 
     def morphs(self, string):
         """문장을 입력받아 형태소만 출력합니다.
@@ -111,7 +112,8 @@ class klt2000:
 
         result = list(self.kma.morphs(string))
 
-        return result#self.to_str(result)
+        #return result#
+        return self.to_str(result)
 
     def nouns(self, string):
         """문장을 입력받아 색인어들을 출력합니다.
@@ -128,7 +130,8 @@ class klt2000:
         """
         result = list(self.kma.nouns(string))
 
-        return result#self.to_str(result)
+        #return result#
+        return self.to_str(result)
 
     def options(self,options):
         """token추출시 형태소 분석 옵션을 설정할수 있습니다.
