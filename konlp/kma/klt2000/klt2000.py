@@ -142,7 +142,7 @@ class klt2000:
         """
         self.kma.setOption(options)
     
-    def sentences(self,text):
+    def sent_tokenize(self,text):
         find_pos = 0
         start = 0
         sent_list = []
