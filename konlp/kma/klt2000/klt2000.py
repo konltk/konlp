@@ -33,6 +33,10 @@ Example:
     ['국민대학교', '자연어처리', '연구실'] 
 """
 
+# import jpype
+import sys
+import konlp
+sys.path = [konlp.__path__[0] + '/lib'] + sys.path
 import jpype
 import json
 import os

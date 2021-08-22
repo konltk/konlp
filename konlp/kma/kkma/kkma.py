@@ -43,7 +43,10 @@ TODO : The way to initialize JVM have to change
 
 """
 import os
-import jpype as jp # pylint: disable=import-error
+import konlp
+import sys
+sys.path = [konlp.__path__[0] + '/lib'] + sys.path
+import jpype as jp#import jpype as jp # pylint: disable=import-error
 from konlp.kma.api import KmaI
 
 class Kkma(KmaI):
