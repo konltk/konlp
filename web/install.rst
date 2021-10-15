@@ -34,7 +34,7 @@ Unix (Ubuntu 14.04, 16.04)
 
 .. sourcecode:: python
 
-	>>> import konlp.kma.klt2000 import klt2000
+	>>> from konlp.kma.klt2000 import klt2000
 	>>> k = klt2000()
 	>>> k = k.pos('나는 사과를 먹었다')
 	>>> k = k.morphs('나는 사과를 먹었다')
