@@ -1,0 +1,28 @@
+Metadata-Version: 1.2
+Name: konlp-test
+Version: 0.0.9
+Summary: Korean Natural Language Toolkit
+Home-page: https://www.konltk.org
+Author: Hyunyoung Lee, GyuHyeon Nam
+Author-email: hyun02.engineer@gmail.com, ngh3053@gmail.com, ty3411@gmail.com
+License: UNKNOWN
+Description: KoNLP is Natural Language Processing Toolkit and Python package for
+        Korean natural Language precessing. KoNLP currently requires Python 3.5.
+Keywords: NLP,KoNLTK,NLPK,koNLP,konltk,nlpk,konlp,korean natural langugae processing,natural language processing,parsing,tagging,tokenizing,morpheme anaylisis,chunk,natural language,text anayltics
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Filters
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3
