@@ -57,7 +57,7 @@ Morphological analysis:
 	| 
 	
 	| **사용자 사전 경로 :** 
-	| **(파이썬이 설치된 경로)\\Python38\\Lib\\site-packages\\konlp\\kma\\klt2000\\hdic\\ham-usr.dic**
+	| (파이썬이 설치된 경로)\\Python38\\Lib\\site-packages\\konlp\\kma\\klt2000\\hdic\\ham-usr.dic
 	| 
 	
 	Example(사용자 사전 추가전):
