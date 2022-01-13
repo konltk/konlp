@@ -57,19 +57,19 @@ Morphological analysis:
 	사용자 사전 경로 : 
 	(파이썬이 설치된 경로)\\Python38\\Lib\\site-packages\\konlp\\kma\\klt2000\\hdic\\ham-usr.dic 
 	
-	Example(사용자 사전 추가전):
+Example(사용자 사전 추가전):
 
-		>>> from konlp.kma.klt2000 import klt2000
-		>>> k = klt2000()
-		>>> k.pos('기성용 모더나')
-		['기성/N', '모더/K']
-	
-	Example(사용자 사전 추가후):
+	>>> from konlp.kma.klt2000 import klt2000
+	>>> k = klt2000()
+	>>> k.pos('기성용 모더나')
+	['기성/N', '모더/K']
 
-		>>> from konlp.kma.klt2000 import klt2000
-		>>> k = klt2000()
-		>>> k.pos('기성용 모더나')
-		['기성용/N', '모더나/N']
+Example(사용자 사전 추가후):
+
+	>>> from konlp.kma.klt2000 import klt2000
+	>>> k = klt2000()
+	>>> k.pos('기성용 모더나')
+	['기성용/N', '모더나/N']
 	
 Display a parse tree:
 
