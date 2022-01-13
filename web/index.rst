@@ -50,19 +50,18 @@ Morphological analysis:
     ['국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.', '많은 이용 부탁드립니다.']
 
 사용자 사전추가 방법:
-.. code-block::
 	'기성용', '모더나' 등과 같이 미등록명사는 '기성', '모더' 등과 같이 형태소 분석 오류가 발생할 수 있습니다. 
 	이 경우에 해당 명사를 아래 경로에 있는 'ham-usr.dic'에 "소팅순서에 맞게" 추가하면 됩니다.
 	(주의) ham-usr.dic은 텍스트 파일이며, KS완성형(cp949) 한글코드로 저장해야 함!
 	사용자 사전 경로 : (파이썬이 설치된 경로)\Python38\Lib\site-packages\konlp\kma\klt2000\hdic\ham-usr.dic
 	
-	사용자 사전 추가전:
+사용자 사전 추가전:
 	>>> from konlp.kma.klt2000 import klt2000
 	>>> k = klt2000()
 	>>> k.pos('기성용 모더나')
 	['기성/N', '모더/K']
 	
-	사용자 사전 추가후:
+사용자 사전 추가후:
 	>>> from konlp.kma.klt2000 import klt2000
 	>>> k = klt2000()
 	>>> k.pos('기성용 모더나')
