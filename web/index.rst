@@ -56,7 +56,8 @@ Morphological analysis:
 	| (주의) ham-usr.dic은 텍스트 파일이며, KS완성형(cp949) 한글코드로 저장해야 함!
 	| 
 	
-	**사용자 사전 경로 : (파이썬이 설치된 경로)\\Python38\\Lib\\site-packages\\konlp\\kma\\klt2000\\hdic\\ham-usr.dic**
+	**사용자 사전 경로 :** 
+	| **(파이썬이 설치된 경로)\\Python38\\Lib\\site-packages\\konlp\\kma\\klt2000\\hdic\\ham-usr.dic**
 	
 	Example(사용자 사전 추가전):
 
