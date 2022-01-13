@@ -36,7 +36,9 @@ Example:
 # import jpype
 import sys
 import konlp
-sys.path = [konlp.__path__[0] + '/lib'] + sys.path
+import platform
+if platform.system() == 'Windows':
+    sys.path = [konlp.__path__[0] + '/lib_win'] + sys.path
 import jpype
 import json
 import os
@@ -44,10 +46,10 @@ import sys
 import re
 
 # from konlp.kma.api import KmaI
-
+# print(jpype.__version__)
 
 class klt2000:
-    def __init__(self, jvmpath=None):
+    def __init__(self, classpath_=False, jvmpath=None):
         """Klt module's __init__ method
 
         Args:
@@ -57,18 +59,31 @@ class klt2000:
         import konlp
         # path = os.path.dirname(os.path.abspath(__file__))
         classpath = os.pathsep.join([konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar",konlp.__path__[0] + "/kma/klt2000/lib/" + "klt2000.jar"])
-        
+        # print(classpath_)
         jvmpath = jvmpath or jpype.getDefaultJVMPath()
         if jvmpath and not jpype.isJVMStarted():
-            jpype.startJVM(
-                jvmpath,
-                "-Djava.class.path={classpath}".format(classpath=classpath),
-		'-Dfile.encoding=UTF8',
-                '-ea', '-Xmx1024m'
-            )
+            if jvmpath and not jpype.isJVMStarted():
+                if not classpath_:#classpath_ == None:
+                    jpype.startJVM(
+                        jvmpath,
+                        "-Djava.class.path={classpath}".format(classpath=classpath),
+                '-Dfile.encoding=UTF8',
+                        '-ea', '-Xmx1024m'
+                        # ,convertStrings=True
+                    )
+                else:
+                    cp = self.set_classpath()
+                    jpype.startJVM(
+                        jvmpath,
+                        "-Djava.class.path={classpath}".format(classpath=cp),
+                '-Dfile.encoding=UTF8',
+                        '-ea', '-Xmx1024m'
+                        # ,convertStrings=True
+                    )            
         jpkg = jpype.JPackage("HamPack.Run")
-        self.kma = jpkg.Morphs(konlp.__path__[0] + "/kma/klt2000/hdic/")
-
+        # print(os.sep.join([konlp.__path__[0],"kma","klt2000","hdic"])+os.sep)
+        self.kma = jpkg.Morphs(os.sep.join([konlp.__path__[0],"kma","klt2000","hdic"])+os.sep)
+        
         self.open_paran = r'\(\【\['
         self.close_paran = r'\)\】\]'
         self.hangul = r'가-힣|a-z|A-Z'
@@ -186,3 +201,45 @@ class klt2000:
             temp.append(str(re))
         
         return temp
+    
+    def set_classpath(self):
+        #sys.path = sys.path
+        import konlpy
+        #print(jpype.__version__)
+        folder_suffix = [
+            # JAR
+            '{0}',
+            # Java sources
+            '{0}{1}bin',
+            '{0}{1}*',
+            # Hannanum
+            '{0}{1}jhannanum-0.8.4.jar',
+            # Kkma
+            '{0}{1}kkma-2.0.jar',
+            # Komoran3
+            '{0}{1}aho-corasick.jar',
+            '{0}{1}shineware-common-1.0.jar',
+            '{0}{1}shineware-ds-1.0.jar',
+            '{0}{1}komoran-3.0.jar',
+            # Twitter (Okt)
+            '{0}{1}snakeyaml-1.12.jar',
+            '{0}{1}scala-library-2.12.3.jar',
+            '{0}{1}open-korean-text-2.1.0.jar',
+            '{0}{1}twitter-text-1.14.7.jar',
+            '{0}{1}*'
+        ]
+
+        install_path = konlpy.__path__[0] + os.sep + 'java'
+        args = [install_path,os.sep]
+        classpath = os.pathsep.join(f.format(*args) for f in folder_suffix)
+
+        classpath_ = [f.format(*args) for f in folder_suffix]
+
+        # for i in classpath_:
+        #     jpype.addClassPath(i)
+
+        classpath2 = os.sep.join([konlp.__path__[0],"kma","klt2000","lib","klt2000.jar"])
+        #print(classpath2)
+        # jpype.addClassPath(classpath2)
+        # os.environ['CLASSPATH'] = 
+        return os.pathsep.join([classpath,classpath2])
