@@ -18,3 +18,15 @@ TODO : We will introduce kkma in detail.
 # for user, from konlp.kma.kkma impor Kkma
 # k = Kkma()
 from konlp.kma.klt2000.klt2000 import klt2000
+
+import platform
+import os
+import subprocess
+
+def install():
+    if not os.path.isdir(os.path.join(konlp.__path__[0],'lib_win')):
+        os.mkdir(os.path.join(konlp.__path__[0],'lib_win'))
+    if not os.path.isdir(os.path.join(konlp.__path__[0],'lib_win','jpype')):
+        subprocess.check_call([sys.executable,"-m","pip","install","--target="+os.path.join(konlp.__path__[0], 'lib_win'),"jpype1-py3"])
+#if platform.system() == 'Windows':
+#    install()

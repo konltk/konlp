@@ -37,8 +37,8 @@ Example:
 import sys
 import konlp
 import platform
-if platform.system() == 'Windows':
-    sys.path = [konlp.__path__[0] + '/lib_win'] + sys.path
+# if platform.system() == 'Windows':
+#     sys.path = [konlp.__path__[0] + '/lib_win'] + sys.path
 import jpype
 import json
 import os
