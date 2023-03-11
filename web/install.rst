@@ -34,8 +34,8 @@ Unix (Ubuntu 14.04, 16.04)
 
 .. sourcecode:: python
 
-	>>> from konlp.kma.klt2000 import klt2000
-	>>> k = klt2000()
+	>>> from konlp.kma.klt2023 import klt2023
+	>>> k = klt2023()
 	>>> k = k.pos('나는 사과를 먹었다')
 	>>> k = k.morphs('나는 사과를 먹었다')
 	>>> k = k.nouns('나는 사과를 먹었다')

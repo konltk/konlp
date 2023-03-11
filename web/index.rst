@@ -29,15 +29,19 @@ How to Install konlp:
     #Windows
     pip install wheel
     pip install konlp
-    
+    pip install pyjnius
+
     #Linux
     pip3 install wheel
     pip3 install konlp
+    pip3 install pyjnius
 
 Morphological analysis:
 
-    >>> from konlp.kma.klt2000 import klt2000
-    >>> k = klt2000()
+    >>> # 속도개선 버전 업데이트가 되었습니다. 
+    >>> # 기존의 klt2000을 사용하고 싶으신분은 from konlp.kma.klt2000 import klt2000 를 사용하시기 바랍니다.
+    >>> from konlp.kma.klt2023 import klt2023
+    >>> k = klt2023()
     >>> simple_txt = "내 눈을 본다면 밤하늘의 별이 되는 기분을 느낄 수 있을 거야"
     >>> k.pos(simple_txt)
     ['나/1', '눈/1', '보/V', '밤하늘/N', '별/1', '되/V', '기분/N', '느끼/V', '수/1', '있/V', '거/1']
@@ -45,8 +49,6 @@ Morphological analysis:
     ['나', '눈', '보', '밤하늘', '별', '되', '기분', '느끼', '수', '있', '거']
     >>> k.nouns(simple_txt)
     ['나', '눈', '밤하늘', '별', '기분', '수', '거']
-    >>> k.sent_tokenize('국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.많은 이용 부탁드립니다.')
-    ['국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.', '많은 이용 부탁드립니다.']
 
 **사용자 사전추가 방법:**
 .. code::
@@ -55,19 +57,19 @@ Morphological analysis:
 	(주의) ham-usr.dic은 텍스트 파일이며, KS완성형(cp949) 한글코드로 저장해야 함! 
 	 
 	사용자 사전 경로 : 
-	(파이썬이 설치된 경로)\Python38\Lib\site-packages\konlp\kma\klt2000\hdic\ham-usr.dic 
+	(파이썬이 설치된 경로)\Python38\Lib\site-packages\konlp\kma\klt2023\hdic\ham-usr.dic 
 	
 Example(사용자 사전 추가전):
 
-	>>> from konlp.kma.klt2000 import klt2000
-	>>> k = klt2000()
+	>>> from konlp.kma.klt2023 import klt2023
+	>>> k = klt2023()
 	>>> k.pos('기성용 모더나')
 	['기성/N', '모더/K']
 
 Example(사용자 사전 추가후):
 
-	>>> from konlp.kma.klt2000 import klt2000
-	>>> k = klt2000()
+	>>> from konlp.kma.klt2023 import klt2023
+	>>> k = klt2023()
 	>>> k.pos('기성용 모더나')
 	['기성용/N', '모더나/N']
 	
