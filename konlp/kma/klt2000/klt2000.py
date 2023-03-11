@@ -57,6 +57,7 @@ class klt2000:
 
         """
         import konlp
+
         # path = os.path.dirname(os.path.abspath(__file__))
         classpath = os.pathsep.join([konlp.__path__[0] + "/kma/kkma/lib/" + "kkma-2.0.jar",konlp.__path__[0] + "/kma/klt2000/lib/" + "klt2000.jar"])
         # print(classpath_)

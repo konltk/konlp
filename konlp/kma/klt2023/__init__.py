@@ -17,8 +17,8 @@ TODO : We will introduce kkma in detail.
 
 # for user, from konlp.kma.kkma impor Kkma
 # k = Kkma()
-from konlp.kma.klt2000.klt2000 import klt2000
-# from konlp.kma.klt2000.klt2023 import klt2023
+# from konlp.kma.klt2000.klt2000 import klt2000
+from konlp.kma.klt2023.klt2023 import klt2023
 
 import platform
 import os

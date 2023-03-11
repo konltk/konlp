@@ -33,3 +33,4 @@ from konlp.kma.kkma import Kkma
 
 
 from konlp.kma.klt2000 import klt2000
+from konlp.kma.klt2023 import klt2023
